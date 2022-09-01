@@ -10,7 +10,7 @@
 
 * Website: https://elias-cardon.students-laplateforme.io/
 * Github: [@elias-cardon](https://github.com/elias-cardon)
-* LinkedIn: [@Elias Cardon](https://linkedin.com/in/Elias Cardon)
+* LinkedIn: [@elias-cardon](https://linkedin.com/in/elias-cardon)
 
 ## Show your support
 
