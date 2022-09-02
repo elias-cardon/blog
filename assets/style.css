@@ -49,3 +49,9 @@ body{
     background: var(--color-bg);
     font-size: 0.9rem;
 }
+
+.container{
+    width: var(--container-width-lg);
+    max-width: 1800px;
+    margin-inline: auto;
+}
