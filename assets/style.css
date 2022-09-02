@@ -25,3 +25,27 @@
     --card-border-radius-4:2rem;
     --card-border-radius-5:5rem;
 }
+
+/* =============================================================
+CLASSES GENERALES
+ ============================================================== */
+
+*{
+    margin: 0;
+    padding: 0;
+    outline: 0;
+    border: 0;
+    appearance: 0;
+    list-style: none;
+    text-decoration: none;
+    box-sizing: border-box;
+}
+
+body{
+    font-family: 'Montserrat', sans-serif;
+    line-height: 1.6;
+    color: var(--color-gray-900);
+    overflow-x: hidden;
+    background: var(--color-bg);
+    font-size: 0.9rem;
+}
