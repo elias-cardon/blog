@@ -103,7 +103,7 @@
         </article>
         <article class="post">
             <div class="post__thumbnail">
-                <img src="./assets/images/blog2.jpg" alt="Image du blog2">
+                <img src="./assets/images/blog3.jpg" alt="Image du blog2">
             </div>
             <div class="post__info">
                 <a href="" class="category__button">Wild Life</a>
@@ -117,7 +117,7 @@
                 </p>
                 <div class="post__author">
                     <div class="post__author-avatar">
-                        <img src="./assets/images/avatar3.jpg" alt="Avatar de l'auteur">
+                        <img src="./assets/images/avatar2.jpg" alt="Avatar de l'auteur">
                     </div>
                     <div class="post__author-info">
                         <h5>Par : Jobbax</h5>
@@ -128,7 +128,7 @@
         </article>
         <article class="post">
             <div class="post__thumbnail">
-                <img src="./assets/images/blog2.jpg" alt="Image du blog2">
+                <img src="./assets/images/blog4.jpg" alt="Image du blog2">
             </div>
             <div class="post__info">
                 <a href="" class="category__button">Wild Life</a>
@@ -142,7 +142,7 @@
                 </p>
                 <div class="post__author">
                     <div class="post__author-avatar">
-                        <img src="./assets/images/avatar3.jpg" alt="Avatar de l'auteur">
+                        <img src="./assets/images/avatar4.jpg" alt="Avatar de l'auteur">
                     </div>
                     <div class="post__author-info">
                         <h5>Par : Jobbax</h5>
@@ -153,7 +153,7 @@
         </article>
         <article class="post">
             <div class="post__thumbnail">
-                <img src="./assets/images/blog2.jpg" alt="Image du blog2">
+                <img src="./assets/images/blog5.jpg" alt="Image du blog2">
             </div>
             <div class="post__info">
                 <a href="" class="category__button">Wild Life</a>
@@ -167,7 +167,7 @@
                 </p>
                 <div class="post__author">
                     <div class="post__author-avatar">
-                        <img src="./assets/images/avatar3.jpg" alt="Avatar de l'auteur">
+                        <img src="./assets/images/avatar5.jpg" alt="Avatar de l'auteur">
                     </div>
                     <div class="post__author-info">
                         <h5>Par : Jobbax</h5>
@@ -178,7 +178,7 @@
         </article>
         <article class="post">
             <div class="post__thumbnail">
-                <img src="./assets/images/blog2.jpg" alt="Image du blog2">
+                <img src="./assets/images/blog6.jpg" alt="Image du blog2">
             </div>
             <div class="post__info">
                 <a href="" class="category__button">Wild Life</a>
@@ -192,7 +192,7 @@
                 </p>
                 <div class="post__author">
                     <div class="post__author-avatar">
-                        <img src="./assets/images/avatar3.jpg" alt="Avatar de l'auteur">
+                        <img src="./assets/images/avatar6.jpg" alt="Avatar de l'auteur">
                     </div>
                     <div class="post__author-info">
                         <h5>Par : Jobbax</h5>
@@ -203,7 +203,7 @@
         </article>
         <article class="post">
             <div class="post__thumbnail">
-                <img src="./assets/images/blog2.jpg" alt="Image du blog2">
+                <img src="./assets/images/blog7.jpg" alt="Image du blog2">
             </div>
             <div class="post__info">
                 <a href="" class="category__button">Wild Life</a>
@@ -217,7 +217,7 @@
                 </p>
                 <div class="post__author">
                     <div class="post__author-avatar">
-                        <img src="./assets/images/avatar3.jpg" alt="Avatar de l'auteur">
+                        <img src="./assets/images/avatar7.jpg" alt="Avatar de l'auteur">
                     </div>
                     <div class="post__author-info">
                         <h5>Par : Jobbax</h5>
