@@ -45,5 +45,33 @@
     </div>
 </nav>
 <!--==============================END OF NAVBAR=========================================-->
+<!--==============================FEATURED POST=========================================-->
+<section class="featured">
+    <div class="container featured__container">
+        <div class="post__thumbnail">
+            <img src="./assets/images/blog1.jpg" alt="Image du blog1">
+        </div>
+        <div class="post__info">
+            <a href="" class="category__button">Wild Life</a>
+            <h2 class="post__title"><a href="post.php">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</a>
+            </h2>
+            <p class="post__body">
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab alias culpa delectus error est eum, fuga
+                inventore, nam nostrum perferendis praesentium quibusdam repellendus sunt tenetur ullam vel, vitae.
+                Expedita, fuga.
+            </p>
+            <div class="post__author">
+                <div class="post__author-avatar">
+                    <img src="./assets/images/avatar1.jpg" alt="Avatar de l'auteur de l'article">
+                </div>
+                <div class="post__author-info">
+                    <h5>Par : Jobba</h5>
+                    <small>3 septembre 2022 - 14:19</small>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--==============================END OF FEATURED POST=========================================-->
 </body>
 </html>
