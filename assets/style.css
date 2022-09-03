@@ -44,7 +44,7 @@ CLASSES GENERALES
 body {
     font-family: 'Montserrat', sans-serif;
     line-height: 1.6;
-    color: var(--color-gray-900);
+    color: var(--color-gray-200);
     overflow-x: hidden;
     background: var(--color-bg);
     font-size: 0.9rem;
@@ -173,4 +173,12 @@ nav button {
 .nav__profile ul li:last-child a{
     background: var(--color-red);
     color: var(--color-bg);
+}
+
+/* =============================================================
+CATEGORY BUTTON
+ ============================================================== */
+
+.category__button{
+    background: ;
 }
