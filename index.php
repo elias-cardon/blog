@@ -34,7 +34,7 @@
                 </div>
                 <ul>
                     <li><a href="dashboard.php">Dashboard</a></li>
-                    <li><a href="logout.php">Se déconnecter</a></li>
+                    <li><a href="logout.php">Déconnexion</a></li>
                 </ul>
             </li>
         </ul>
