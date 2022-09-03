@@ -101,6 +101,131 @@
                 </div>
             </div>
         </article>
+        <article class="post">
+            <div class="post__thumbnail">
+                <img src="./assets/images/blog2.jpg" alt="Image du blog2">
+            </div>
+            <div class="post__info">
+                <a href="" class="category__button">Wild Life</a>
+                <h3 class="post__title">
+                    <a href="post.php">
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                    </a>
+                </h3>
+                <p class="post__body">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium cupiditate
+                    delectus dolore ea expedita id, labore modi non quidem quo quos, repellat voluptatum.
+                </p>
+                <div class="post__author">
+                    <div class="post__author-avatar">
+                        <img src="./assets/images/avatar3.jpg" alt="Avatar de l'auteur">
+                    </div>
+                    <div class="post__author-info">
+                        <h5>Par : Jobbax</h5>
+                        <small>3 septempbre 2022 - 17:49</small>
+                    </div>
+                </div>
+            </div>
+        </article>
+        <article class="post">
+            <div class="post__thumbnail">
+                <img src="./assets/images/blog2.jpg" alt="Image du blog2">
+            </div>
+            <div class="post__info">
+                <a href="" class="category__button">Wild Life</a>
+                <h3 class="post__title">
+                    <a href="post.php">
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                    </a>
+                </h3>
+                <p class="post__body">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium cupiditate
+                    delectus dolore ea expedita id, labore modi non quidem quo quos, repellat voluptatum.
+                </p>
+                <div class="post__author">
+                    <div class="post__author-avatar">
+                        <img src="./assets/images/avatar3.jpg" alt="Avatar de l'auteur">
+                    </div>
+                    <div class="post__author-info">
+                        <h5>Par : Jobbax</h5>
+                        <small>3 septempbre 2022 - 17:49</small>
+                    </div>
+                </div>
+            </div>
+        </article>
+        <article class="post">
+            <div class="post__thumbnail">
+                <img src="./assets/images/blog2.jpg" alt="Image du blog2">
+            </div>
+            <div class="post__info">
+                <a href="" class="category__button">Wild Life</a>
+                <h3 class="post__title">
+                    <a href="post.php">
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                    </a>
+                </h3>
+                <p class="post__body">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium cupiditate
+                    delectus dolore ea expedita id, labore modi non quidem quo quos, repellat voluptatum.
+                </p>
+                <div class="post__author">
+                    <div class="post__author-avatar">
+                        <img src="./assets/images/avatar3.jpg" alt="Avatar de l'auteur">
+                    </div>
+                    <div class="post__author-info">
+                        <h5>Par : Jobbax</h5>
+                        <small>3 septempbre 2022 - 17:49</small>
+                    </div>
+                </div>
+            </div>
+        </article>
+        <article class="post">
+            <div class="post__thumbnail">
+                <img src="./assets/images/blog2.jpg" alt="Image du blog2">
+            </div>
+            <div class="post__info">
+                <a href="" class="category__button">Wild Life</a>
+                <h3 class="post__title">
+                    <a href="post.php">
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                    </a>
+                </h3>
+                <p class="post__body">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium cupiditate
+                    delectus dolore ea expedita id, labore modi non quidem quo quos, repellat voluptatum.
+                </p>
+                <div class="post__author">
+                    <div class="post__author-avatar">
+                        <img src="./assets/images/avatar3.jpg" alt="Avatar de l'auteur">
+                    </div>
+                    <div class="post__author-info">
+                        <h5>Par : Jobbax</h5>
+                        <small>3 septempbre 2022 - 17:49</small>
+                    </div>
+                </div>
+            </div>
+        </article>
+        <article class="post">
+            <div class="post__thumbnail">
+                <img src="./assets/images/blog2.jpg" alt="Image du blog2">
+            </div>
+            <div class="post__info">
+                <a href="" class="category__button">Wild Life</a>
+                <h3 class="post__title">
+                    <a href="post.php">
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                    </a>
+                </h3>
+                <p class="post__body">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium cupiditate
+                    delectus dolore ea expedita id, labore modi non quidem quo quos, repellat voluptatum.
+                </p>
+                <div class="post__author">
+                    <div class="post__author-avatar">
+                        <img src="./assets/images/avatar3.jpg" alt="Avatar de l'auteur">
+                    </div>
+                    <div class="post__author-info">
+                        <h5>Par : Jobbax</h5>
+                        <small>3 septempbre 2022 - 17:49</small>
+                    </div>
+                </div>
+            </div>
+        </article>
     </div>
 </section>
 <!--==============================END POST=========================================-->
