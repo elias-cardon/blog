@@ -229,5 +229,17 @@
     </div>
 </section>
 <!--==============================END POST=========================================-->
+<!--==============================LIST CATEGORIES=========================================-->
+<section class="category__buttons">
+    <div class="container category__buttons-container">
+        <a href="" class="category__button">Art</a>
+        <a href="" class="category__button">Wild Life</a>
+        <a href="" class="category__button">Travel</a>
+        <a href="" class="category__button">Science & Technologie</a>
+        <a href="" class="category__button">Musique</a>
+        <a href="" class="category__button">Nourriture</a>
+    </div>
+</section>
+<!--==============================END LIST CATEGORIES=========================================-->
 </body>
 </html>
