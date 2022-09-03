@@ -19,6 +19,7 @@
           rel="stylesheet">
 </head>
 <body>
+<!--==============================NAVBAR=========================================-->
 <nav>
     <div class="container nav__container">
         <a href="index.php" class="nav__logo">Le blog de Jobba</a>
@@ -43,5 +44,6 @@
         <button id="open__nav-btn"><i class="uil uil-multiply"></i></button>
     </div>
 </nav>
+<!--==============================END OF NAVBAR=========================================-->
 </body>
 </html>
