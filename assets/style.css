@@ -314,6 +314,10 @@ footer h4{
     margin-bottom: 0.6rem;
 }
 
+footer ul li{
+    padding: 0.4rem 0;
+}
+
 footer ul a{
     opacity: 0.75;
 }
@@ -321,4 +325,11 @@ footer ul a{
 footer ul a:hover{
     letter-spacing: 0.2rem;
     opacity: 1;
+}
+
+.footer__copyright{
+    text-align: center;
+    padding: 1.5rem 0;
+    border-top: 2px solid var(--color-bg);
+    margin-top: 4rem;
 }
