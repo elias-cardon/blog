@@ -309,27 +309,92 @@ footer {
     grid-template-columns: repeat(4, 1fr);
 }
 
-footer h4{
+footer h4 {
     color: var(--color-white);
     margin-bottom: 0.6rem;
 }
 
-footer ul li{
+footer ul li {
     padding: 0.4rem 0;
 }
 
-footer ul a{
+footer ul a {
     opacity: 0.75;
 }
 
-footer ul a:hover{
+footer ul a:hover {
     letter-spacing: 0.2rem;
     opacity: 1;
 }
 
-.footer__copyright{
+.footer__copyright {
     text-align: center;
     padding: 1.5rem 0;
     border-top: 2px solid var(--color-bg);
     margin-top: 4rem;
+}
+
+/* =============================================================
+MEDIA QUERIES (MEDIUM DEVICES)
+ ============================================================== */
+
+@media screen and (max-width: 1024px) {
+    /* =============================================================
+    CSS GENERAL
+     ============================================================== */
+    .container {
+        width: var(--container-width-md);
+    }
+
+    h2 {
+        font-size: 1.6rem;
+    }
+
+    h3 {
+        font-size: 1.2rem;
+    }
+
+    h5 {
+        font-size: 0.8rem;
+    }
+
+    /* =============================================================
+    NAVBAR
+ ============================================================== */
+    nav button {
+        display: inline-block;
+        font-size: 1.5rem;
+        background: transparent;
+        color: var(--color-white);
+        cursor: pointer;
+    }
+
+    nav button#close__nav-btn {
+        display: none;
+    }
+
+    .nav__container {
+        position: relative;
+    }
+
+    .nav__items {
+        position: absolute;
+        flex-direction: column;
+        top: 100%;
+        right: 0;
+        width: 12rem;
+        align-items: flex-start;
+        justify-content: center;
+        gap: 0;
+    }
+
+    .nav__items li {
+        width: 100%;
+        height: 4.5rem;
+        display: flex;
+        align-items: center;
+        box-shadow: -2rem 3rem 7rem rgba(0, 0, 0, 0.7);
+        background: var(--color-gray-900);
+        border-top: 1px solid var(--color-bg);
+    }
 }
