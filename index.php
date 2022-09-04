@@ -244,9 +244,9 @@
 <!--==============================FOOTER=========================================-->
 <footer>
     <div class="footer__socials">
-        <a href="https://instagram.com" target="_blank"><i class="uil uil-instagram"></i></i></a>
-        <a href="https://linkedin.com" target="_blank"><i class="uil uil-linkedin"></i></i></a>
-        <a href="https://github.com" target="_blank"><i class="uil uil-github"></i></i></a>
+        <a href="https://www.instagram.com/el_eliohs/" target="_blank"><i class="uil uil-instagram"></i></i></a>
+        <a href="https://www.linkedin.com/in/elias-cardon-693a31a2/" target="_blank"><i class="uil uil-linkedin"></i></i></a>
+        <a href="https://github.com/elias-cardon" target="_blank"><i class="uil uil-github"></i></i></a>
     </div>
     <div class="container footer__container">
         <article>
