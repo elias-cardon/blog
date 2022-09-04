@@ -221,7 +221,7 @@
                     </div>
                     <div class="post__author-info">
                         <h5>Par : Jobbax</h5>
-                        <small>3 septempbre 2022 - 17:49</small>
+                        <small>3 septembre 2022 - 17:49</small>
                     </div>
                 </div>
             </div>
