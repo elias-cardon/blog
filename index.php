@@ -241,5 +241,14 @@
     </div>
 </section>
 <!--==============================END LIST CATEGORIES=========================================-->
+<!--==============================FOOTER=========================================-->
+<footer>
+    <div class="footer__socials">
+        <a href="https://instagram.com" target="_blank"><i class="uil uil-instagram"></i></i></a>
+        <a href="https://linkedin.com" target="_blank"><i class="uil uil-linkedin"></i></i></a>
+        <a href="https://github.com" target="_blank"><i class="uil uil-github"></i></i></a>
+    </div>
+</footer>
+<!--==============================END FOOTER=========================================-->
 </body>
 </html>
