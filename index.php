@@ -41,7 +41,7 @@
         </ul>
 
         <button id="open__nav-btn"><i class="uil uil-bars"></i></button>
-        <button id="open__nav-btn"><i class="uil uil-multiply"></i></button>
+        <button id="close__nav-btn"><i class="uil uil-multiply"></i></button>
     </div>
 </nav>
 <!--==============================END OF NAVBAR=========================================-->
@@ -295,5 +295,6 @@
     </div>
 </footer>
 <!--==============================END FOOTER=========================================-->
+<script src="./assets/main.js"></script>
 </body>
 </html>
