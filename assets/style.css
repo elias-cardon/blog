@@ -450,4 +450,17 @@ MEDIA QUERIES (MEDIUM DEVICES)
         margin-left: 2rem;
         bottom: 0;
     }
+
+    .featured__container{
+        gap: 3rem;
+    }
+
+    .posts__container{
+        grid-template-columns: 1fr 1fr;
+        gap: 3rem;
+    }
+
+    .footer__container{
+        grid-template-columns: 1fr 1fr;
+    }
 }
