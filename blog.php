@@ -53,7 +53,7 @@
             <i class="uil uil-search"></i>
             <input type="search" name="" placeholder="Rechercher">
         </div>
-        <button type="submit" class="btn">Chercher</button>
+        <button type="submit" class="btn">Go</button>
     </form>
 </section>
 <!--==============================END OF SEARCHBAR=========================================-->
