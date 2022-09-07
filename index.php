@@ -52,7 +52,7 @@
             <img src="./assets/images/blog1.jpg" alt="Image du blog1">
         </div>
         <div class="post__info">
-            <a href="" class="category__button">Wild Life</a>
+            <a href="category-post.php" class="category__button">Wild Life</a>
             <h2 class="post__title"><a href="post.php">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</a>
             </h2>
             <p class="post__body">
@@ -81,7 +81,7 @@
                 <img src="./assets/images/blog2.jpg" alt="Image du blog2">
             </div>
             <div class="post__info">
-                <a href="" class="category__button">Wild Life</a>
+                <a href="category-post.php" class="category__button">Wild Life</a>
                 <h3 class="post__title">
                     <a href="post.php">
                         Lorem ipsum dolor sit amet, consectetur adipisicing elit.
@@ -106,7 +106,7 @@
                 <img src="./assets/images/blog3.jpg" alt="Image du blog2">
             </div>
             <div class="post__info">
-                <a href="" class="category__button">Wild Life</a>
+                <a href="category-post.php" class="category__button">Wild Life</a>
                 <h3 class="post__title">
                     <a href="post.php">
                         Lorem ipsum dolor sit amet, consectetur adipisicing elit.
@@ -131,7 +131,7 @@
                 <img src="./assets/images/blog4.jpg" alt="Image du blog2">
             </div>
             <div class="post__info">
-                <a href="" class="category__button">Wild Life</a>
+                <a href="category-post.php" class="category__button">Wild Life</a>
                 <h3 class="post__title">
                     <a href="post.php">
                         Lorem ipsum dolor sit amet, consectetur adipisicing elit.
@@ -156,7 +156,7 @@
                 <img src="./assets/images/blog5.jpg" alt="Image du blog2">
             </div>
             <div class="post__info">
-                <a href="" class="category__button">Wild Life</a>
+                <a href="category-post.php" class="category__button">Wild Life</a>
                 <h3 class="post__title">
                     <a href="post.php">
                         Lorem ipsum dolor sit amet, consectetur adipisicing elit.
@@ -181,7 +181,7 @@
                 <img src="./assets/images/blog6.jpg" alt="Image du blog2">
             </div>
             <div class="post__info">
-                <a href="" class="category__button">Wild Life</a>
+                <a href="category-post.php" class="category__button">Wild Life</a>
                 <h3 class="post__title">
                     <a href="post.php">
                         Lorem ipsum dolor sit amet, consectetur adipisicing elit.
@@ -206,7 +206,7 @@
                 <img src="./assets/images/blog7.jpg" alt="Image du blog2">
             </div>
             <div class="post__info">
-                <a href="" class="category__button">Wild Life</a>
+                <a href="category-post.php" class="category__button">Wild Life</a>
                 <h3 class="post__title">
                     <a href="post.php">
                         Lorem ipsum dolor sit amet, consectetur adipisicing elit.
