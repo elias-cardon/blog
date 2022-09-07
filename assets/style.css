@@ -386,7 +386,28 @@ BUTTON
     cursor: pointer;
     transition: var(--transition);
     color: var(--color-white);
+}
 
+/* =============================================================
+SINGLE POST
+ ============================================================== */
+.singlepost{
+    margin: 6rem 0 2rem;
+}
+
+.singlepost__container{
+    width: var(--form-width);
+    background: var(--color-gray-900);
+    padding: 1rem 2rem 2rem;
+}
+
+.singlepost__thumbnail{
+    margin-top: 1.5rem;
+}
+
+.singlepost__container p{
+    margin-top: 1rem;
+    line-height: 1.7;
 }
 
 /* =============================================================
