@@ -398,11 +398,11 @@ SINGLE POST
 .singlepost__container{
     width: var(--form-width);
     background: var(--color-gray-900);
-    padding: 1rem 2rem 2rem;
+    padding: 1rem 2rem 3rem;
 }
 
 .singlepost__thumbnail{
-    margin-top: 1.5rem;
+    margin: 1.5rem 0 1rem;
 }
 
 .singlepost__container p{
@@ -585,5 +585,11 @@ MEDIA QUERIES (SMALL DEVICES)
     /* ========= BLOG ========*/
     .search__bar-container{
         width: var(--container-width-md);
+    }
+
+    /* ========= SINGLE POST ========*/
+    .singlepost__container{
+        background-color: transparent;
+        padding: 0;
     }
 }
