@@ -25,7 +25,7 @@
         <div class="alert__message error">
             <p>C'est un message d'erreur.</p>
         </div>
-        <form action="">
+        <form action="" enctype="multipart/form-data">
             <input type="text" placeholder="Prénom">
             <input type="text" placeholder="Nom de famille">
             <input type="text" placeholder="Pseudonyme">

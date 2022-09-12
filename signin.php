@@ -25,7 +25,7 @@
         <div class="alert__message error">
             <p>C'est un message d'erreur.</p>
         </div>
-        <form action="">
+        <form action="" enctype="multipart/form-data">
             <input type="text" placeholder="Adresse email ou pseudonyme">
             <input type="password" placeholder="Mot de passe">
             <button type="submit" class="btn">Se connecter</button>
