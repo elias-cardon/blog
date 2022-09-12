@@ -88,7 +88,10 @@
             </ul>
         </aside>
         <main>
+            <h2>Liste des catégories</h2>
+            <table>
 
+            </table>
         </main>
     </div>
 </section>
