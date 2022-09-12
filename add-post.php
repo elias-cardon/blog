@@ -67,7 +67,7 @@
                 <label for="is_featured">A la Une</label>
             </div>
             <div class="form__control">
-                <label for="thumbnail">Ajouter miniature</label>
+                <label for="thumbnail">Ajouter une miniature</label>
                 <input type="file" id="thumbnail">
             </div>
             <button type="submit" class="btn">Ajouter l'article</button>
