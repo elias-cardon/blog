@@ -90,7 +90,35 @@
         <main>
             <h2>Liste des catégories</h2>
             <table>
-
+                <thead>
+                <tr>
+                    <th>Titre</th>
+                    <th>Modifier</th>
+                    <th>Supprimer</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>Travel</td>
+                    <td><a href="edit-category.php" class="btn sm">Modifier</a></td>
+                    <td><a href="delete-category.php" class="btn sm">Supprimer</a></td>
+                </tr>
+                <tr>
+                    <td>Art</td>
+                    <td><a href="edit-category.php" class="btn sm">Modifier</a></td>
+                    <td><a href="delete-category.php" class="btn sm">Supprimer</a></td>
+                </tr>
+                <tr>
+                    <td>Science et Technologie</td>
+                    <td><a href="edit-category.php" class="btn sm">Modifier</a></td>
+                    <td><a href="delete-category.php" class="btn sm">Supprimer</a></td>
+                </tr>
+                <tr>
+                    <td>Musique</td>
+                    <td><a href="edit-category.php" class="btn sm">Modifier</a></td>
+                    <td><a href="delete-category.php" class="btn sm">Supprimer</a></td>
+                </tr>
+                </tbody>
             </table>
         </main>
     </div>
