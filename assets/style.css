@@ -564,6 +564,12 @@ DASHBOARD
     color: var(--color-white);
 }
 
+.dashboard main table td{
+    padding: 0.8rem;
+    border-bottom: 1px solid var(--color-gray-200);
+    font-size: 0.8rem;
+}
+
 /* =============================================================
 MEDIA QUERIES (MEDIUM DEVICES)
  ============================================================== */
