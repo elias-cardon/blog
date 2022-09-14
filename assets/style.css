@@ -515,6 +515,10 @@ DASHBOARD
     margin-top: 6rem;
 }
 
+.sidebar__toggle{
+    display: none;
+}
+
 .dashboard__container{
     display: grid;
     grid-template-columns: 14rem auto;
@@ -796,4 +800,19 @@ MEDIA QUERIES (SMALL DEVICES)
     .form__section-container{
         padding: 0;
     }
+
+    /* ========= DASHBOARD ========*/
+    .dashboard{
+        margin-top: 5rem;
+    }
+
+    .dashboard__container{
+        grid-template-columns: 1fr;
+        gap: 0;
+    }
+
+    .dashboard main{
+        margin: 0;
+    }
+
 }
