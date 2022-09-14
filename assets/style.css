@@ -567,7 +567,13 @@ DASHBOARD
 .dashboard main table td{
     padding: 0.8rem;
     border-bottom: 1px solid var(--color-gray-200);
-    font-size: 0.8rem;
+}
+
+.dashboard main table th:hover td{
+    background-color: var(--color-bg);
+    color: var(--color-white);
+    cursor: default;
+    transition: var(--transition);
 }
 
 /* =============================================================
@@ -708,6 +714,34 @@ MEDIA QUERIES (MEDIUM DEVICES)
     /* ========= GENERAL FORM ========*/
     .form__section-container{
         padding: 3rem;
+    }
+
+    /* ========= DASHBOARD ========*/
+    .dashboard__container{
+        grid-template-columns: 4.3rem auto;
+        padding: 0;
+        background: transparent;
+    }
+
+    .dashboard aside h5{
+        display: none;
+    }
+
+    .dashboard main table thead{
+        display: none;
+    }
+
+    .dashboard main table tr{
+        display: flex;
+        flex-direction: column;
+    }
+
+    .dashboard main table tr:nth-child(even){
+        background: var(--color-gray-900);
+    }
+
+    .dashboard main table tr:hover td{
+        background: transparent;
     }
 }
 
