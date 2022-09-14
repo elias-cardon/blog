@@ -101,22 +101,22 @@
                 <tr>
                     <td>Travel</td>
                     <td><a href="edit-category.php" class="btn sm">Modifier</a></td>
-                    <td><a href="delete-category.php" class="btn sm">Supprimer</a></td>
+                    <td><a href="delete-category.php" class="btn sm danger">Supprimer</a></td>
                 </tr>
                 <tr>
                     <td>Art</td>
                     <td><a href="edit-category.php" class="btn sm">Modifier</a></td>
-                    <td><a href="delete-category.php" class="btn sm">Supprimer</a></td>
+                    <td><a href="delete-category.php" class="btn sm danger">Supprimer</a></td>
                 </tr>
                 <tr>
                     <td>Science et Technologie</td>
                     <td><a href="edit-category.php" class="btn sm">Modifier</a></td>
-                    <td><a href="delete-category.php" class="btn sm">Supprimer</a></td>
+                    <td><a href="delete-category.php" class="btn sm danger">Supprimer</a></td>
                 </tr>
                 <tr>
                     <td>Musique</td>
                     <td><a href="edit-category.php" class="btn sm">Modifier</a></td>
-                    <td><a href="delete-category.php" class="btn sm">Supprimer</a></td>
+                    <td><a href="delete-category.php" class="btn sm danger">Supprimer</a></td>
                 </tr>
                 </tbody>
             </table>
