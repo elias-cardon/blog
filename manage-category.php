@@ -80,7 +80,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="manage-category.php">
+                    <a href="manage-category.php" class="active">
                         <i class="uil uil-list-ul"></i>
                         <h5>Liste des catégories</h5>
                     </a>

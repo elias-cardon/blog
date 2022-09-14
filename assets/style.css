@@ -540,6 +540,10 @@ DASHBOARD
     background: var(--color-gray-700);
 }
 
+.dashboard aside a.active{
+    background-color: var(--color-gray-900);
+}
+
 /* =============================================================
 MEDIA QUERIES (MEDIUM DEVICES)
  ============================================================== */
