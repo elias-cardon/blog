@@ -11,7 +11,7 @@
     <title>Le blog de Jobba</title>
     <!--C'est le CSS-->
     <link rel="icon" type="image/png" href="assets/images/logo.png"/>
-    <link rel="stylesheet" href="assets/style.css">
+    <link rel="stylesheet" href="../assets/css/style.css">
     <!--Iconscout CDN-->
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
     <!--Google Fonts-->
@@ -22,12 +22,12 @@
 <!--==============================NAVBAR=========================================-->
 <nav>
     <div class="container nav__container">
-        <a href="index.php" class="nav__logo">Le blog de Jobba</a>
+        <a href="../index.php" class="nav__logo">Le blog de Jobba</a>
         <ul class="nav__items">
-            <li><a href="blog.php">Blog</a></li>
-            <li><a href="about.php">A propos</a></li>
-            <li><a href="services.php">Services</a></li>
-            <li><a href="contact.php">Contact</a></li>
+            <li><a href="../blog.php">Blog</a></li>
+            <li><a href="../about.php">A propos</a></li>
+            <li><a href="../services.php">Services</a></li>
+            <li><a href="../contact.php">Contact</a></li>
             <!--<li><a href="signin.php">Se connecter</a></li>-->
             <li class="nav__profile">
                 <div class="avatar">
@@ -178,6 +178,6 @@
     </div>
 </footer>
 <!--==============================END FOOTER=========================================-->
-<script src="./assets/main.js"></script>
+<script src="../assets/js/main.js"></script>
 </body>
 </html>

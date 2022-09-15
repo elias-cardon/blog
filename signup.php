@@ -11,7 +11,7 @@
     <title>Le blog de Jobba</title>
     <!--C'est le CSS-->
     <link rel="icon" type="image/png" href="assets/images/logo.png"/>
-    <link rel="stylesheet" href="assets/style.css">
+    <link rel="stylesheet" href="assets/css/style.css">
     <!--Iconscout CDN-->
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
     <!--Google Fonts-->

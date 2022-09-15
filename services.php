@@ -11,7 +11,7 @@
     <title>Le blog de Jobba</title>
     <!--C'est le CSS-->
     <link rel="icon" type="image/png" href="assets/images/logo.png"/>
-    <link rel="stylesheet" href="assets/style.css">
+    <link rel="stylesheet" href="assets/css/style.css">
     <!--Iconscout CDN-->
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
     <!--Google Fonts-->
@@ -34,7 +34,7 @@
                     <img src="./assets/images/avatar1.jpg" alt="Un avatar">
                 </div>
                 <ul>
-                    <li><a href="dashboard.php">Dashboard</a></li>
+                    <li><a href="admin/dashboard.php">Dashboard</a></li>
                     <li><a href="logout.php">Déconnexion</a></li>
                 </ul>
             </li>
@@ -104,6 +104,6 @@
     </div>
 </footer>
 <!--==============================END FOOTER=========================================-->
-<script src="./assets/main.js"></script>
+<script src="assets/js/main.js"></script>
 </body>
 </html>

@@ -11,7 +11,7 @@
     <title>Le blog de Jobba</title>
     <!--C'est le CSS-->
     <link rel="icon" type="image/png" href="assets/images/logo.png"/>
-    <link rel="stylesheet" href="assets/style.css">
+    <link rel="stylesheet" href="../assets/css/style.css">
     <!--Iconscout CDN-->
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
     <!--Google Fonts-->
@@ -21,12 +21,12 @@
 <!--==============================NAVBAR=========================================-->
 <nav>
     <div class="container nav__container">
-        <a href="index.php" class="nav__logo">Le blog de Jobba</a>
+        <a href="../index.php" class="nav__logo">Le blog de Jobba</a>
         <ul class="nav__items">
-            <li><a href="blog.php">Blog</a></li>
-            <li><a href="about.php">A propos</a></li>
-            <li><a href="services.php">Services</a></li>
-            <li><a href="contact.php">Contact</a></li>
+            <li><a href="../blog.php">Blog</a></li>
+            <li><a href="../about.php">A propos</a></li>
+            <li><a href="../services.php">Services</a></li>
+            <li><a href="../contact.php">Contact</a></li>
             <!--<li><a href="signin.php">Se connecter</a></li>-->
             <li class="nav__profile">
                 <div class="avatar">
@@ -47,11 +47,27 @@
 <body>
 <section class="form__section">
     <div class="container form__section-container">
-        <h2>Modifier la catégorie</h2>
+        <h2>Modifier d'article</h2>
         <form action="" enctype="multipart/form-data">
-            <input type="text" placeholder="Nom de la catégorie">
-            <textarea rows="4" placeholder="Description"></textarea>
-            <button type="submit" class="btn">Modifier la catégorie</button>
+            <input type="text" placeholder="Titre de l'article">
+            <select>
+                <option value="1">Travel</option>
+                <option value="2">Art</option>
+                <option value="3">Science et technologie</option>
+                <option value="1">Travel</option>
+                <option value="1">Travel</option>
+                <option value="1">Travel</option>
+            </select>
+            <textarea rows="10" placeholder="Texte de l'article"></textarea>
+            <div class="form__control inline">
+                <input type="checkbox" id="is_featured" checked>
+                <label for="is_featured">A la Une</label>
+            </div>
+            <div class="form__control">
+                <label for="thumbnail">Modifier la miniature</label>
+                <input type="file" id="thumbnail">
+            </div>
+            <button type="submit" class="btn">Modifier l'article</button>
         </form>
     </div>
 </section>

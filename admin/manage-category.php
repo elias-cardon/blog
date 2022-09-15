@@ -11,22 +11,23 @@
     <title>Le blog de Jobba</title>
     <!--C'est le CSS-->
     <link rel="icon" type="image/png" href="assets/images/logo.png"/>
-    <link rel="stylesheet" href="assets/style.css">
+    <link rel="stylesheet" href="../assets/css/style.css">
     <!--Iconscout CDN-->
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
     <!--Google Fonts-->
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap"
           rel="stylesheet">
 </head>
+<body>
 <!--==============================NAVBAR=========================================-->
 <nav>
     <div class="container nav__container">
-        <a href="index.php" class="nav__logo">Le blog de Jobba</a>
+        <a href="../index.php" class="nav__logo">Le blog de Jobba</a>
         <ul class="nav__items">
-            <li><a href="blog.php">Blog</a></li>
-            <li><a href="about.php">A propos</a></li>
-            <li><a href="services.php">Services</a></li>
-            <li><a href="contact.php">Contact</a></li>
+            <li><a href="../blog.php">Blog</a></li>
+            <li><a href="../about.php">A propos</a></li>
+            <li><a href="../services.php">Services</a></li>
+            <li><a href="../contact.php">Contact</a></li>
             <!--<li><a href="signin.php">Se connecter</a></li>-->
             <li class="nav__profile">
                 <div class="avatar">
@@ -44,30 +45,84 @@
     </div>
 </nav>
 <!--==============================END OF NAVBAR=========================================-->
-<body>
-<section class="form__section">
-    <div class="container form__section-container">
-        <h2>Ajout d'utilisateur</h2>
-        <div class="alert__message error">
-            <p>C'est un message d'erreur.</p>
-        </div>
-        <form action="" enctype="multipart/form-data">
-            <input type="text" placeholder="Prénom">
-            <input type="text" placeholder="Nom de famille">
-            <input type="text" placeholder="Pseudonyme">
-            <input type="email" placeholder="Adresse email">
-            <input type="password" placeholder="Mot de passe">
-            <input type="password" placeholder="Confirmation du mot de passe">
-            <select>
-                <option value="0">Auteur</option>
-                <option value="1">Admin</option>
-            </select>
-            <div class="form__control">
-                <label for="avatar">Avatar</label>
-                <input type="file" id="avatar">
-            </div>
-            <button type="submit" class="btn">Ajouter utilisateur</button>
-        </form>
+<section class="dashboard">
+    <div class="container dashboard__container">
+        <button id="show__sidebar-btn" class="sidebar__toggle"><i class="uil uil-angle-right-b"></i></button>
+        <button id="hide__sidebar-btn" class="sidebar__toggle"><i class="uil uil-angle-left-b"></i></button>
+        <aside>
+            <ul>
+                <li>
+                    <a href="add-post.php">
+                        <i class="uil uil-pen"></i>
+                        <h5>Ajouter un article</h5>
+                    </a>
+                </li>
+                <li>
+                    <a href="dashboard.php">
+                        <i class="uil uil-postcard"></i>
+                        <h5>Liste des articles</h5>
+                    </a>
+                </li>
+                <li>
+                    <a href="add-user.php">
+                        <i class="uil uil-user-plus"></i>
+                        <h5>Ajouter un utilisateur</h5>
+                    </a>
+                </li>
+                <li>
+                    <a href="manage-user.php">
+                        <i class="uil uil-users-alt"></i>
+                        <h5>Liste des utilisateurs</h5>
+                    </a>
+                </li>
+                <li>
+                    <a href="add-category.php">
+                        <i class="uil uil-edit"></i>
+                        <h5>Ajouter une catégorie</h5>
+                    </a>
+                </li>
+                <li>
+                    <a href="manage-category.php" class="active">
+                        <i class="uil uil-list-ul"></i>
+                        <h5>Liste des catégories</h5>
+                    </a>
+                </li>
+            </ul>
+        </aside>
+        <main>
+            <h2>Liste des catégories</h2>
+            <table>
+                <thead>
+                <tr>
+                    <th>Titre</th>
+                    <th>Modifier</th>
+                    <th>Supprimer</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>Travel</td>
+                    <td><a href="edit-category.php" class="btn sm">Modifier</a></td>
+                    <td><a href="delete-category.php" class="btn sm danger">Supprimer</a></td>
+                </tr>
+                <tr>
+                    <td>Art</td>
+                    <td><a href="edit-category.php" class="btn sm">Modifier</a></td>
+                    <td><a href="delete-category.php" class="btn sm danger">Supprimer</a></td>
+                </tr>
+                <tr>
+                    <td>Science et Technologie</td>
+                    <td><a href="edit-category.php" class="btn sm">Modifier</a></td>
+                    <td><a href="delete-category.php" class="btn sm danger">Supprimer</a></td>
+                </tr>
+                <tr>
+                    <td>Musique</td>
+                    <td><a href="edit-category.php" class="btn sm">Modifier</a></td>
+                    <td><a href="delete-category.php" class="btn sm danger">Supprimer</a></td>
+                </tr>
+                </tbody>
+            </table>
+        </main>
     </div>
 </section>
 <!--==============================FOOTER=========================================-->
@@ -124,5 +179,6 @@
     </div>
 </footer>
 <!--==============================END FOOTER=========================================-->
+<script src="../assets/js/main.js"></script>
 </body>
 </html>
