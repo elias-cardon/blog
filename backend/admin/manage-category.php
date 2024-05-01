@@ -11,7 +11,7 @@
     <title>Le blog de Jobba</title>
     <!--C'est le CSS-->
     <link rel="icon" type="image/png" href="frontend/assets/images/logo.png"/>
-    <link rel="stylesheet" href="frontend/assets/style.css">
+    <link rel="stylesheet" href="../../frontend/assets/style.css">
     <!--Iconscout CDN-->
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
     <!--Google Fonts-->
@@ -22,19 +22,19 @@
 <!--==============================NAVBAR=========================================-->
 <nav>
     <div class="container nav__container">
-        <a href="index.html" class="nav__logo">Le blog de Jobba</a>
+        <a href="../../index.php" class="nav__logo">Le blog de Jobba</a>
         <ul class="nav__items">
-            <li><a href="blog.html">Blog</a></li>
-            <li><a href="about.php">A propos</a></li>
-            <li><a href="services.html">Services</a></li>
-            <li><a href="contact.html">Contact</a></li>
+            <li><a href="../../blog.php">Blog</a></li>
+            <li><a href="../../about.php">A propos</a></li>
+            <li><a href="../../services.php">Services</a></li>
+            <li><a href="../../contact.php">Contact</a></li>
             <!--<li><a href="signin.html">Se connecter</a></li>-->
             <li class="nav__profile">
                 <div class="avatar">
                     <img src="frontend/assets/images/avatar1.jpg" alt="Un avatar">
                 </div>
                 <ul>
-                    <li><a href="dashboard.html">Dashboard</a></li>
+                    <li><a href="../../dashboard.php">Dashboard</a></li>
                     <li><a href="logout.php">Déconnexion</a></li>
                 </ul>
             </li>
@@ -45,11 +45,86 @@
     </div>
 </nav>
 <!--==============================END OF NAVBAR=========================================-->
-<!--==============================ABOUT SECTIOn=========================================-->
-<section class="empty__page">
-    <h1>A propos</h1>
+<section class="dashboard">
+    <div class="container dashboard__container">
+        <button id="show__sidebar-btn" class="sidebar__toggle"><i class="uil uil-angle-right-b"></i></button>
+        <button id="hide__sidebar-btn" class="sidebar__toggle"><i class="uil uil-angle-left-b"></i></button>
+        <aside>
+            <ul>
+                <li>
+                    <a href="add-post.php">
+                        <i class="uil uil-pen"></i>
+                        <h5>Ajouter un article</h5>
+                    </a>
+                </li>
+                <li>
+                    <a href="../../dashboard.php">
+                        <i class="uil uil-postcard"></i>
+                        <h5>Liste des articles</h5>
+                    </a>
+                </li>
+                <li>
+                    <a href="add-user.php">
+                        <i class="uil uil-user-plus"></i>
+                        <h5>Ajouter un utilisateur</h5>
+                    </a>
+                </li>
+                <li>
+                    <a href="manage-user.php">
+                        <i class="uil uil-users-alt"></i>
+                        <h5>Liste des utilisateurs</h5>
+                    </a>
+                </li>
+                <li>
+                    <a href="add-category.php">
+                        <i class="uil uil-edit"></i>
+                        <h5>Ajouter une catégorie</h5>
+                    </a>
+                </li>
+                <li>
+                    <a href="manage-category.php" class="active">
+                        <i class="uil uil-list-ul"></i>
+                        <h5>Liste des catégories</h5>
+                    </a>
+                </li>
+            </ul>
+        </aside>
+        <main>
+            <h2>Liste des catégories</h2>
+            <table>
+                <thead>
+                <tr>
+                    <th>Titre</th>
+                    <th>Modifier</th>
+                    <th>Supprimer</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>Travel</td>
+                    <td><a href="edit-category.php" class="btn sm">Modifier</a></td>
+                    <td><a href="delete-category.php" class="btn sm danger">Supprimer</a></td>
+                </tr>
+                <tr>
+                    <td>Art</td>
+                    <td><a href="edit-category.php" class="btn sm">Modifier</a></td>
+                    <td><a href="delete-category.php" class="btn sm danger">Supprimer</a></td>
+                </tr>
+                <tr>
+                    <td>Science et Technologie</td>
+                    <td><a href="edit-category.php" class="btn sm">Modifier</a></td>
+                    <td><a href="delete-category.php" class="btn sm danger">Supprimer</a></td>
+                </tr>
+                <tr>
+                    <td>Musique</td>
+                    <td><a href="edit-category.php" class="btn sm">Modifier</a></td>
+                    <td><a href="delete-category.php" class="btn sm danger">Supprimer</a></td>
+                </tr>
+                </tbody>
+            </table>
+        </main>
+    </div>
 </section>
-<!--==============================END OF ABOUT SECTION=========================================-->
 <!--==============================FOOTER=========================================-->
 <footer>
     <div class="footer__socials">
@@ -104,6 +179,6 @@
     </div>
 </footer>
 <!--==============================END FOOTER=========================================-->
-<script src="frontend/assets/main.js"></script>
+<script src="../../frontend/assets/main.js"></script>
 </body>
 </html>

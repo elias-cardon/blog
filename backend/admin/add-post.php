@@ -21,19 +21,19 @@
 <!--==============================NAVBAR=========================================-->
 <nav>
     <div class="container nav__container">
-        <a href="../../index.html" class="nav__logo">Le blog de Jobba</a>
+        <a href="../../index.php" class="nav__logo">Le blog de Jobba</a>
         <ul class="nav__items">
-            <li><a href="../../blog.html">Blog</a></li>
-            <li><a href="../../about.html">A propos</a></li>
-            <li><a href="../../services.html">Services</a></li>
-            <li><a href="../../contact.html">Contact</a></li>
+            <li><a href="../../blog.php">Blog</a></li>
+            <li><a href="../../about.php">A propos</a></li>
+            <li><a href="../../services.php">Services</a></li>
+            <li><a href="../../contact.php">Contact</a></li>
             <!--<li><a href="signin.html">Se connecter</a></li>-->
             <li class="nav__profile">
                 <div class="avatar">
                     <img src="frontend/assets/images/avatar1.jpg" alt="Un avatar">
                 </div>
                 <ul>
-                    <li><a href="../../dashboard.html">Dashboard</a></li>
+                    <li><a href="../../dashboard.php">Dashboard</a></li>
                     <li><a href="logout.php">Déconnexion</a></li>
                 </ul>
             </li>
@@ -47,26 +47,30 @@
 <body>
 <section class="form__section">
     <div class="container form__section-container">
-        <h2>Ajout d'utilisateur</h2>
+        <h2>Ajout d'article</h2>
         <div class="alert__message error">
             <p>C'est un message d'erreur.</p>
         </div>
         <form action="" enctype="multipart/form-data">
-            <input type="text" placeholder="Prénom">
-            <input type="text" placeholder="Nom de famille">
-            <input type="text" placeholder="Pseudonyme">
-            <input type="email" placeholder="Adresse email">
-            <input type="password" placeholder="Mot de passe">
-            <input type="password" placeholder="Confirmation du mot de passe">
+            <input type="text" placeholder="Titre de l'article">
             <select>
-                <option value="0">Auteur</option>
-                <option value="1">Admin</option>
+                <option value="1">Travel</option>
+                <option value="2">Art</option>
+                <option value="3">Science et technologie</option>
+                <option value="1">Travel</option>
+                <option value="1">Travel</option>
+                <option value="1">Travel</option>
             </select>
-            <div class="form__control">
-                <label for="avatar">Avatar</label>
-                <input type="file" id="avatar">
+            <textarea rows="10" placeholder="Texte de l'article"></textarea>
+            <div class="form__control inline">
+                <input type="checkbox" id="is_featured" checked>
+                <label for="is_featured">A la Une</label>
             </div>
-            <button type="submit" class="btn">Ajouter utilisateur</button>
+            <div class="form__control">
+                <label for="thumbnail">Ajouter une miniature</label>
+                <input type="file" id="thumbnail">
+            </div>
+            <button type="submit" class="btn">Ajouter l'article</button>
         </form>
     </div>
 </section>

@@ -37,7 +37,7 @@
                 <input type="file" id="avatar">
             </div>
             <button type="submit" class="btn">S'inscrire</button>
-            <small>Déjà inscrit ? <a href="signin.html">Connectez-vous</a>.</small>
+            <small>Déjà inscrit ? <a href="signin.php">Connectez-vous</a>.</small>
         </form>
     </div>
 </section>

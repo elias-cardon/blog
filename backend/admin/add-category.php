@@ -21,19 +21,19 @@
 <!--==============================NAVBAR=========================================-->
 <nav>
     <div class="container nav__container">
-        <a href="../../index.html" class="nav__logo">Le blog de Jobba</a>
+        <a href="../../index.php" class="nav__logo">Le blog de Jobba</a>
         <ul class="nav__items">
-            <li><a href="../../blog.html">Blog</a></li>
-            <li><a href="../../about.html">A propos</a></li>
-            <li><a href="../../services.html">Services</a></li>
-            <li><a href="../../contact.html">Contact</a></li>
+            <li><a href="../../blog.php">Blog</a></li>
+            <li><a href="../../about.php">A propos</a></li>
+            <li><a href="../../services.php">Services</a></li>
+            <li><a href="../../contact.php">Contact</a></li>
             <!--<li><a href="signin.html">Se connecter</a></li>-->
             <li class="nav__profile">
                 <div class="avatar">
                     <img src="frontend/assets/images/avatar1.jpg" alt="Un avatar">
                 </div>
                 <ul>
-                    <li><a href="../../dashboard.html">Dashboard</a></li>
+                    <li><a href="../../dashboard.php">Dashboard</a></li>
                     <li><a href="logout.php">Déconnexion</a></li>
                 </ul>
             </li>
@@ -47,11 +47,14 @@
 <body>
 <section class="form__section">
     <div class="container form__section-container">
-        <h2>Modifier la catégorie</h2>
+        <h2>Ajout de catégorie</h2>
+        <div class="alert__message error">
+            <p>C'est un message d'erreur.</p>
+        </div>
         <form action="" enctype="multipart/form-data">
             <input type="text" placeholder="Nom de la catégorie">
             <textarea rows="4" placeholder="Description"></textarea>
-            <button type="submit" class="btn">Modifier la catégorie</button>
+            <button type="submit" class="btn">Ajouter catégorie</button>
         </form>
     </div>
 </section>

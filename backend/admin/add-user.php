@@ -11,30 +11,29 @@
     <title>Le blog de Jobba</title>
     <!--C'est le CSS-->
     <link rel="icon" type="image/png" href="frontend/assets/images/logo.png"/>
-    <link rel="stylesheet" href="frontend/assets/style.css">
+    <link rel="stylesheet" href="../../frontend/assets/style.css">
     <!--Iconscout CDN-->
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
     <!--Google Fonts-->
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap"
           rel="stylesheet">
 </head>
-<body>
 <!--==============================NAVBAR=========================================-->
 <nav>
     <div class="container nav__container">
-        <a href="index.html" class="nav__logo">Le blog de Jobba</a>
+        <a href="../../index.php" class="nav__logo">Le blog de Jobba</a>
         <ul class="nav__items">
-            <li><a href="blog.html">Blog</a></li>
-            <li><a href="about.html">A propos</a></li>
-            <li><a href="services.html">Services</a></li>
-            <li><a href="contact.php">Contact</a></li>
+            <li><a href="../../blog.php">Blog</a></li>
+            <li><a href="../../about.php">A propos</a></li>
+            <li><a href="../../services.php">Services</a></li>
+            <li><a href="../../contact.php">Contact</a></li>
             <!--<li><a href="signin.html">Se connecter</a></li>-->
             <li class="nav__profile">
                 <div class="avatar">
                     <img src="frontend/assets/images/avatar1.jpg" alt="Un avatar">
                 </div>
                 <ul>
-                    <li><a href="dashboard.html">Dashboard</a></li>
+                    <li><a href="../../dashboard.php">Dashboard</a></li>
                     <li><a href="logout.php">Déconnexion</a></li>
                 </ul>
             </li>
@@ -45,11 +44,32 @@
     </div>
 </nav>
 <!--==============================END OF NAVBAR=========================================-->
-<!--==============================ABOUT SECTIOn=========================================-->
-<section class="empty__page">
-    <h1>Contact</h1>
+<body>
+<section class="form__section">
+    <div class="container form__section-container">
+        <h2>Ajout d'utilisateur</h2>
+        <div class="alert__message error">
+            <p>C'est un message d'erreur.</p>
+        </div>
+        <form action="" enctype="multipart/form-data">
+            <input type="text" placeholder="Prénom">
+            <input type="text" placeholder="Nom de famille">
+            <input type="text" placeholder="Pseudonyme">
+            <input type="email" placeholder="Adresse email">
+            <input type="password" placeholder="Mot de passe">
+            <input type="password" placeholder="Confirmation du mot de passe">
+            <select>
+                <option value="0">Auteur</option>
+                <option value="1">Admin</option>
+            </select>
+            <div class="form__control">
+                <label for="avatar">Avatar</label>
+                <input type="file" id="avatar">
+            </div>
+            <button type="submit" class="btn">Ajouter utilisateur</button>
+        </form>
+    </div>
 </section>
-<!--==============================END OF ABOUT SECTION=========================================-->
 <!--==============================FOOTER=========================================-->
 <footer>
     <div class="footer__socials">
@@ -104,6 +124,5 @@
     </div>
 </footer>
 <!--==============================END FOOTER=========================================-->
-<script src="frontend/assets/main.js"></script>
 </body>
 </html>

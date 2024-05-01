@@ -22,19 +22,19 @@
 <!--==============================NAVBAR=========================================-->
 <nav>
     <div class="container nav__container">
-        <a href="index.html" class="nav__logo">Le blog de Jobba</a>
+        <a href="index.php" class="nav__logo">Le blog de Jobba</a>
         <ul class="nav__items">
-            <li><a href="blog.html">Blog</a></li>
-            <li><a href="about.html">A propos</a></li>
-            <li><a href="services.html">Services</a></li>
-            <li><a href="contact.html">Contact</a></li>
+            <li><a href="blog.php">Blog</a></li>
+            <li><a href="about.php">A propos</a></li>
+            <li><a href="services.php">Services</a></li>
+            <li><a href="contact.php">Contact</a></li>
             <!--<li><a href="signin.html">Se connecter</a></li>-->
             <li class="nav__profile">
                 <div class="avatar">
                     <img src="frontend/assets/images/avatar1.jpg" alt="Un avatar">
                 </div>
                 <ul>
-                    <li><a href="dashboard.html">Dashboard</a></li>
+                    <li><a href="dashboard.php">Dashboard</a></li>
                     <li><a href="logout.php">Déconnexion</a></li>
                 </ul>
             </li>
@@ -45,11 +45,34 @@
     </div>
 </nav>
 <!--==============================END OF NAVBAR=========================================-->
-<!--===============================HEADER=========================================-->
-<header class="category__title">
-    <h2>Titre Catégorie</h2>
-</header>
-<!--===============================END OF HEADER=========================================-->
+<!--==============================FEATURED POST=========================================-->
+<section class="featured">
+    <div class="container featured__container">
+        <div class="post__thumbnail">
+            <img src="frontend/assets/images/blog1.jpg" alt="Image du blog1">
+        </div>
+        <div class="post__info">
+            <a href="category-post.php" class="category__button">Wild Life</a>
+            <h2 class="post__title"><a href="post.php">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</a>
+            </h2>
+            <p class="post__body">
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab alias culpa delectus error est eum, fuga
+                inventore, nam nostrum perferendis praesentium quibusdam repellendus sunt tenetur ullam vel, vitae.
+                Expedita, fuga.
+            </p>
+            <div class="post__author">
+                <div class="post__author-avatar">
+                    <img src="frontend/assets/images/avatar1.jpg" alt="Avatar de l'auteur de l'article">
+                </div>
+                <div class="post__author-info">
+                    <h5>Par : Jobba</h5>
+                    <small>3 septembre 2022 - 14:19</small>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--==============================END OF FEATURED POST=========================================-->
 <!--===============================POST=========================================-->
 <section class="posts">
     <div class="container posts__container">
@@ -60,7 +83,7 @@
             <div class="post__info">
                 <a href="category-post.php" class="category__button">Wild Life</a>
                 <h3 class="post__title">
-                    <a href="post.html">
+                    <a href="post.php">
                         Lorem ipsum dolor sit amet, consectetur adipisicing elit.
                     </a>
                 </h3>
@@ -85,7 +108,7 @@
             <div class="post__info">
                 <a href="category-post.php" class="category__button">Wild Life</a>
                 <h3 class="post__title">
-                    <a href="post.html">
+                    <a href="post.php">
                         Lorem ipsum dolor sit amet, consectetur adipisicing elit.
                     </a>
                 </h3>
@@ -110,7 +133,7 @@
             <div class="post__info">
                 <a href="category-post.php" class="category__button">Wild Life</a>
                 <h3 class="post__title">
-                    <a href="post.html">
+                    <a href="post.php">
                         Lorem ipsum dolor sit amet, consectetur adipisicing elit.
                     </a>
                 </h3>
@@ -135,7 +158,7 @@
             <div class="post__info">
                 <a href="category-post.php" class="category__button">Wild Life</a>
                 <h3 class="post__title">
-                    <a href="post.html">
+                    <a href="post.php">
                         Lorem ipsum dolor sit amet, consectetur adipisicing elit.
                     </a>
                 </h3>
@@ -160,7 +183,7 @@
             <div class="post__info">
                 <a href="category-post.php" class="category__button">Wild Life</a>
                 <h3 class="post__title">
-                    <a href="post.html">
+                    <a href="post.php">
                         Lorem ipsum dolor sit amet, consectetur adipisicing elit.
                     </a>
                 </h3>
@@ -185,7 +208,7 @@
             <div class="post__info">
                 <a href="category-post.php" class="category__button">Wild Life</a>
                 <h3 class="post__title">
-                    <a href="post.html">
+                    <a href="post.php">
                         Lorem ipsum dolor sit amet, consectetur adipisicing elit.
                     </a>
                 </h3>

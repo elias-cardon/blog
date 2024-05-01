@@ -11,29 +11,30 @@
     <title>Le blog de Jobba</title>
     <!--C'est le CSS-->
     <link rel="icon" type="image/png" href="frontend/assets/images/logo.png"/>
-    <link rel="stylesheet" href="../../frontend/assets/style.css">
+    <link rel="stylesheet" href="frontend/assets/style.css">
     <!--Iconscout CDN-->
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
     <!--Google Fonts-->
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap"
           rel="stylesheet">
 </head>
+<body>
 <!--==============================NAVBAR=========================================-->
 <nav>
     <div class="container nav__container">
-        <a href="../../index.html" class="nav__logo">Le blog de Jobba</a>
+        <a href="index.php" class="nav__logo">Le blog de Jobba</a>
         <ul class="nav__items">
-            <li><a href="../../blog.html">Blog</a></li>
-            <li><a href="../../about.html">A propos</a></li>
-            <li><a href="../../services.html">Services</a></li>
-            <li><a href="../../contact.html">Contact</a></li>
+            <li><a href="blog.php">Blog</a></li>
+            <li><a href="about.php">A propos</a></li>
+            <li><a href="services.php">Services</a></li>
+            <li><a href="contact.php">Contact</a></li>
             <!--<li><a href="signin.html">Se connecter</a></li>-->
             <li class="nav__profile">
                 <div class="avatar">
                     <img src="frontend/assets/images/avatar1.jpg" alt="Un avatar">
                 </div>
                 <ul>
-                    <li><a href="../../dashboard.html">Dashboard</a></li>
+                    <li><a href="dashboard.php">Dashboard</a></li>
                     <li><a href="logout.php">Déconnexion</a></li>
                 </ul>
             </li>
@@ -44,34 +45,83 @@
     </div>
 </nav>
 <!--==============================END OF NAVBAR=========================================-->
-<body>
-<section class="form__section">
-    <div class="container form__section-container">
-        <h2>Ajout d'article</h2>
-        <div class="alert__message error">
-            <p>C'est un message d'erreur.</p>
-        </div>
-        <form action="" enctype="multipart/form-data">
-            <input type="text" placeholder="Titre de l'article">
-            <select>
-                <option value="1">Travel</option>
-                <option value="2">Art</option>
-                <option value="3">Science et technologie</option>
-                <option value="1">Travel</option>
-                <option value="1">Travel</option>
-                <option value="1">Travel</option>
-            </select>
-            <textarea rows="10" placeholder="Texte de l'article"></textarea>
-            <div class="form__control inline">
-                <input type="checkbox" id="is_featured" checked>
-                <label for="is_featured">A la Une</label>
-            </div>
-            <div class="form__control">
-                <label for="thumbnail">Ajouter une miniature</label>
-                <input type="file" id="thumbnail">
-            </div>
-            <button type="submit" class="btn">Ajouter l'article</button>
-        </form>
+<section class="dashboard">
+    <div class="container dashboard__container">
+        <button id="show__sidebar-btn" class="sidebar__toggle"><i class="uil uil-angle-right-b"></i></button>
+        <button id="hide__sidebar-btn" class="sidebar__toggle"><i class="uil uil-angle-left-b"></i></button>
+        <aside>
+            <ul>
+                <li>
+                    <a href="backend/admin/add-post.php">
+                        <i class="uil uil-pen"></i>
+                        <h5>Ajouter un article</h5>
+                    </a>
+                </li>
+                <li>
+                    <a href="dashboard.php" class="active">
+                        <i class="uil uil-postcard"></i>
+                        <h5>Liste des articles</h5>
+                    </a>
+                </li>
+                <li>
+                    <a href="backend/admin/add-user.php">
+                        <i class="uil uil-user-plus"></i>
+                        <h5>Ajouter un utilisateur</h5>
+                    </a>
+                </li>
+                <li>
+                    <a href="backend/admin/manage-user.php">
+                        <i class="uil uil-users-alt"></i>
+                        <h5>Liste des utilisateurs</h5>
+                    </a>
+                </li>
+                <li>
+                    <a href="backend/admin/add-category.php">
+                        <i class="uil uil-edit"></i>
+                        <h5>Ajouter une catégorie</h5>
+                    </a>
+                </li>
+                <li>
+                    <a href="backend/admin/manage-category.php">
+                        <i class="uil uil-list-ul"></i>
+                        <h5>Liste des catégories</h5>
+                    </a>
+                </li>
+            </ul>
+        </aside>
+        <main>
+            <h2>Liste des articles</h2>
+            <table>
+                <thead>
+                <tr>
+                    <th>Titre</th>
+                    <th>Catégorie</th>
+                    <th>Modifier</th>
+                    <th>Supprimer</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>Un article</td>
+                    <td>Une catégorie</td>
+                    <td><a href="backend/admin/edit-post.php" class="btn sm">Modifier</a></td>
+                    <td><a href="delete-post.php" class="btn sm danger">Supprimer</a></td>
+                </tr>
+                <tr>
+                    <td>Un autre article</td>
+                    <td>Une autre catégorie</td>
+                    <td><a href="backend/admin/edit-post.php" class="btn sm">Modifier</a></td>
+                    <td><a href="delete-post.php" class="btn sm danger">Supprimer</a></td>
+                </tr>
+                <tr>
+                    <td>Un article mdrrr</td>
+                    <td>Une catégorie yoyoyo</td>
+                    <td><a href="backend/admin/edit-post.php" class="btn sm">Modifier</a></td>
+                    <td><a href="delete-post.php" class="btn sm danger">Supprimer</a></td>
+                </tr>
+                </tbody>
+            </table>
+        </main>
     </div>
 </section>
 <!--==============================FOOTER=========================================-->
@@ -128,5 +178,6 @@
     </div>
 </footer>
 <!--==============================END FOOTER=========================================-->
+<script src="frontend/assets/main.js"></script>
 </body>
 </html>
