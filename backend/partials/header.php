@@ -28,18 +28,18 @@ require 'backend/config/database.php';
     <div class="container nav__container">
         <a href="index.php" class="nav__logo">Le blog de Jobba</a>
         <ul class="nav__items">
-            <li><a href="blog.php">Blog</a></li>
-            <li><a href="about.php">A propos</a></li>
-            <li><a href="services.php">Services</a></li>
-            <li><a href="contact.php">Contact</a></li>
-            <!--<li><a href="signin.html">Se connecter</a></li>-->
+            <li><a href="<?= ROOT_URL?>blog.php">Blog</a></li>
+            <li><a href="<?= ROOT_URL?>about.php">A propos</a></li>
+            <li><a href="<?= ROOT_URL?>services.php">Services</a></li>
+            <li><a href="<?= ROOT_URL?>contact.php">Contact</a></li>
+            <!--<li><a href="<?= ROOT_URL?>signin.html">Se connecter</a></li>-->
             <li class="nav__profile">
                 <div class="avatar">
                     <img src="frontend/assets/images/avatar1.jpg" alt="Un avatar">
                 </div>
                 <ul>
-                    <li><a href="dashboard.php">Dashboard</a></li>
-                    <li><a href="logout.php">Déconnexion</a></li>
+                    <li><a href="<?= ROOT_URL?>admin/dashboard.php">Dashboard</a></li>
+                    <li><a href="<?= ROOT_URL?>logout.php">Déconnexion</a></li>
                 </ul>
             </li>
         </ul>
