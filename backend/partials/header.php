@@ -26,7 +26,7 @@ require 'backend/config/database.php';
 <!--==============================NAVBAR=========================================-->
 <nav>
     <div class="container nav__container">
-        <a href="index.php" class="nav__logo">Le blog de Jobba</a>
+        <a href="<?= ROOT_URL?>" class="nav__logo">Le blog de Jobba</a>
         <ul class="nav__items">
             <li><a href="<?= ROOT_URL?>blog.php">Blog</a></li>
             <li><a href="<?= ROOT_URL?>about.php">A propos</a></li>
