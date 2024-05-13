@@ -34,7 +34,7 @@
                     <img src="frontend/assets/images/avatar1.jpg" alt="Un avatar">
                 </div>
                 <ul>
-                    <li><a href="../../dashboard.php">Dashboard</a></li>
+                    <li><a href="dashboard.php">Dashboard</a></li>
                     <li><a href="logout.php">Déconnexion</a></li>
                 </ul>
             </li>
@@ -58,7 +58,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="../../dashboard.php">
+                    <a href="dashboard.php">
                         <i class="uil uil-postcard"></i>
                         <h5>Liste des articles</h5>
                     </a>

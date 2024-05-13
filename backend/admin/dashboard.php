@@ -11,7 +11,7 @@
     <title>Le blog de Jobba</title>
     <!--C'est le CSS-->
     <link rel="icon" type="image/png" href="frontend/assets/images/logo.png"/>
-    <link rel="stylesheet" href="frontend/assets/style.css">
+    <link rel="stylesheet" href="../../frontend/assets/style.css">
     <!--Iconscout CDN-->
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
     <!--Google Fonts-->
@@ -22,12 +22,12 @@
 <!--==============================NAVBAR=========================================-->
 <nav>
     <div class="container nav__container">
-        <a href="index.php" class="nav__logo">Le blog de Jobba</a>
+        <a href="../../index.php" class="nav__logo">Le blog de Jobba</a>
         <ul class="nav__items">
-            <li><a href="blog.php">Blog</a></li>
-            <li><a href="about.php">A propos</a></li>
-            <li><a href="services.php">Services</a></li>
-            <li><a href="contact.php">Contact</a></li>
+            <li><a href="../../blog.php">Blog</a></li>
+            <li><a href="../../about.php">A propos</a></li>
+            <li><a href="../../services.php">Services</a></li>
+            <li><a href="../../contact.php">Contact</a></li>
             <!--<li><a href="signin.html">Se connecter</a></li>-->
             <li class="nav__profile">
                 <div class="avatar">
@@ -52,7 +52,7 @@
         <aside>
             <ul>
                 <li>
-                    <a href="backend/admin/add-post.php">
+                    <a href="add-post.php">
                         <i class="uil uil-pen"></i>
                         <h5>Ajouter un article</h5>
                     </a>
@@ -64,25 +64,25 @@
                     </a>
                 </li>
                 <li>
-                    <a href="backend/admin/add-user.php">
+                    <a href="add-user.php">
                         <i class="uil uil-user-plus"></i>
                         <h5>Ajouter un utilisateur</h5>
                     </a>
                 </li>
                 <li>
-                    <a href="backend/admin/manage-user.php">
+                    <a href="manage-user.php">
                         <i class="uil uil-users-alt"></i>
                         <h5>Liste des utilisateurs</h5>
                     </a>
                 </li>
                 <li>
-                    <a href="backend/admin/add-category.php">
+                    <a href="add-category.php">
                         <i class="uil uil-edit"></i>
                         <h5>Ajouter une catégorie</h5>
                     </a>
                 </li>
                 <li>
-                    <a href="backend/admin/manage-category.php">
+                    <a href="manage-category.php">
                         <i class="uil uil-list-ul"></i>
                         <h5>Liste des catégories</h5>
                     </a>
@@ -104,19 +104,19 @@
                 <tr>
                     <td>Un article</td>
                     <td>Une catégorie</td>
-                    <td><a href="backend/admin/edit-post.php" class="btn sm">Modifier</a></td>
+                    <td><a href="edit-post.php" class="btn sm">Modifier</a></td>
                     <td><a href="delete-post.php" class="btn sm danger">Supprimer</a></td>
                 </tr>
                 <tr>
                     <td>Un autre article</td>
                     <td>Une autre catégorie</td>
-                    <td><a href="backend/admin/edit-post.php" class="btn sm">Modifier</a></td>
+                    <td><a href="edit-post.php" class="btn sm">Modifier</a></td>
                     <td><a href="delete-post.php" class="btn sm danger">Supprimer</a></td>
                 </tr>
                 <tr>
                     <td>Un article mdrrr</td>
                     <td>Une catégorie yoyoyo</td>
-                    <td><a href="backend/admin/edit-post.php" class="btn sm">Modifier</a></td>
+                    <td><a href="edit-post.php" class="btn sm">Modifier</a></td>
                     <td><a href="delete-post.php" class="btn sm danger">Supprimer</a></td>
                 </tr>
                 </tbody>
@@ -178,6 +178,6 @@
     </div>
 </footer>
 <!--==============================END FOOTER=========================================-->
-<script src="frontend/assets/main.js"></script>
+<script src="../../frontend/assets/main.js"></script>
 </body>
 </html>
