@@ -38,7 +38,7 @@ require 'backend/config/database.php';
                     <img src="frontend/assets/images/avatar1.jpg" alt="Un avatar">
                 </div>
                 <ul>
-                    <li><a href="<?= ROOT_URL?>admin/dashboard.php">Dashboard</a></li>
+                    <li><a href="<?= ROOT_URL?>backend/admin/dashboard.php">Dashboard</a></li>
                     <li><a href="<?= ROOT_URL?>logout.php">Déconnexion</a></li>
                 </ul>
             </li>
