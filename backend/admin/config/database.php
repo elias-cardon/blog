@@ -1,2 +1,2 @@
 <?php
-require 'admin/config/constants.php';
+require './config/constants.php';

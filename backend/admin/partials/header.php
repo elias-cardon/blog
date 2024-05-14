@@ -1,5 +1,5 @@
 <?php
-require '../config/database.php';
+require '../admin/config/database.php';
 ?>
 
 <!doctype html>
