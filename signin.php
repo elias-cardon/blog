@@ -29,7 +29,7 @@
             <input type="text" placeholder="Adresse email ou pseudonyme">
             <input type="password" placeholder="Mot de passe">
             <button type="submit" class="btn">Se connecter</button>
-            <small>Pas déjà inscrit ? <a href="signin.php">Inscrivez-vous</a>.</small>
+            <small>Pas déjà inscrit ? <a href="signup.php">Inscrivez-vous</a>.</small>
         </form>
     </div>
 </section>

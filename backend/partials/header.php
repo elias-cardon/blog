@@ -32,8 +32,8 @@ require 'backend/config/database.php';
             <li><a href="<?= ROOT_URL?>about.php">A propos</a></li>
             <li><a href="<?= ROOT_URL?>services.php">Services</a></li>
             <li><a href="<?= ROOT_URL?>contact.php">Contact</a></li>
-            <!--<li><a href="<?= ROOT_URL?>signin.html">Se connecter</a></li>-->
-            <li class="nav__profile">
+            <li><a href="<?= ROOT_URL?>signin.php">Se connecter</a></li>
+            <!--<li class="nav__profile">
                 <div class="avatar">
                     <img src="frontend/assets/images/avatar1.jpg" alt="Un avatar">
                 </div>
@@ -41,7 +41,7 @@ require 'backend/config/database.php';
                     <li><a href="<?= ROOT_URL?>backend/admin/index.php">Dashboard</a></li>
                     <li><a href="<?= ROOT_URL?>logout.php">Déconnexion</a></li>
                 </ul>
-            </li>
+            </li>-->
         </ul>
 
         <button id="open__nav-btn"><i class="uil uil-bars"></i></button>
