@@ -14,7 +14,7 @@ require './partials/header.php';
                     </a>
                 </li>
                 <li>
-                    <a href="dashboard.php">
+                    <a href="index.php">
                         <i class="uil uil-postcard"></i>
                         <h5>Liste des articles</h5>
                     </a>
