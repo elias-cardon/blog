@@ -1,3 +1,7 @@
+<?php
+require './backend/config/constants.php';
+?>
+
 <!doctype html>
 <html lang="fr">
 <head>
@@ -25,18 +29,18 @@
         <div class="alert__message error">
             <p>C'est un message d'erreur.</p>
         </div>
-        <form action="" enctype="multipart/form-data">
-            <input type="text" placeholder="Prénom">
-            <input type="text" placeholder="Nom de famille">
-            <input type="text" placeholder="Pseudonyme">
-            <input type="email" placeholder="Adresse email">
-            <input type="password" placeholder="Mot de passe">
-            <input type="password" placeholder="Confirmation du mot de passe">
+        <form action="<?= ROOT_URL?>signup-logic.php" enctype="multipart/form-data" method="POST">
+            <input type="text" name="firstname" placeholder="Prénom">
+            <input type="text" name="lastname" placeholder="Nom de famille">
+            <input type="text" name="username" placeholder="Pseudonyme">
+            <input type="email" name="email" placeholder="Adresse email">
+            <input type="password" name="createpassword" placeholder="Mot de passe">
+            <input type="password" name="confirmpassword" placeholder="Confirmation du mot de passe">
             <div class="form__control">
                 <label for="avatar">Avatar</label>
-                <input type="file" id="avatar">
+                <input type="file" name="avatar" id="avatar">
             </div>
-            <button type="submit" class="btn">S'inscrire</button>
+            <button type="submit" name="submit" class="btn">S'inscrire</button>
             <small>Déjà inscrit ? <a href="signin.php">Connectez-vous</a>.</small>
         </form>
     </div>
