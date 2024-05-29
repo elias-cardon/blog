@@ -32,8 +32,25 @@ if (isset($_POST['submit'])){
         } else{
             //hash password
             $hashed_password = password_hash($createpassword, PASSWORD_DEFAULT);
-            echo $createpassword . '<br/>';
-            echo $hashed_password;
+
+            //check if username or email already exit in database
+            $user_check_query = "SELECT * FROM users WHERE username='$username' OR email='$email'";
+            $user_check_result = mysqli_query($connection, $user_check_query);
+            if (mysqli_num_rows($user_check_result) > 0){
+                $_SESSION['signup'] = "Pseudonyme ou adresse email déjà existant";
+            } else{
+                //Work on avatar
+                //rename avatar
+                $time = time(); //make each image unique using current timestamp
+                $avatar_name = $time . $avatar['name'];
+                $avatar_tmp_name = $avatar['tmp_name'];
+                $avatar_destination_path = 'frontend/assets/images/' . $avatar_name;
+
+                //make sure file is an image
+                $allowed_files = ['png', 'jpg', 'jpeg'];
+                $extention = explode('.', $avatar_name);
+                $extention = end($extention);
+            }
         }
     }
 }else{
