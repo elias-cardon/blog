@@ -78,7 +78,7 @@ if (isset($_POST['submit'])){
         if (!mysqli_errno($connection)){
             //Redirect to signup pag with success message
             $_SESSION['signup-success'] = "Inscription réussie. Vous pouvez vous connecter.";
-            header('location:'.ROOT_URL.'signup.php');
+            header('location:'.ROOT_URL.'signin.php');
         }
     }
 }else{
