@@ -50,6 +50,17 @@ if (isset($_POST['submit'])){
                 $allowed_files = ['png', 'jpg', 'jpeg'];
                 $extention = explode('.', $avatar_name);
                 $extention = end($extention);
+                if(in_array($extention, $allowed_files)){
+                    //Make sure the file is not too large (1Mo)
+                    if ($avatar['size'] < 1000000){
+                        //Upload avatar
+
+                    }else {
+                        $_SESSION['signup'] = 'Ce fichier est trop volumineux. Il doit faire moins de 1Mo.';
+                    }
+                } else{
+                    $_SESSION['signup'] = "Ce fichier doit être un JPG, un JPEG ou un PNG.";
+                }
             }
         }
     }
