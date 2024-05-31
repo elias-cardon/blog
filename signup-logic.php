@@ -65,7 +65,7 @@ if (isset($_POST['submit'])){
         }
     }
     //redirect back to signup if any problem
-    if ($_SESSION['signup']){
+    if (isset($_SESSION['signup'])){
         //pass the form data back to signup page
         $_SESSION['signup-data'] = $_POST;
         header('location:'.ROOT_URL.'signup.php');
@@ -73,6 +73,7 @@ if (isset($_POST['submit'])){
     } else {
         //insert new user into users table
         $insert_user_query = "INSERT INTO users (firstname, lastname, username, email, password, avatar, is_admin) VALUES ('$firstname', '$lastname', '$username', '$email', '$hashed_password', '$avatar_name', 0)";
+        $insert_user_result = mysqli_query($connection, $insert_user_query);
 
         if (!mysqli_errno($connection)){
             //Redirect to signup pag with success message
