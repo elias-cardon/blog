@@ -67,7 +67,7 @@ if (isset($_POST['submit'])){
     //redirect back to signup if any problem
     if ($_SESSION['signup']){
         //pass the form data back to signup page
-        header('location: ' . ROOT_URL . ' signup.php');
+        header('location:'.ROOT_URL.'signup.php');
         die();
     } else {
         //insert new user into users table
@@ -76,11 +76,11 @@ if (isset($_POST['submit'])){
         if (!mysqli_errno($connection)){
             //Redirect to signup pag with success message
             $_SESSION['signup-success'] = "Inscription réussie. Vous pouvez vous connecter.";
-            header('location: ' . ROOT_URL . 'signup.php');
+            header('location:'.ROOT_URL.'signup.php');
         }
     }
 }else{
     //if button not clicked, return to signup page
-    header('location: ' . ROOT_URL . 'signup.php');
+    header('location:'.ROOT_URL.'signup.php');
     die();
 }
