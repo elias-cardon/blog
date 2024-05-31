@@ -1,6 +1,13 @@
 <?php
 session_start();
 require './backend/config/constants.php';
+//Get back if there was a registration error
+$firstname = $_SESSION['signup-data']['firstname'];
+$lastname = $_SESSION['signup-data']['lastname'];
+$email = $_SESSION['signup-data']['email'];
+$username = $_SESSION['signup-data']['username'];
+$createpassword = $_SESSION['signup-data']['createpassword'];
+$confirmpassword = $_SESSION['signup-data']['confirmpassword'];
 ?>
 
 <!doctype html>
