@@ -54,7 +54,7 @@ if (isset($_POST['submit'])){
                     //Make sure the file is not too large (1Mo)
                     if ($avatar['size'] < 1000000){
                         //Upload avatar
-
+                        move_uploaded_file($avatar_tmp_name, $avatar_destination_path);
                     }else {
                         $_SESSION['signup'] = 'Ce fichier est trop volumineux. Il doit faire moins de 1Mo.';
                     }
