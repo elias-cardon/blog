@@ -26,9 +26,17 @@ require './backend/config/constants.php';
 <section class="form__section">
     <div class="container form__section-container">
         <h2>Inscription</h2>
-        <div class="alert__message error">
-            <p>C'est un message d'erreur.</p>
-        </div>
+        <?php
+        if (isset($_SESSION['signup'])) : ?>
+            <div class="alert__message error">
+                <p>
+                    <?=
+                    $_SESSION['signup'];
+                    unset($_SESSION['signup']);
+                    ?>
+                </p>
+            </div>
+        <?php endif ?>
         <form action="<?= ROOT_URL?>signup-logic.php" enctype="multipart/form-data" method="POST">
             <input type="text" name="firstname" placeholder="Prénom">
             <input type="text" name="lastname" placeholder="Nom de famille">
