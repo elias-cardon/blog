@@ -1,3 +1,8 @@
+<?php
+session_start();
+require './backend/config/constants.php';
+?>
+
 <!doctype html>
 <html lang="fr">
 <head>
