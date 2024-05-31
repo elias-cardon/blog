@@ -69,6 +69,15 @@ if (isset($_POST['submit'])){
         //pass the form data back to signup page
         header('location: ' . ROOT_URL . ' signup.php');
         die();
+    } else {
+        //insert new user into users table
+        $insert_user_query = "INSERT INTO users (firstname, lastname, username, email, password, avatar, is_admin) VALUES ('$firstname', '$lastname', '$username', '$email', '$hashed_password', '$avatar_name', 0)";
+
+        if (!mysqli_errno($connection)){
+            //Redirect to signup pag with success message
+            $_SESSION['signup-success'] = "Inscription réussie. Vous pouvez vous connecter.";
+            header('location: ' . ROOT_URL . 'signup.php');
+        }
     }
 }else{
     //if button not clicked, return to signup page
