@@ -64,6 +64,12 @@ if (isset($_POST['submit'])){
             }
         }
     }
+    //redirect back to signup if any problem
+    if ($_SESSION['signup']){
+        //pass the form data back to signup page
+        header('location: ' . ROOT_URL . ' signup.php');
+        die();
+    }
 }else{
     //if button not clicked, return to signup page
     header('location: ' . ROOT_URL . 'signup.php');
