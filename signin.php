@@ -1,5 +1,4 @@
 <?php
-session_start();
 require './backend/config/constants.php';
 ?>
 
@@ -27,9 +26,11 @@ require './backend/config/constants.php';
 <section class="form__section">
     <div class="container form__section-container">
         <h2>Connexion</h2>
-        <div class="alert__message error">
-            <p>C'est un message d'erreur.</p>
-        </div>
+        <?php if ($_SESSION['signup-success']) : ?>
+            <div class="alert__message error">
+                <p>C'est un message d'erreur.</p>
+            </div>
+        <?php endif; ?>
         <form action="" enctype="multipart/form-data">
             <input type="text" placeholder="Adresse email ou pseudonyme">
             <input type="password" placeholder="Mot de passe">

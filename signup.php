@@ -1,5 +1,4 @@
 <?php
-session_start();
 require './backend/config/constants.php';
 //Get back if there was a registration error
 $firstname = $_SESSION['signup-data']['firstname'] ?? null;
