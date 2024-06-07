@@ -26,15 +26,19 @@ require './backend/config/constants.php';
 <section class="form__section">
     <div class="container form__section-container">
         <h2>Connexion</h2>
-        <?php if ($_SESSION['signup-success']) : ?>
-            <div class="alert__message error">
-                <p>C'est un message d'erreur.</p>
+        <?php if (isset($_SESSION['signup-success'])) : ?>
+            <div class="alert__message success">
+                <p>
+                    <?= $_SESSION['signup-success'];
+                    unset($_SESSION['signup-success']);
+                    ?>
+                </p>
             </div>
         <?php endif; ?>
-        <form action="" enctype="multipart/form-data">
-            <input type="text" placeholder="Adresse email ou pseudonyme">
-            <input type="password" placeholder="Mot de passe">
-            <button type="submit" class="btn">Se connecter</button>
+        <form action="<?= ROOT_URL ?>signin-logic.php" method="POST" enctype="multipart/form-data">
+            <input type="text" name="username_email" placeholder="Adresse email ou pseudonyme">
+            <input type="password" name="password" placeholder="Mot de passe">
+            <button type="submit" name="submit" class="btn">Se connecter</button>
             <small>Pas déjà inscrit ? <a href="signup.php">Inscrivez-vous</a>.</small>
         </form>
     </div>
