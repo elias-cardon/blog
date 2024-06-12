@@ -32,7 +32,7 @@ require '../admin/config/database.php';
             <li><a href="<?= ROOT_URL?>about.php">A propos</a></li>
             <li><a href="<?= ROOT_URL?>services.php">Services</a></li>
             <li><a href="<?= ROOT_URL?>contact.php">Contact</a></li>
-            <!--<li><a href="<?= ROOT_URL?>signin.html">Se connecter</a></li>-->
+            <?php if (isset($_SESSION['user-id'])) : ?>
             <li class="nav__profile">
                 <div class="avatar">
                     <img src="frontend/assets/images/avatar1.jpg" alt="Un avatar">
@@ -42,6 +42,9 @@ require '../admin/config/database.php';
                     <li><a href="<?= ROOT_URL?>logout.php">Déconnexion</a></li>
                 </ul>
             </li>
+            <?php else : ?>
+            <li><a href="<?= ROOT_URL?>signin.html">Se connecter</a></li>
+            <?php endif ?>
         </ul>
 
         <button id="open__nav-btn"><i class="uil uil-bars"></i></button>
