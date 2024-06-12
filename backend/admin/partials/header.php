@@ -1,5 +1,12 @@
 <?php
 require '../admin/config/database.php';
+//Fetch current user from database
+if (isset($_SESSION['user-id'])){
+    $id = filter_var($_SESSION['user-id'], FILTER_SANITIZE_NUMBER_INT);
+    $query = "SELECT avatar FROM users WHERE id = $id";
+    $result = mysqli_query($connection, $query);
+    $avatar = mysqli_fetch_assoc($result);
+}
 ?>
 
 <!doctype html>
@@ -35,7 +42,7 @@ require '../admin/config/database.php';
             <?php if (isset($_SESSION['user-id'])) : ?>
             <li class="nav__profile">
                 <div class="avatar">
-                    <img src="frontend/assets/images/avatar1.jpg" alt="Un avatar">
+                    <img src="<?= ROOT_URL . 'frontend/assets/images/' . $avatar['avatar'] ?>" alt="Un avatar">
                 </div>
                 <ul>
                     <li><a href="<?= ROOT_URL?>backend/admin/index.php">Dashboard</a></li>

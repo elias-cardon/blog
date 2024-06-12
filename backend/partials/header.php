@@ -1,5 +1,13 @@
 <?php
 require 'backend/config/database.php';
+
+//Fetch current user from database
+if (isset($_SESSION['user-id'])){
+    $id = filter_var($_SESSION['user-id'], FILTER_SANITIZE_NUMBER_INT);
+    $query = "SELECT avatar FROM users WHERE id = $id";
+    $result = mysqli_query($connection, $query);
+    $avatar = mysqli_fetch_assoc($result);
+}
 ?>
 
 <!doctype html>
@@ -10,7 +18,7 @@ require 'backend/config/database.php';
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="description" content="C'est le blog de Jobba, le meilleur de France.">
-    <meta name="keywords" content="HTML, CSS, JavaScript, blog, Jobba, meilleur, Elias, Menace, Article, Star Wars">
+    <meta name="keywords" content="HTML, CSS, JavaScript, blog, Jobba, meilleur, Elias, Article, Star Wars">
     <meta name="author" content="Elias Cardon aka Jobba">
     <title>Le blog de Jobba</title>
     <!--C'est le CSS-->
@@ -36,7 +44,7 @@ require 'backend/config/database.php';
             <?php if (isset($_SESSION['user-id'])) : ?>
                 <li class="nav__profile">
                     <div class="avatar">
-                        <img src="frontend/assets/images/avatar1.jpg" alt="Un avatar">
+                        <img src="<?= ROOT_URL . 'frontend/assets/images/' . $avatar['avatar'] ?>" alt="Un avatar">
                     </div>
                     <ul>
                         <li><a href="<?= ROOT_URL?>backend/admin/index.php">Dashboard</a></li>
