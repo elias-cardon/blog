@@ -19,6 +19,7 @@ require './partials/header.php';
                         <h5>Liste des articles</h5>
                     </a>
                 </li>
+                <?php if (isset($_SESSION['user_is_admin'])): ?>
                 <li>
                     <a href="add-user.php">
                         <i class="uil uil-user-plus"></i>
@@ -43,6 +44,7 @@ require './partials/header.php';
                         <h5>Liste des catégories</h5>
                     </a>
                 </li>
+                <?php endif; ?>
             </ul>
         </aside>
         <main>

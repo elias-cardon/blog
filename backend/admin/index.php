@@ -19,30 +19,32 @@ require './partials/header.php';
                         <h5>Liste des articles</h5>
                     </a>
                 </li>
-                <li>
-                    <a href="add-user.php">
-                        <i class="uil uil-user-plus"></i>
-                        <h5>Ajouter un utilisateur</h5>
-                    </a>
-                </li>
-                <li>
-                    <a href="manage-user.php">
-                        <i class="uil uil-users-alt"></i>
-                        <h5>Liste des utilisateurs</h5>
-                    </a>
-                </li>
-                <li>
-                    <a href="add-category.php">
-                        <i class="uil uil-edit"></i>
-                        <h5>Ajouter une catégorie</h5>
-                    </a>
-                </li>
-                <li>
-                    <a href="manage-category.php">
-                        <i class="uil uil-list-ul"></i>
-                        <h5>Liste des catégories</h5>
-                    </a>
-                </li>
+                <?php if (isset($_SESSION['user_is_admin'])): ?>
+                    <li>
+                        <a href="add-user.php">
+                            <i class="uil uil-user-plus"></i>
+                            <h5>Ajouter un utilisateur</h5>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="manage-user.php">
+                            <i class="uil uil-users-alt"></i>
+                            <h5>Liste des utilisateurs</h5>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="add-category.php">
+                            <i class="uil uil-edit"></i>
+                            <h5>Ajouter une catégorie</h5>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="manage-category.php" class="active">
+                            <i class="uil uil-list-ul"></i>
+                            <h5>Liste des catégories</h5>
+                        </a>
+                    </li>
+                <?php endif; ?>
             </ul>
         </aside>
         <main>
