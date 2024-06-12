@@ -31,11 +31,18 @@ if (isset($_POST['submit'])){
                 //log user in
                 header("Location:". ROOT_URL . "backend/admin/");
             } else {
-                $_SESSION['signin'] = "Please check your input.";
+                $_SESSION['signin'] = "Mot de passe erroné.";
             }
         } else {
             $_SESSION['signin'] = "Utilisateur inexistant.";
         }
+    }
+
+    //if any problem, redirect back to signin page with login data
+    if (isset($_SESSION['signin'])){
+        $_SESSION['signin-data'] = $_POST;
+        header("Location:". ROOT_URL . "signin.php");
+        die();
     }
 } else{
     header('location:' . ROOT_URL . ' signin.php');
