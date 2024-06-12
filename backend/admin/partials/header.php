@@ -50,7 +50,7 @@ if (isset($_SESSION['user-id'])){
                 </ul>
             </li>
             <?php else : ?>
-            <li><a href="<?= ROOT_URL?>signin.html">Se connecter</a></li>
+            <li><a href="<?= ROOT_URL?>signin.php">Se connecter</a></li>
             <?php endif ?>
         </ul>
 
