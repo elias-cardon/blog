@@ -1,5 +1,5 @@
 <?php
-require 'backend/config/constants.php';
+require __DIR__ . '/constants.php';
 
 //Connect to database
 $connection = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);

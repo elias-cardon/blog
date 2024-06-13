@@ -1,5 +1,5 @@
 <?php
-require 'backend/config/database.php';
+require __DIR__ . '/../config/database.php';
 
 //Fetch current user from database
 if (isset($_SESSION['user-id'])){
