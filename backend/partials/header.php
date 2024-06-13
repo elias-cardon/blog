@@ -22,8 +22,8 @@ if (isset($_SESSION['user-id'])){
     <meta name="author" content="Elias Cardon aka Jobba">
     <title>Le blog de Jobba</title>
     <!--C'est le CSS-->
-    <link rel="icon" type="image/png" href="frontend/assets/images/logo.png"/>
-    <link rel="stylesheet" href="frontend/assets/style.css">
+    <link rel="icon" type="image/png" href="<?= ROOT_URL?>frontend/assets/images/logo.png"/>
+    <link rel="stylesheet" href="<?= ROOT_URL?>frontend/assets/style.css">
     <!--Iconscout CDN-->
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
     <!--Google Fonts-->
