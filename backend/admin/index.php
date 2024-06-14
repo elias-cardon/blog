@@ -39,7 +39,7 @@ require './partials/header.php';
                         </a>
                     </li>
                     <li>
-                        <a href="manage-category.php" class="active">
+                        <a href="manage-category.php">
                             <i class="uil uil-list-ul"></i>
                             <h5>Liste des catégories</h5>
                         </a>
