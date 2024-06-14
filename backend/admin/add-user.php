@@ -8,22 +8,22 @@ require './partials/header.php';
         <div class="alert__message error">
             <p>C'est un message d'erreur.</p>
         </div>
-        <form action="" enctype="multipart/form-data">
-            <input type="text" placeholder="Prénom">
-            <input type="text" placeholder="Nom de famille">
-            <input type="text" placeholder="Pseudonyme">
-            <input type="email" placeholder="Adresse email">
-            <input type="password" placeholder="Mot de passe">
-            <input type="password" placeholder="Confirmation du mot de passe">
-            <select>
+        <form action="<?= ROOT_URL ?>add-user-logic.php" method="POST" enctype="multipart/form-data">
+            <input type="text" name="firstname" placeholder="Prénom">
+            <input type="text" name="lastname" placeholder="Nom de famille">
+            <input type="text" name="username" placeholder="Pseudonyme">
+            <input type="email" name="email" placeholder="Adresse email">
+            <input type="password" name="createpassword" placeholder="Mot de passe">
+            <input type="password" name="confirmpassword" placeholder="Confirmation du mot de passe">
+            <select name="userrole">
                 <option value="0">Auteur</option>
                 <option value="1">Admin</option>
             </select>
             <div class="form__control">
                 <label for="avatar">Avatar</label>
-                <input type="file" id="avatar">
+                <input type="file" name="avatar" id="avatar">
             </div>
-            <button type="submit" class="btn">Ajouter utilisateur</button>
+            <button type="submit" name="submit" class="btn">Ajouter utilisateur</button>
         </form>
     </div>
 </section>
