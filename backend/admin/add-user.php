@@ -8,7 +8,7 @@ require './partials/header.php';
         <div class="alert__message error">
             <p>C'est un message d'erreur.</p>
         </div>
-        <form action="<?= ROOT_URL ?>add-user-logic.php" method="POST" enctype="multipart/form-data">
+        <form action="<?= ROOT_URL ?>backend/admin/add-user-logic.php" method="POST" enctype="multipart/form-data">
             <input type="text" name="firstname" placeholder="Prénom">
             <input type="text" name="lastname" placeholder="Nom de famille">
             <input type="text" name="username" placeholder="Pseudonyme">
