@@ -30,7 +30,7 @@ if (isset($_POST['submit'])){
     } else {
         //Check if password don't match
         if ($createpassword !== $confirmpassword){
-            $_SESSION['signup'] = "Les mots de passe ne correspondent pas.";
+            $_SESSION['add-user'] = "Les mots de passe ne correspondent pas.";
         } else{
             //hash password
             $hashed_password = password_hash($createpassword, PASSWORD_DEFAULT);
@@ -39,14 +39,14 @@ if (isset($_POST['submit'])){
             $user_check_query = "SELECT * FROM users WHERE username='$username' OR email='$email'";
             $user_check_result = mysqli_query($connection, $user_check_query);
             if (mysqli_num_rows($user_check_result) > 0){
-                $_SESSION['signup'] = "Pseudonyme ou adresse email déjà existant";
+                $_SESSION['add-user'] = "Pseudonyme ou adresse email déjà existant";
             } else{
                 //Work on avatar
                 //rename avatar
                 $time = time(); //make each image unique using current timestamp
                 $avatar_name = $time . $avatar['name'];
                 $avatar_tmp_name = $avatar['tmp_name'];
-                $avatar_destination_path = 'frontend/assets/images/' . $avatar_name;
+                $avatar_destination_path = '../../frontend/assets/images/' . $avatar_name;
 
                 //make sure file is an image
                 $allowed_files = ['png', 'jpg', 'jpeg'];
