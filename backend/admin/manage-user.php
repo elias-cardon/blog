@@ -1,5 +1,11 @@
 <?php
 require './partials/header.php';
+
+//fetch users from database but not current user
+$current_admin_id = $_SESSION['user-id'];
+
+$query = "SELECT * FROM `users` WHERE NOT id='$current_admin_id'";
+$users = mysqli_query($connection, $query);
 ?>
 <section class="dashboard">
     <?php if (isset($_SESSION['add-user-success'])) : ?>
@@ -69,27 +75,15 @@ require './partials/header.php';
                 </tr>
                 </thead>
                 <tbody>
-                <tr>
-                    <td>Elias Cardon</td>
-                    <td>Jobba</td>
-                    <td><a href="edit-user.php" class="btn sm">Modifier</a></td>
-                    <td><a href="delete-user.php" class="btn sm danger">Supprimer</a></td>
-                    <td>Oui</td>
-                </tr>
-                <tr>
-                    <td>Mike</td>
-                    <td>Rocky Mike</td>
-                    <td><a href="edit-user.php" class="btn sm">Modifier</a></td>
-                    <td><a href="delete-user.php" class="btn sm danger">Supprimer</a></td>
-                    <td>Non</td>
-                </tr>
-                <tr>
-                    <td>Marine</td>
-                    <td>Le Pen</td>
-                    <td><a href="edit-user.php" class="btn sm">Modifier</a></td>
-                    <td><a href="delete-user.php" class="btn sm danger">Supprimer</a></td>
-                    <td>Non</td>
-                </tr>
+                <?php while ($user = mysqli_fetch_assoc($users)) : ?>
+                    <tr>
+                        <td><?= "{$user['firstname']} {$user['lastname']}" ?></td>
+                        <td><?= $user['username'] ?></td>
+                        <td><a href="<?= ROOT_URL ?>backend/admin/edit-user.php?id=<?= $user['id'] ?>" class="btn sm">Modifier</a></td>
+                        <td><a href="<?= ROOT_URL ?>backend/admin/delete-user.php?id=<?= $user['id'] ?>" class="btn sm danger">Supprimer</a></td>
+                        <td><?= $user['is_admin'] ? 'Oui' : 'Non' ?></td>
+                    </tr>
+                <?php endwhile; ?>
                 </tbody>
             </table>
         </main>
