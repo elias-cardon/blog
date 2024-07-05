@@ -2,6 +2,15 @@
 require './partials/header.php';
 ?>
 <section class="dashboard">
+    <?php if (isset($_SESSION['add-user-success'])) : ?>
+        <div class="alert__message success container">
+            <p>
+                <?= $_SESSION['add-user-success'];
+                unset($_SESSION['add-user-success']);
+                ?>
+            </p>
+        </div>
+    <?php endif ?>
     <div class="container dashboard__container">
         <button id="show__sidebar-btn" class="sidebar__toggle"><i class="uil uil-angle-right-b"></i></button>
         <button id="hide__sidebar-btn" class="sidebar__toggle"><i class="uil uil-angle-left-b"></i></button>
