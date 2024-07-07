@@ -27,6 +27,11 @@ if (isset($_GET['id'])) {
     $delete_user_query = "DELETE FROM users WHERE id=$id";
     $delete_user_result = mysqli_query($connection, $delete_user_query);
     if (mysqli_errno($connection)){
-        $_SESSION
+        $_SESSION['delete-user'] = "Suppression de {$user['$firstname']} {$user['lastname']} impossible.";
+    } else {
+        $_SESSION['delete-user'] = "Suppression de {$user['$firstname']} {$user['lastname']} effectuée.";
     }
 }
+
+header('location: ' . ROOT_URL . '/backend/admin/manage-user.php');
+die();

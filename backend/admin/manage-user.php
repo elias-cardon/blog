@@ -32,6 +32,22 @@ $users = mysqli_query($connection, $query);
                 ?>
             </p>
         </div>
+    <?php elseif (isset($_SESSION['delete-user'])) : //Shows if delete user is not successful?>
+        <div class="alert__message error container">
+            <p>
+                <?= $_SESSION['delete-user'];
+                unset($_SESSION['delete-user']);
+                ?>
+            </p>
+        </div>
+    <?php elseif (isset($_SESSION['delete-user-success'])) : //Shows if delete user is successful?>
+        <div class="alert__message success container">
+            <p>
+                <?= $_SESSION['delete-user-success'];
+                unset($_SESSION['delete-user-success']);
+                ?>
+            </p>
+        </div>
     <?php endif ?>
     <div class="container dashboard__container">
         <button id="show__sidebar-btn" class="sidebar__toggle"><i class="uil uil-angle-right-b"></i></button>
