@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le : dim. 07 juil. 2024 à 08:45
+-- Généré le : dim. 07 juil. 2024 à 21:01
 -- Version du serveur : 8.3.0
 -- Version de PHP : 8.2.18
 
@@ -24,6 +24,28 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- Structure de la table `categories`
+--
+
+DROP TABLE IF EXISTS `categories`;
+CREATE TABLE IF NOT EXISTS `categories` (
+  `id` int UNSIGNED NOT NULL AUTO_INCREMENT,
+  `title` varchar(50) NOT NULL,
+  `description` text NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Déchargement des données de la table `categories`
+--
+
+INSERT INTO `categories` (`id`, `title`, `description`) VALUES
+(1, 'Food', 'Description nourrissante'),
+(2, 'Wild Life', 'On est sauvage');
+
+-- --------------------------------------------------------
+
+--
 -- Structure de la table `users`
 --
 
@@ -38,15 +60,13 @@ CREATE TABLE IF NOT EXISTS `users` (
   `avatar` varchar(255) NOT NULL,
   `is_admin` tinyint(1) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Déchargement des données de la table `users`
 --
 
 INSERT INTO `users` (`id`, `firstname`, `lastname`, `username`, `email`, `password`, `avatar`, `is_admin`) VALUES
-(9, 'ya', 'ya', 'yaya', 'ya@ya.io', '$2y$10$tcB7eNDaHbZGQ0tupLW.fOU.KzEbfBLSjWq/2bclY06.sQ0Y3U3VW', '17201657831717168920avatar10.jpg', 0),
-(6, 'yoyo', 'yaya', 'yoyoyo', 'yo@yo.iop', '$2y$10$/1WaChGbDeQ/I9HD79kn6.4nPCtWQv/AGT4cFmcZ7ZXNecQiS.WaG', '17182005641717168920avatar10.jpg', 1),
 (13, 'Elias', 'Cardon', 'Jobba', 'elias.cardon@laplateforme.io', '$2y$10$yq1GhB1Rz2wmstwLkD8njeq3SrIyB73lGZPveeZVLOLd5fgP2RSSG', '17201694351717168920avatar10.jpg', 1);
 COMMIT;
 

@@ -19,7 +19,16 @@ if (isset($_POST['submit'])) {
         die();
     } else {
         // Insert category into database
-        $query = "INSERT INTO categories (title, description) VALUES ('$title', $description)";
+        $query = "INSERT INTO categories (title, description) VALUES ('$title', '$description')";
         $result = mysqli_query($connection, $query);
+        if (mysqli_errno($connection)){
+            $_SESSION['add-category'] = "Ajout de catégorie échouée.";
+            header('location: ' . ROOT_URL . 'backend/admin/add-category.php');
+            die();
+        } else {
+            $_SESSION['add-category-success'] = "La catégorie $title a bien été ajoutée.";
+            header('location: ' . ROOT_URL . 'backend/admin/manage-category.php');
+            die();
+        }
     }
 }
