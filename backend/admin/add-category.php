@@ -8,10 +8,10 @@ require 'partials/header.php';
         <div class="alert__message error">
             <p>C'est un message d'erreur.</p>
         </div>
-        <form action="" enctype="multipart/form-data">
-            <input type="text" placeholder="Nom de la catégorie">
-            <textarea rows="4" placeholder="Description"></textarea>
-            <button type="submit" class="btn">Ajouter catégorie</button>
+        <form action="<?= ROOT_URL ?>backend/admin/add-category-logic.php" method="POST">
+            <input type="text" name="title" placeholder="Nom de la catégorie">
+            <textarea rows="4" name="description" placeholder="Description"></textarea>
+            <button type="submit" name="submit" class="btn">Ajouter catégorie</button>
         </form>
     </div>
 </section>
