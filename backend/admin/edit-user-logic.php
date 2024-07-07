@@ -16,9 +16,9 @@ if(isset($_POST['submit'])){
         $result = mysqli_query($connection, $query);
 
         if (mysqli_errno($connection)){
-            $_SESSION['edit-user'] = "Edition de l'utilisateur non reconnu";
+            $_SESSION['edit-user'] = "Modification de l'utilisateur non reconnu";
         } else {
-            $_SESSION['edit-user-success'] = "Edition de l'utilisateur $firstname $lastname réussie";
+            $_SESSION['edit-user-success'] = "Modification de l'utilisateur $firstname $lastname réussie";
         }
     }
 }
