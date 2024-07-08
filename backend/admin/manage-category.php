@@ -1,5 +1,9 @@
 <?php
 require './partials/header.php';
+
+//fetch categories from database
+$query = "SELECT * FROM categories ORDER BY title";
+$categories = mysqli_query($connection, $query);
 ?>
 <section class="dashboard">
     <div class="container dashboard__container">
@@ -49,6 +53,7 @@ require './partials/header.php';
         </aside>
         <main>
             <h2>Liste des catégories</h2>
+            <?php if (mysqli_num_rows($categories) > 0) : ?>
             <table>
                 <thead>
                 <tr>
@@ -58,28 +63,18 @@ require './partials/header.php';
                 </tr>
                 </thead>
                 <tbody>
+                <?php while ($category = mysqli_fetch_assoc($categories)) : ?>
                 <tr>
-                    <td>Travel</td>
-                    <td><a href="edit-category.php" class="btn sm">Modifier</a></td>
-                    <td><a href="delete-category.php" class="btn sm danger">Supprimer</a></td>
+                    <td><?= $category['title'] ?></td>
+                    <td><a href="<?= ROOT_URL ?>backend/admin/edit-category.php?id=<?= $category['id'] ?>" class="btn sm">Modifier</a></td>
+                    <td><a href="<?= ROOT_URL ?>backend/admin/delete-category.php?id=<?= $category['id'] ?>" class="btn sm danger">Supprimer</a></td>
                 </tr>
-                <tr>
-                    <td>Art</td>
-                    <td><a href="edit-category.php" class="btn sm">Modifier</a></td>
-                    <td><a href="delete-category.php" class="btn sm danger">Supprimer</a></td>
-                </tr>
-                <tr>
-                    <td>Science et Technologie</td>
-                    <td><a href="edit-category.php" class="btn sm">Modifier</a></td>
-                    <td><a href="delete-category.php" class="btn sm danger">Supprimer</a></td>
-                </tr>
-                <tr>
-                    <td>Musique</td>
-                    <td><a href="edit-category.php" class="btn sm">Modifier</a></td>
-                    <td><a href="delete-category.php" class="btn sm danger">Supprimer</a></td>
-                </tr>
+                <?php endwhile; ?>
                 </tbody>
             </table>
+            <?php else : ?>
+            <div class="alert__message error"><?= "Aucune catégorie trouvée. Pas de cat, prend un KitKat." ?></div>
+            <?php endif; ?>
         </main>
     </div>
 </section>
