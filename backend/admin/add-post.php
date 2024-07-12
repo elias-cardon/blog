@@ -12,7 +12,7 @@ $categories = mysqli_query($connection, $query);
         <div class="alert__message error">
             <p>C'est un message d'erreur.</p>
         </div>
-        <form action="<?= ROOT_URL ?>backend/admin/add-post-logic.php" method="POST">
+        <form action="<?= ROOT_URL ?>backend/admin/add-post-logic.php" method="POST" enctype="multipart/form-data">
             <input type="text" name="title" placeholder="Titre de l'article">
             <select name="category">
                 <?php while($category = mysqli_fetch_assoc($categories)) : ?>
