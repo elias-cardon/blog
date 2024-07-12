@@ -1,5 +1,10 @@
 <?php
 require './partials/header.php';
+
+//Fetch current user's posts from database
+$current_user_id = $_SESSION['user-id'];
+$query = "SELECT id, title, category_id FROM posts WHERE author_id =$current_user_id ORDER BY id DESC";
+$posts = mysqli_query($connection, $query);
 ?>
 <section class="dashboard">
     <div class="container dashboard__container">
@@ -49,36 +54,37 @@ require './partials/header.php';
         </aside>
         <main>
             <h2>Liste des articles</h2>
-            <table>
-                <thead>
-                <tr>
-                    <th>Titre</th>
-                    <th>Catégorie</th>
-                    <th>Modifier</th>
-                    <th>Supprimer</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr>
-                    <td>Un article</td>
-                    <td>Une catégorie</td>
-                    <td><a href="edit-post.php" class="btn sm">Modifier</a></td>
-                    <td><a href="delete-post.php" class="btn sm danger">Supprimer</a></td>
-                </tr>
-                <tr>
-                    <td>Un autre article</td>
-                    <td>Une autre catégorie</td>
-                    <td><a href="edit-post.php" class="btn sm">Modifier</a></td>
-                    <td><a href="delete-post.php" class="btn sm danger">Supprimer</a></td>
-                </tr>
-                <tr>
-                    <td>Un article mdrrr</td>
-                    <td>Une catégorie yoyoyo</td>
-                    <td><a href="edit-post.php" class="btn sm">Modifier</a></td>
-                    <td><a href="delete-post.php" class="btn sm danger">Supprimer</a></td>
-                </tr>
-                </tbody>
-            </table>
+            <?php if (mysqli_num_rows($posts) > 0) : ?>
+                <table>
+                    <thead>
+                    <tr>
+                        <th>Titre</th>
+                        <th>Catégorie</th>
+                        <th>Modifier</th>
+                        <th>Supprimer</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <?php while ($post = mysqli_fetch_assoc($posts)) : ?>
+                        <!-- Get category title of each post from categories table -->
+                        <?php
+                        $category_id = $post['category_id'];
+                        $category_query = "SELECT title FROM categories WHERE id=$category_id";
+                        $category_result = mysqli_query($connection,$category_query);
+                        $category = mysqli_fetch_assoc($category_result);
+                        ?>
+                        <tr>
+                            <td><?= $post['title'] ?></td>
+                            <td><?= $category['title'] ?></td>
+                            <td><a href="edit-post.php" class="btn sm">Modifier</a></td>
+                            <td><a href="delete-post.php" class="btn sm danger">Supprimer</a></td>
+                        </tr>
+                    <?php endwhile; ?>
+                    </tbody>
+                </table>
+            <?php else: ?>
+                <div class="alert__message error"><?= "Aucun post trouvé." ?></div>
+            <?php endif ?>
         </main>
     </div>
 </section>
