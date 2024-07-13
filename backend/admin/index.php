@@ -87,8 +87,8 @@ $posts = mysqli_query($connection, $query);
                             <td><?= $post['title'] ?></td>
                             <td><?= $category['title'] ?></td>
                             <td><?= $post['is_featured'] ? 'Oui' : 'Non' ?></td>
-                            <td><a href="<?= ROOT_URL ?>edit-post.php?id=<?= $post['id'] ?>" class="btn sm">Modifier</a></td>
-                            <td><a href="<?= ROOT_URL ?>delete-post.php?id=<?= $post['id'] ?>" class="btn sm danger">Supprimer</a></td>
+                            <td><a href="<?= ROOT_URL ?>backend/admin/edit-post.php?id=<?= $post['id'] ?>" class="btn sm">Modifier</a></td>
+                            <td><a href="<?= ROOT_URL ?>backend/admin/delete-post.php?id=<?= $post['id'] ?>" class="btn sm danger">Supprimer</a></td>
                         </tr>
                     <?php endwhile; ?>
                     </tbody>
