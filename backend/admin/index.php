@@ -3,10 +3,19 @@ require './partials/header.php';
 
 //Fetch current user's posts from database
 $current_user_id = $_SESSION['user-id'];
-$query = "SELECT id, title, category_id FROM posts WHERE author_id =$current_user_id ORDER BY id DESC";
+$query = "SELECT id, title, category_id, is_featured FROM posts WHERE author_id =$current_user_id ORDER BY id DESC";
 $posts = mysqli_query($connection, $query);
 ?>
 <section class="dashboard">
+    <?php if (isset($_SESSION['add-post-success'])) : //Shows if add post is successful ?>
+    <div class="alert__message success container">
+        <p>
+            <?= $_SESSION['add-post-success'];
+            unset($_SESSION['add-post-success']);
+            ?>
+        </p>
+    </div>
+    <?php endif; ?>
     <div class="container dashboard__container">
         <button id="show__sidebar-btn" class="sidebar__toggle"><i class="uil uil-angle-right-b"></i></button>
         <button id="hide__sidebar-btn" class="sidebar__toggle"><i class="uil uil-angle-left-b"></i></button>
@@ -60,6 +69,7 @@ $posts = mysqli_query($connection, $query);
                     <tr>
                         <th>Titre</th>
                         <th>Catégorie</th>
+                        <th>A la Une</th>
                         <th>Modifier</th>
                         <th>Supprimer</th>
                     </tr>
@@ -76,8 +86,9 @@ $posts = mysqli_query($connection, $query);
                         <tr>
                             <td><?= $post['title'] ?></td>
                             <td><?= $category['title'] ?></td>
-                            <td><a href="edit-post.php" class="btn sm">Modifier</a></td>
-                            <td><a href="delete-post.php" class="btn sm danger">Supprimer</a></td>
+                            <td><?= $post['is_featured'] ? 'Oui' : 'Non' ?></td>
+                            <td><a href="<?= ROOT_URL ?>edit-post.php?id=<?= $post['id'] ?>" class="btn sm">Modifier</a></td>
+                            <td><a href="<?= ROOT_URL ?>delete-post.php?id=<?= $post['id'] ?>" class="btn sm danger">Supprimer</a></td>
                         </tr>
                     <?php endwhile; ?>
                     </tbody>
