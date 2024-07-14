@@ -19,7 +19,6 @@ if (isset($_GET['id'])) {
         }
     }
 
-    //FOR LATER
     //fetch all thumbnails of user's posts and delete them
     $thumbnails_query = "SELECT thumbnail FROM posts WHERE author_id=$id";
     $thumbnails_result = mysqli_query($connection, $thumbnails_query);
