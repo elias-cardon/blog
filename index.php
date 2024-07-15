@@ -23,7 +23,7 @@ $posts = mysqli_query($connection, $query);
                 <?php
                 //fetch category from categories table using category_id of post
                 $category_id = $featured['category_id'];
-                $category_query = "SELECT * FROM categories WHERE id = '$category_id'";
+                $category_query = "SELECT * FROM categories WHERE id = $category_id";
                 $category_result = mysqli_query($connection, $category_query);
                 $category = mysqli_fetch_assoc($category_result);
                 ?>
@@ -48,7 +48,7 @@ $posts = mysqli_query($connection, $query);
                              alt="Avatar de l'auteur de l'article">
                     </div>
                     <div class="post__author-info">
-                        <h5>Par : <?= $author['username'] ?></h5>
+                        <h5>Par : <?= "{$author['username']}" ?></h5>
                         <small>
                             <?= date("d M Y - H:i", strtotime($featured['date_time'])) ?>
                         </small>
@@ -71,7 +71,7 @@ $posts = mysqli_query($connection, $query);
                         <?php
                         //fetch category from categories table using category_id of post
                         $category_id = $featured['category_id'];
-                        $category_query = "SELECT * FROM categories WHERE id = '$category_id'";
+                        $category_query = "SELECT * FROM categories WHERE id = $category_id";
                         $category_result = mysqli_query($connection, $category_query);
                         $category = mysqli_fetch_assoc($category_result);
                         ?>
@@ -83,16 +83,23 @@ $posts = mysqli_query($connection, $query);
                             </a>
                         </h3>
                         <p class="post__body">
-                            <?= substr($post['body'], 0, 300) ?>...
+                            <?= substr($post['body'], 0, 150) ?>...
                         </p>
                         <div class="post__author">
+                            <?php
+                            //fetch author from users table using author_id
+                            $author_id = $post['author_id'];
+                            $author_query = "SELECT * FROM users WHERE id = $author_id";
+                            $author_result = mysqli_query($connection, $author_query);
+                            $author = mysqli_fetch_assoc($author_result);
+                            ?>
                             <div class="post__author-avatar">
                                 <img src="frontend/assets/images/<?= $author['avatar'] ?>"
                                      alt="Avatar de l'auteur de l'article">
                             </div>
                             <div class="post__author-info">
-                                <h5>Par : <?= $author['username'] ?></h5>
-                                <?= date("d M Y - H:i", strtotime($featured['date_time'])) ?>
+                                <h5>Par : <?= "{$author['username']}" ?></h5>
+                                <?= date("d M Y - H:i", strtotime($post['date_time'])) ?>
                             </div>
                         </div>
                     </div>
@@ -105,12 +112,13 @@ $posts = mysqli_query($connection, $query);
 <!--==============================LIST CATEGORIES=========================================-->
 <section class="category__buttons">
     <div class="container category__buttons-container">
-        <a href="" class="category__button">Art</a>
-        <a href="" class="category__button">Wild Life</a>
-        <a href="" class="category__button">Travel</a>
-        <a href="" class="category__button">Science & Technologie</a>
-        <a href="" class="category__button">Musique</a>
-        <a href="" class="category__button">Nourriture</a>
+        <?php
+        $all_categories_query = "SELECT * FROM categories";
+        $all_categories = mysqli_query($connection, $all_categories_query);
+        ?>
+        <?php while($category = mysqli_fetch_assoc($all_categories)) : ?>
+        <a href="<?= ROOT_URL ?>category-post.php?id=<?= $category['id'] ?>" class="category__button"><?= $category['title'] ?></a>
+        <?php endwhile; ?>
     </div>
 </section>
 <!--==============================END LIST CATEGORIES=========================================-->
