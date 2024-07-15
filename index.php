@@ -39,7 +39,7 @@ $featured = mysqli_fetch_assoc($_featured_result);
                     $author = mysqli_fetch_assoc($author_result);
                     ?>
                     <div class="post__author-avatar">
-                        <img src="frontend/assets/images/avatar1.jpg" alt="Avatar de l'auteur de l'article">
+                        <img src="frontend/assets/images/<?= $author['avatar'] ?>" alt="Avatar de l'auteur de l'article">
                     </div>
                     <div class="post__author-info">
                         <h5>Par : <?= $author['username'] ?></h5>
