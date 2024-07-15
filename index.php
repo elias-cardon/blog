@@ -78,7 +78,7 @@ $posts = mysqli_query($connection, $query);
                         <a href="<?= ROOT_URL ?>category-post.php?id=<?= $category['id'] ?>"
                            class="category__button"><?= $category['title'] ?></a>
                         <h3 class="post__title">
-                            <a href="post.php">
+                            <a href="<?= ROOT_URL ?>post.php?id=<?= $post['id'] ?>">
                                 <?= $post['title'] ?>
                             </a>
                         </h3>
@@ -99,7 +99,7 @@ $posts = mysqli_query($connection, $query);
                             </div>
                             <div class="post__author-info">
                                 <h5>Par : <?= "{$author['username']}" ?></h5>
-                                <?= date("d M Y - H:i", strtotime($post['date_time'])) ?>
+                                <small><?= date("d M Y - H:i", strtotime($post['date_time'])) ?></small>
                             </div>
                         </div>
                     </div>
@@ -116,8 +116,9 @@ $posts = mysqli_query($connection, $query);
         $all_categories_query = "SELECT * FROM categories";
         $all_categories = mysqli_query($connection, $all_categories_query);
         ?>
-        <?php while($category = mysqli_fetch_assoc($all_categories)) : ?>
-        <a href="<?= ROOT_URL ?>category-post.php?id=<?= $category['id'] ?>" class="category__button"><?= $category['title'] ?></a>
+        <?php while ($category = mysqli_fetch_assoc($all_categories)) : ?>
+            <a href="<?= ROOT_URL ?>category-post.php?id=<?= $category['id'] ?>"
+               class="category__button"><?= $category['title'] ?></a>
         <?php endwhile; ?>
     </div>
 </section>
