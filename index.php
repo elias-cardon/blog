@@ -1,189 +1,89 @@
 <?php
 include 'backend/partials/header.php';
+
+//fetch featured post from database
+$_featured_query = "SELECT * FROM `posts` WHERE is_featured = 1";
+$_featured_result = mysqli_query($connection, $_featured_query);
+$featured = mysqli_fetch_assoc($_featured_result);
 ?>
-<!--==============================FEATURED POST=========================================-->
-<section class="featured">
-    <div class="container featured__container">
-        <div class="post__thumbnail">
-            <img src="frontend/assets/images/blog1.jpg" alt="Image du blog1">
+
+<?php if (mysqli_num_rows($_featured_result) == 1) : ?>
+    <!--==============================FEATURED POST=========================================-->
+    <section class="featured">
+        <div class="container featured__container">
+            <div class="post__thumbnail">
+                <img src="frontend/assets/images/<?= $featured['thumbnail'] ?>" alt="Image du blog1">
+            </div>
+            <div class="post__info">
+                <?php
+                //fetch category from categories table using category_id of post
+                $category_id = $featured['category_id'];
+                $category_query = "SELECT * FROM categories WHERE id = '$category_id'";
+                $category_result = mysqli_query($connection, $category_query);
+                $category = mysqli_fetch_assoc($category_result);
+                ?>
+                <a href="<?= ROOT_URL ?>category-post.php?id=<?= $category['id'] ?>"
+                   class="category__button"><?= $category['title'] ?></a>
+                <h2 class="post__title"><a
+                            href="<?= ROOT_URL ?>post.php?id=<?= $featured['id'] ?>"><?= $featured['title'] ?></a>
+                </h2>
+                <p class="post__body">
+                    <?= substr($featured['body'], 0, 300) ?>...
+                </p>
+                <div class="post__author">
+                    <?php
+                    //fetch author from users table using author_id
+                    $author_id = $featured['author_id'];
+                    $author_query = "SELECT * FROM users WHERE id = '$author_id'";
+                    $author_result = mysqli_query($connection, $author_query);
+                    $author = mysqli_fetch_assoc($author_result);
+                    ?>
+                    <div class="post__author-avatar">
+                        <img src="frontend/assets/images/avatar1.jpg" alt="Avatar de l'auteur de l'article">
+                    </div>
+                    <div class="post__author-info">
+                        <h5>Par : <?= $author['username'] ?></h5>
+                        <small>
+                            <?= date("d M Y - H:i", strtotime($featured['date_time'])) ?>
+                        </small>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="post__info">
-            <a href="category-post.php" class="category__button">Wild Life</a>
-            <h2 class="post__title"><a href="post.php">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</a>
-            </h2>
-            <p class="post__body">
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab alias culpa delectus error est eum, fuga
-                inventore, nam nostrum perferendis praesentium quibusdam repellendus sunt tenetur ullam vel, vitae.
-                Expedita, fuga.
-            </p>
-            <div class="post__author">
-                <div class="post__author-avatar">
-                    <img src="frontend/assets/images/avatar1.jpg" alt="Avatar de l'auteur de l'article">
+    </section>
+    <!--==============================END OF FEATURED POST=========================================-->
+    <!--===============================POST=========================================-->
+    <section class="posts">
+        <div class="container posts__container">
+            <article class="post">
+                <div class="post__thumbnail">
+                    <img src="<?= ROOT_URL ?>frontend/assets/images" alt="Image du blog2">
                 </div>
-                <div class="post__author-info">
-                    <h5>Par : Jobba</h5>
-                    <small>3 septembre 2022 - 14:19</small>
+                <div class="post__info">
+                    <a href="category-post.php" class="category__button">Wild Life</a>
+                    <h3 class="post__title">
+                        <a href="post.php">
+                            Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                        </a>
+                    </h3>
+                    <p class="post__body">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium
+                        cupiditate
+                        delectus dolore ea expedita id, labore modi non quidem quo quos, repellat voluptatum.
+                    </p>
+                    <div class="post__author">
+                        <div class="post__author-avatar">
+                            <img src="frontend/assets/images/avatar3.jpg" alt="Avatar de l'auteur">
+                        </div>
+                        <div class="post__author-info">
+                            <h5>Par : Jobbax</h5>
+                            <small>3 septempbre 2022 - 17:49</small>
+                        </div>
+                    </div>
                 </div>
-            </div>
+            </article>
         </div>
-    </div>
-</section>
-<!--==============================END OF FEATURED POST=========================================-->
-<!--===============================POST=========================================-->
-<section class="posts">
-    <div class="container posts__container">
-        <article class="post">
-            <div class="post__thumbnail">
-                <img src="frontend/assets/images/blog2.jpg" alt="Image du blog2">
-            </div>
-            <div class="post__info">
-                <a href="category-post.php" class="category__button">Wild Life</a>
-                <h3 class="post__title">
-                    <a href="post.php">
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                    </a>
-                </h3>
-                <p class="post__body">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium cupiditate
-                    delectus dolore ea expedita id, labore modi non quidem quo quos, repellat voluptatum.
-                </p>
-                <div class="post__author">
-                    <div class="post__author-avatar">
-                        <img src="frontend/assets/images/avatar3.jpg" alt="Avatar de l'auteur">
-                    </div>
-                    <div class="post__author-info">
-                        <h5>Par : Jobbax</h5>
-                        <small>3 septempbre 2022 - 17:49</small>
-                    </div>
-                </div>
-            </div>
-        </article>
-        <article class="post">
-            <div class="post__thumbnail">
-                <img src="frontend/assets/images/blog3.jpg" alt="Image du blog2">
-            </div>
-            <div class="post__info">
-                <a href="category-post.php" class="category__button">Wild Life</a>
-                <h3 class="post__title">
-                    <a href="post.php">
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                    </a>
-                </h3>
-                <p class="post__body">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium cupiditate
-                    delectus dolore ea expedita id, labore modi non quidem quo quos, repellat voluptatum.
-                </p>
-                <div class="post__author">
-                    <div class="post__author-avatar">
-                        <img src="frontend/assets/images/avatar2.jpg" alt="Avatar de l'auteur">
-                    </div>
-                    <div class="post__author-info">
-                        <h5>Par : Jobbax</h5>
-                        <small>3 septempbre 2022 - 17:49</small>
-                    </div>
-                </div>
-            </div>
-        </article>
-        <article class="post">
-            <div class="post__thumbnail">
-                <img src="frontend/assets/images/blog4.jpg" alt="Image du blog2">
-            </div>
-            <div class="post__info">
-                <a href="category-post.php" class="category__button">Wild Life</a>
-                <h3 class="post__title">
-                    <a href="post.php">
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                    </a>
-                </h3>
-                <p class="post__body">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium cupiditate
-                    delectus dolore ea expedita id, labore modi non quidem quo quos, repellat voluptatum.
-                </p>
-                <div class="post__author">
-                    <div class="post__author-avatar">
-                        <img src="frontend/assets/images/avatar4.jpg" alt="Avatar de l'auteur">
-                    </div>
-                    <div class="post__author-info">
-                        <h5>Par : Jobbax</h5>
-                        <small>3 septempbre 2022 - 17:49</small>
-                    </div>
-                </div>
-            </div>
-        </article>
-        <article class="post">
-            <div class="post__thumbnail">
-                <img src="frontend/assets/images/blog5.jpg" alt="Image du blog2">
-            </div>
-            <div class="post__info">
-                <a href="category-post.php" class="category__button">Wild Life</a>
-                <h3 class="post__title">
-                    <a href="post.php">
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                    </a>
-                </h3>
-                <p class="post__body">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium cupiditate
-                    delectus dolore ea expedita id, labore modi non quidem quo quos, repellat voluptatum.
-                </p>
-                <div class="post__author">
-                    <div class="post__author-avatar">
-                        <img src="frontend/assets/images/avatar5.jpg" alt="Avatar de l'auteur">
-                    </div>
-                    <div class="post__author-info">
-                        <h5>Par : Jobbax</h5>
-                        <small>3 septempbre 2022 - 17:49</small>
-                    </div>
-                </div>
-            </div>
-        </article>
-        <article class="post">
-            <div class="post__thumbnail">
-                <img src="frontend/assets/images/blog6.jpg" alt="Image du blog2">
-            </div>
-            <div class="post__info">
-                <a href="category-post.php" class="category__button">Wild Life</a>
-                <h3 class="post__title">
-                    <a href="post.php">
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                    </a>
-                </h3>
-                <p class="post__body">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium cupiditate
-                    delectus dolore ea expedita id, labore modi non quidem quo quos, repellat voluptatum.
-                </p>
-                <div class="post__author">
-                    <div class="post__author-avatar">
-                        <img src="frontend/assets/images/avatar6.jpg" alt="Avatar de l'auteur">
-                    </div>
-                    <div class="post__author-info">
-                        <h5>Par : Jobbax</h5>
-                        <small>3 septempbre 2022 - 17:49</small>
-                    </div>
-                </div>
-            </div>
-        </article>
-        <article class="post">
-            <div class="post__thumbnail">
-                <img src="frontend/assets/images/blog7.jpg" alt="Image du blog2">
-            </div>
-            <div class="post__info">
-                <a href="category-post.php" class="category__button">Wild Life</a>
-                <h3 class="post__title">
-                    <a href="post.php">
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                    </a>
-                </h3>
-                <p class="post__body">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium cupiditate
-                    delectus dolore ea expedita id, labore modi non quidem quo quos, repellat voluptatum.
-                </p>
-                <div class="post__author">
-                    <div class="post__author-avatar">
-                        <img src="frontend/assets/images/avatar7.jpg" alt="Avatar de l'auteur">
-                    </div>
-                    <div class="post__author-info">
-                        <h5>Par : Jobbax</h5>
-                        <small>3 septembre 2022 - 17:49</small>
-                    </div>
-                </div>
-            </div>
-        </article>
-    </div>
-</section>
+    </section>
+<?php endif; ?>
 <!--==============================END POST=========================================-->
 <!--==============================LIST CATEGORIES=========================================-->
 <section class="category__buttons">
