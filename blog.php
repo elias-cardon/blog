@@ -8,12 +8,12 @@ $posts = mysqli_query($connection, $query);
 
 <!--==============================SEARCHBAR=========================================-->
 <section class="search__bar">
-    <form action="" class="container search__bar-container">
+    <form action="<?= ROOT_URL ?>search.php" class="container search__bar-container" method="GET">
         <div>
             <i class="uil uil-search"></i>
-            <input type="search" name="" placeholder="Rechercher">
+            <input type="search" name="search" placeholder="Rechercher">
         </div>
-        <button type="submit" class="btn">Go</button>
+        <button type="submit" name="submit" class="btn">Chercher</button>
     </form>
 </section>
 <!--==============================END OF SEARCHBAR=========================================-->
