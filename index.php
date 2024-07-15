@@ -70,7 +70,7 @@ $posts = mysqli_query($connection, $query);
                     <div class="post__info">
                         <?php
                         //fetch category from categories table using category_id of post
-                        $category_id = $featured['category_id'];
+                        $category_id = $post['category_id'];
                         $category_query = "SELECT * FROM categories WHERE id = $category_id";
                         $category_result = mysqli_query($connection, $category_query);
                         $category = mysqli_fetch_assoc($category_result);
