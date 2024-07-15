@@ -26,6 +26,7 @@ if (isset($_GET['id'])) {
     </h2>
 </header>
 <!--===============================POST=========================================-->
+<?php if (mysqli_num_rows($posts) > 0) : ?>
 <section class="posts">
     <div class="container posts__container">
         <?php while ($post = mysqli_fetch_assoc($posts)) : ?>
@@ -65,6 +66,11 @@ if (isset($_GET['id'])) {
         <?php endwhile; ?>
     </div>
 </section>
+<?php else: ?>
+<div class="alert__message error lg">
+    <p>Aucun article disponible dans cette catégorie.</p>
+</div>
+<?php endif; ?>
 <!--==============================END POST=========================================-->
 <!--==============================LIST CATEGORIES=========================================-->
 <section class="category__buttons">
