@@ -5,8 +5,13 @@ include 'backend/partials/header.php';
 $_featured_query = "SELECT * FROM `posts` WHERE is_featured = 1";
 $_featured_result = mysqli_query($connection, $_featured_query);
 $featured = mysqli_fetch_assoc($_featured_result);
+
+//fetch 9 posts from posts table
+$query = "SELECT * FROM `posts` ORDER BY date_time DESC LIMIT 9";
+$posts = mysqli_query($connection, $query);
 ?>
 
+<!-- Montre l'article A la Une s'il y en a un -->
 <?php if (mysqli_num_rows($_featured_result) == 1) : ?>
     <!--==============================FEATURED POST=========================================-->
     <section class="featured">
@@ -22,7 +27,7 @@ $featured = mysqli_fetch_assoc($_featured_result);
                 $category_result = mysqli_query($connection, $category_query);
                 $category = mysqli_fetch_assoc($category_result);
                 ?>
-                <a href="<?= ROOT_URL ?>category-post.php?id=<?= $category['id'] ?>"
+                <a href="<?= ROOT_URL ?>category-post.php?id=<?= $featured['category_id'] ?>"
                    class="category__button"><?= $category['title'] ?></a>
                 <h2 class="post__title"><a
                             href="<?= ROOT_URL ?>post.php?id=<?= $featured['id'] ?>"><?= $featured['title'] ?></a>
@@ -39,7 +44,8 @@ $featured = mysqli_fetch_assoc($_featured_result);
                     $author = mysqli_fetch_assoc($author_result);
                     ?>
                     <div class="post__author-avatar">
-                        <img src="frontend/assets/images/<?= $author['avatar'] ?>" alt="Avatar de l'auteur de l'article">
+                        <img src="frontend/assets/images/<?= $author['avatar'] ?>"
+                             alt="Avatar de l'auteur de l'article">
                     </div>
                     <div class="post__author-info">
                         <h5>Par : <?= $author['username'] ?></h5>
@@ -52,35 +58,46 @@ $featured = mysqli_fetch_assoc($_featured_result);
         </div>
     </section>
     <!--==============================END OF FEATURED POST=========================================-->
-    <!--===============================POST=========================================-->
+    <!--===============================NORMAL POST=========================================-->
     <section class="posts">
         <div class="container posts__container">
-            <article class="post">
-                <div class="post__thumbnail">
-                    <img src="<?= ROOT_URL ?>frontend/assets/images" alt="Image du blog2">
-                </div>
-                <div class="post__info">
-                    <a href="category-post.php" class="category__button">Wild Life</a>
-                    <h3 class="post__title">
-                        <a href="post.php">
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                        </a>
-                    </h3>
-                    <p class="post__body">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium
-                        cupiditate
-                        delectus dolore ea expedita id, labore modi non quidem quo quos, repellat voluptatum.
-                    </p>
-                    <div class="post__author">
-                        <div class="post__author-avatar">
-                            <img src="frontend/assets/images/avatar3.jpg" alt="Avatar de l'auteur">
-                        </div>
-                        <div class="post__author-info">
-                            <h5>Par : Jobbax</h5>
-                            <small>3 septempbre 2022 - 17:49</small>
+            <?php while ($post = mysqli_fetch_assoc($posts)) : ?>
+                <article class="post">
+                    <div class="post__thumbnail">
+                        <img src="<?= ROOT_URL ?>frontend/assets/images/<?= $post['thumbnail'] ?>"
+                             alt="Image de l'article">
+                    </div>
+                    <div class="post__info">
+                        <?php
+                        //fetch category from categories table using category_id of post
+                        $category_id = $featured['category_id'];
+                        $category_query = "SELECT * FROM categories WHERE id = '$category_id'";
+                        $category_result = mysqli_query($connection, $category_query);
+                        $category = mysqli_fetch_assoc($category_result);
+                        ?>
+                        <a href="<?= ROOT_URL ?>category-post.php?id=<?= $category['id'] ?>"
+                           class="category__button"><?= $category['title'] ?></a>
+                        <h3 class="post__title">
+                            <a href="post.php">
+                                <?= $post['title'] ?>
+                            </a>
+                        </h3>
+                        <p class="post__body">
+                            <?= substr($post['body'], 0, 300) ?>...
+                        </p>
+                        <div class="post__author">
+                            <div class="post__author-avatar">
+                                <img src="frontend/assets/images/<?= $author['avatar'] ?>"
+                                     alt="Avatar de l'auteur de l'article">
+                            </div>
+                            <div class="post__author-info">
+                                <h5>Par : <?= $author['username'] ?></h5>
+                                <?= date("d M Y - H:i", strtotime($featured['date_time'])) ?>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </article>
+                </article>
+            <?php endwhile; ?>
         </div>
     </section>
 <?php endif; ?>
