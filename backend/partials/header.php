@@ -48,6 +48,7 @@ if (isset($_SESSION['user-id'])) {
                     </div>
                     <ul>
                         <li><a href="<?= ROOT_URL ?>backend/admin/index.php">Dashboard</a></li>
+                        <li><a href="<?= ROOT_URL ?>backend/admin/edit-profile.php">Modif. profil</a></li>
                         <li><a href="<?= ROOT_URL ?>logout.php">Déconnexion</a></li>
                     </ul>
                 </li>
