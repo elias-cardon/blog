@@ -111,8 +111,8 @@ $posts = $stmt->fetchAll(PDO::FETCH_ASSOC);
                         $category = $category_stmt->fetch(PDO::FETCH_ASSOC);
                         ?>
                         <tr>
-                            <td><?= htmlspecialchars($post['title']) ?></td>
-                            <td><?= htmlspecialchars($category['title']) ?></td>
+                            <td><?= htmlspecialchars_decode($post['title']) ?></td>
+                            <td><?= htmlspecialchars_decode($category['title']) ?></td>
                             <td><?= $post['is_featured'] ? 'Oui' : 'Non' ?></td>
                             <td><a href="<?= ROOT_URL ?>backend/admin/edit-post.php?id=<?= $post['id'] ?>" class="btn sm">Modifier</a></td>
                             <td><a href="<?= ROOT_URL ?>backend/admin/delete-post.php?id=<?= $post['id'] ?>" class="btn sm danger">Supprimer</a></td>

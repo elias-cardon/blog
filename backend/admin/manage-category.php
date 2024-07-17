@@ -107,7 +107,7 @@ $categories = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     <tbody>
                     <?php foreach ($categories as $category) : ?>
                         <tr>
-                            <td><?= htmlspecialchars($category['title']) ?></td>
+                            <td><?= htmlspecialchars_decode($category['title']) ?></td>
                             <td><a href="<?= ROOT_URL ?>backend/admin/edit-category.php?id=<?= $category['id'] ?>"
                                    class="btn sm">Modifier</a></td>
                             <td><a href="<?= ROOT_URL ?>backend/admin/delete-category.php?id=<?= $category['id'] ?>"
