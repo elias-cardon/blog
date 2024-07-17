@@ -12,7 +12,7 @@ if (isset($_POST['submit'])) {
     } else {
         try {
             $query = "UPDATE categories SET title = :title, description = :description WHERE id = :id LIMIT 1";
-            $stmt = $pdo->prepare($query);
+            $stmt = $connection->prepare($query);
             $stmt->bindParam(':title', $title, PDO::PARAM_STR);
             $stmt->bindParam(':description', $description, PDO::PARAM_STR);
             $stmt->bindParam(':id', $id, PDO::PARAM_INT);
