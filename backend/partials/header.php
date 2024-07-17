@@ -4,10 +4,10 @@ require __DIR__ . '/../config/database.php';
 // Fetch current user from database
 if (isset($_SESSION['user-id'])) {
     $id = filter_var($_SESSION['user-id'], FILTER_SANITIZE_NUMBER_INT);
-    $query = "SELECT avatar FROM users WHERE id = :id";
+    $query = "SELECT avatar, is_admin FROM users WHERE id = :id";
     $stmt = $connection->prepare($query);
     $stmt->execute(['id' => $id]);
-    $avatar = $stmt->fetch(PDO::FETCH_ASSOC);
+    $user = $stmt->fetch(PDO::FETCH_ASSOC);
 }
 ?>
 
@@ -44,11 +44,13 @@ if (isset($_SESSION['user-id'])) {
             <?php if (isset($_SESSION['user-id'])) : ?>
                 <li class="nav__profile">
                     <div class="avatar">
-                        <img src="<?= ROOT_URL . 'frontend/assets/images/' . $avatar['avatar'] ?>" alt="Un avatar">
+                        <img src="<?= ROOT_URL . 'frontend/assets/images/' . $user['avatar'] ?>" alt="Un avatar">
                     </div>
                     <ul>
                         <li><a href="<?= ROOT_URL ?>backend/admin/index.php">Dashboard</a></li>
-                        <li><a href="<?= ROOT_URL ?>backend/admin/edit-profile.php">Modif. profil</a></li>
+                        <?php if ($user['is_admin']) : ?>
+                            <li><a href="<?= ROOT_URL ?>backend/admin/edit-profile.php">Modif. profil</a></li>
+                        <?php endif; ?>
                         <li><a href="<?= ROOT_URL ?>logout.php">Déconnexion</a></li>
                     </ul>
                 </li>

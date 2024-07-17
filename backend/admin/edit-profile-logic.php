@@ -72,4 +72,3 @@ if (isset($_POST['submit'])) {
 
 header('Location: ' . ROOT_URL . 'backend/admin/');
 die();
-?>

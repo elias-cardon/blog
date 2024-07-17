@@ -8,7 +8,7 @@ $stmt->bindParam(':id', $current_user_id, PDO::PARAM_INT);
 $stmt->execute();
 $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
-if (!$user) {
+if (!$user || !$user['is_admin']) {
     header('Location: ' . ROOT_URL . 'backend/admin/');
     die();
 }
