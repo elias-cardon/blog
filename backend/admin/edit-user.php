@@ -22,10 +22,15 @@ if (isset($_GET['id'])) {
 <section class="form__section">
     <div class="container form__section-container">
         <h2>Modifier l'utilisateur</h2>
-        <form action="<?= ROOT_URL ?>/backend/admin/edit-user-logic.php" method="POST">
+        <form action="<?= ROOT_URL ?>/backend/admin/edit-user-logic.php" method="POST" enctype="multipart/form-data">
             <input type="hidden" value="<?= htmlspecialchars($user['id']) ?>" name="id">
             <input type="text" value="<?= htmlspecialchars($user['firstname']) ?>" name="firstname" placeholder="Prénom">
             <input type="text" value="<?= htmlspecialchars($user['lastname']) ?>" name="lastname" placeholder="Nom de famille">
+            <input type="password" name="password" placeholder="Nouveau mot de passe (laisser vide pour ne pas changer)">
+            <div class="form__control">
+                <label for="avatar">Modifier l'avatar</label>
+                <input type="file" name="avatar" id="avatar">
+            </div>
             <select name="userrole">
                 <option value="0" <?= $user['is_admin'] == 0 ? 'selected' : '' ?>>Auteur</option>
                 <option value="1" <?= $user['is_admin'] == 1 ? 'selected' : '' ?>>Admin</option>
