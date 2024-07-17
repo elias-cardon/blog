@@ -1,9 +1,11 @@
 <?php
 require './backend/config/constants.php';
 
-$username_email = $_SESSION['signin-data']['username_email'] ?? null;
-$password = $_SESSION['signin-data']['password'] ?? null;
+// Récupérer les données de session si elles existent
+$username_email = $_SESSION['signin-data']['username_email'] ?? '';
+$password = $_SESSION['signin-data']['password'] ?? '';
 
+// Supprimer les données de session après les avoir récupérées
 unset($_SESSION['signin-data']);
 ?>
 
@@ -40,17 +42,17 @@ unset($_SESSION['signin-data']);
                 </p>
             </div>
         <?php elseif(isset($_SESSION['signin'])): ?>
-        <div class="alert__message error">
-            <p>
-                <?= $_SESSION['signin'];
-                unset($_SESSION['signin']);
-                ?>
-            </p>
-        </div>
+            <div class="alert__message error">
+                <p>
+                    <?= $_SESSION['signin'];
+                    unset($_SESSION['signin']);
+                    ?>
+                </p>
+            </div>
         <?php endif; ?>
         <form action="<?= ROOT_URL ?>signin-logic.php" method="POST" enctype="multipart/form-data">
-            <input type="text" name="username_email" value="<?= $username_email ?>" placeholder="Adresse email ou pseudonyme">
-            <input type="password" name="password" value="<?= $password ?>" placeholder="Mot de passe">
+            <input type="text" name="username_email" value="<?= htmlspecialchars($username_email) ?>" placeholder="Adresse email ou pseudonyme">
+            <input type="password" name="password" value="<?= htmlspecialchars($password) ?>" placeholder="Mot de passe">
             <button type="submit" name="submit" class="btn">Se connecter</button>
             <small>Pas déjà inscrit ? <a href="signup.php">Inscrivez-vous</a>.</small>
         </form>

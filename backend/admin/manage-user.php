@@ -1,14 +1,17 @@
 <?php
 require './partials/header.php';
 
-//fetch users from database but not current user
+// Fetch users from database but not current user
 $current_admin_id = $_SESSION['user-id'];
 
-$query = "SELECT * FROM `users` WHERE NOT id='$current_admin_id'";
-$users = mysqli_query($connection, $query);
+$query = "SELECT * FROM users WHERE id != :current_admin_id";
+$stmt = $connection->prepare($query);
+$stmt->bindParam(':current_admin_id', $current_admin_id, PDO::PARAM_INT);
+$stmt->execute();
+$users = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
 <section class="dashboard">
-    <?php if (isset($_SESSION['add-user-success'])) : //Shows if add user is successful ?>
+    <?php if (isset($_SESSION['add-user-success'])) : // Shows if add user is successful ?>
         <div class="alert__message success container">
             <p>
                 <?= $_SESSION['add-user-success'];
@@ -16,7 +19,7 @@ $users = mysqli_query($connection, $query);
                 ?>
             </p>
         </div>
-    <?php elseif (isset($_SESSION['edit-user-success'])) : //Shows if edit user is successful?>
+    <?php elseif (isset($_SESSION['edit-user-success'])) : // Shows if edit user is successful ?>
         <div class="alert__message success container">
             <p>
                 <?= $_SESSION['edit-user-success'];
@@ -24,7 +27,7 @@ $users = mysqli_query($connection, $query);
                 ?>
             </p>
         </div>
-    <?php elseif (isset($_SESSION['edit-user'])) : //Shows if edit user is not successful?>
+    <?php elseif (isset($_SESSION['edit-user'])) : // Shows if edit user is not successful ?>
         <div class="alert__message error container">
             <p>
                 <?= $_SESSION['edit-user'];
@@ -32,7 +35,7 @@ $users = mysqli_query($connection, $query);
                 ?>
             </p>
         </div>
-    <?php elseif (isset($_SESSION['delete-user'])) : //Shows if delete user is not successful?>
+    <?php elseif (isset($_SESSION['delete-user'])) : // Shows if delete user is not successful ?>
         <div class="alert__message error container">
             <p>
                 <?= $_SESSION['delete-user'];
@@ -40,7 +43,7 @@ $users = mysqli_query($connection, $query);
                 ?>
             </p>
         </div>
-    <?php elseif (isset($_SESSION['delete-user-success'])) : //Shows if delete user is successful?>
+    <?php elseif (isset($_SESSION['delete-user-success'])) : // Shows if delete user is successful ?>
         <div class="alert__message success container">
             <p>
                 <?= $_SESSION['delete-user-success'];
@@ -96,31 +99,31 @@ $users = mysqli_query($connection, $query);
         </aside>
         <main>
             <h2>Liste des utilisateurs</h2>
-            <?php if (mysqli_num_rows($users) > 0) : ?>
-            <table>
-                <thead>
-                <tr>
-                    <th>Nom</th>
-                    <th>Pseudo</th>
-                    <th>Modifier</th>
-                    <th>Supprimer</th>
-                    <th>Admin</th>
-                </tr>
-                </thead>
-                <tbody>
-                <?php while ($user = mysqli_fetch_assoc($users)) : ?>
+            <?php if (count($users) > 0) : ?>
+                <table>
+                    <thead>
                     <tr>
-                        <td><?= "{$user['firstname']} {$user['lastname']}" ?></td>
-                        <td><?= $user['username'] ?></td>
-                        <td><a href="<?= ROOT_URL ?>backend/admin/edit-user.php?id=<?= $user['id'] ?>" class="btn sm">Modifier</a></td>
-                        <td><a href="<?= ROOT_URL ?>backend/admin/delete-user.php?id=<?= $user['id'] ?>" class="btn sm danger">Supprimer</a></td>
-                        <td><?= $user['is_admin'] ? 'Oui' : 'Non' ?></td>
+                        <th>Nom</th>
+                        <th>Pseudo</th>
+                        <th>Modifier</th>
+                        <th>Supprimer</th>
+                        <th>Admin</th>
                     </tr>
-                <?php endwhile; ?>
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                    <?php foreach ($users as $user) : ?>
+                        <tr>
+                            <td><?= htmlspecialchars("{$user['firstname']} {$user['lastname']}") ?></td>
+                            <td><?= htmlspecialchars($user['username']) ?></td>
+                            <td><a href="<?= ROOT_URL ?>backend/admin/edit-user.php?id=<?= $user['id'] ?>" class="btn sm">Modifier</a></td>
+                            <td><a href="<?= ROOT_URL ?>backend/admin/delete-user.php?id=<?= $user['id'] ?>" class="btn sm danger">Supprimer</a></td>
+                            <td><?= $user['is_admin'] ? 'Oui' : 'Non' ?></td>
+                        </tr>
+                    <?php endforeach; ?>
+                    </tbody>
+                </table>
             <?php else : ?>
-            <div class="alert__message error"><?= "Aucun utilisateur trouvé. Un petit Solitaire ?" ?></div>
+                <div class="alert__message error"><?= "Aucun utilisateur trouvé. Un petit Solitaire ?" ?></div>
             <?php endif ?>
         </main>
     </div>

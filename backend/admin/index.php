@@ -1,21 +1,23 @@
 <?php
 require './partials/header.php';
 
-//Fetch current user's posts from database
+// Fetch current user's posts from database
 $current_user_id = $_SESSION['user-id'];
-$query = "SELECT id, title, category_id, is_featured FROM posts WHERE author_id =$current_user_id ORDER BY id DESC";
-$posts = mysqli_query($connection, $query);
+$query = "SELECT id, title, category_id, is_featured FROM posts WHERE author_id = :current_user_id ORDER BY id DESC";
+$stmt = $connection->prepare($query);
+$stmt->execute(['current_user_id' => $current_user_id]);
+$posts = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
 <section class="dashboard">
-    <?php if (isset($_SESSION['add-post-success'])) : //Shows if add post is successful ?>
-    <div class="alert__message success container">
-        <p>
-            <?= $_SESSION['add-post-success'];
-            unset($_SESSION['add-post-success']);
-            ?>
-        </p>
-    </div>
-    <?php elseif (isset($_SESSION['edit-post-success'])) : //Shows if edit post is successful ?>
+    <?php if (isset($_SESSION['add-post-success'])) : // Shows if add post is successful ?>
+        <div class="alert__message success container">
+            <p>
+                <?= $_SESSION['add-post-success'];
+                unset($_SESSION['add-post-success']);
+                ?>
+            </p>
+        </div>
+    <?php elseif (isset($_SESSION['edit-post-success'])) : // Shows if edit post is successful ?>
         <div class="alert__message success container">
             <p>
                 <?= $_SESSION['edit-post-success'];
@@ -23,7 +25,7 @@ $posts = mysqli_query($connection, $query);
                 ?>
             </p>
         </div>
-    <?php elseif (isset($_SESSION['edit-post'])) : //Shows if edit post is not successful ?>
+    <?php elseif (isset($_SESSION['edit-post'])) : // Shows if edit post is not successful ?>
         <div class="alert__message error container">
             <p>
                 <?= $_SESSION['edit-post'];
@@ -31,7 +33,7 @@ $posts = mysqli_query($connection, $query);
                 ?>
             </p>
         </div>
-    <?php elseif (isset($_SESSION['delete-post-success'])) : //Shows if delete post is successful ?>
+    <?php elseif (isset($_SESSION['delete-post-success'])) : // Shows if delete post is successful ?>
         <div class="alert__message success container">
             <p>
                 <?= $_SESSION['delete-post-success'];
@@ -87,7 +89,7 @@ $posts = mysqli_query($connection, $query);
         </aside>
         <main>
             <h2>Liste des articles</h2>
-            <?php if (mysqli_num_rows($posts) > 0) : ?>
+            <?php if (count($posts) > 0) : ?>
                 <table>
                     <thead>
                     <tr>
@@ -99,22 +101,23 @@ $posts = mysqli_query($connection, $query);
                     </tr>
                     </thead>
                     <tbody>
-                    <?php while ($post = mysqli_fetch_assoc($posts)) : ?>
+                    <?php foreach ($posts as $post) : ?>
                         <!-- Get category title of each post from categories table -->
                         <?php
                         $category_id = $post['category_id'];
-                        $category_query = "SELECT title FROM categories WHERE id=$category_id";
-                        $category_result = mysqli_query($connection,$category_query);
-                        $category = mysqli_fetch_assoc($category_result);
+                        $category_query = "SELECT title FROM categories WHERE id = :category_id";
+                        $category_stmt = $connection->prepare($category_query);
+                        $category_stmt->execute(['category_id' => $category_id]);
+                        $category = $category_stmt->fetch(PDO::FETCH_ASSOC);
                         ?>
                         <tr>
-                            <td><?= $post['title'] ?></td>
-                            <td><?= $category['title'] ?></td>
+                            <td><?= htmlspecialchars($post['title']) ?></td>
+                            <td><?= htmlspecialchars($category['title']) ?></td>
                             <td><?= $post['is_featured'] ? 'Oui' : 'Non' ?></td>
                             <td><a href="<?= ROOT_URL ?>backend/admin/edit-post.php?id=<?= $post['id'] ?>" class="btn sm">Modifier</a></td>
                             <td><a href="<?= ROOT_URL ?>backend/admin/delete-post.php?id=<?= $post['id'] ?>" class="btn sm danger">Supprimer</a></td>
                         </tr>
-                    <?php endwhile; ?>
+                    <?php endforeach; ?>
                     </tbody>
                 </table>
             <?php else: ?>

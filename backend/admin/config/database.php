@@ -1,9 +1,9 @@
 <?php
 require './config/constants.php';
 
-//Connect to database
-$connection = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
-
-if (mysqli_errno($connection)){
-    die(mysqli_error($connection));
+try {
+    $connection = new PDO("mysql:host=" . DB_HOST . ";dbname=" . DB_NAME, DB_USER, DB_PASS);
+    $connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+} catch (PDOException $e) {
+    die("Connection failed: " . $e->getMessage());
 }

@@ -4,11 +4,12 @@ include 'backend/partials/header.php';
 //fetch post from database if id is set
 if (isset($_GET['id'])) {
     $id = filter_var($_GET['id'], FILTER_SANITIZE_NUMBER_INT);
-    $query = "SELECT * FROM posts WHERE id = $id";
-    $result = mysqli_query($connection, $query);
-    $post = mysqli_fetch_assoc($result);
+    $query = "SELECT * FROM posts WHERE id = :id";
+    $stmt = $connection->prepare($query);
+    $stmt->execute(['id' => $id]);
+    $post = $stmt->fetch(PDO::FETCH_ASSOC);
 } else {
-    header('location: ' . ROOT_URL . 'blog.php');
+    header('Location: ' . ROOT_URL . 'blog.php');
     die();
 }
 ?>
@@ -21,9 +22,10 @@ if (isset($_GET['id'])) {
             <?php
             //fetch author from users table using author_id
             $author_id = $post['author_id'];
-            $author_query = "SELECT * FROM users WHERE id = $author_id";
-            $author_result = mysqli_query($connection, $author_query);
-            $author = mysqli_fetch_assoc($author_result);
+            $author_query = "SELECT * FROM users WHERE id = :author_id";
+            $author_stmt = $connection->prepare($author_query);
+            $author_stmt->execute(['author_id' => $author_id]);
+            $author = $author_stmt->fetch(PDO::FETCH_ASSOC);
             ?>
             <div class="post__author-avatar">
                 <img src="frontend/assets/images/<?= $author['avatar'] ?>"

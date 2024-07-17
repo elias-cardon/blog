@@ -1,12 +1,13 @@
 <?php
 require __DIR__ . '/../config/database.php';
 
-//Fetch current user from database
-if (isset($_SESSION['user-id'])){
+// Fetch current user from database
+if (isset($_SESSION['user-id'])) {
     $id = filter_var($_SESSION['user-id'], FILTER_SANITIZE_NUMBER_INT);
-    $query = "SELECT avatar FROM users WHERE id = $id";
-    $result = mysqli_query($connection, $query);
-    $avatar = mysqli_fetch_assoc($result);
+    $query = "SELECT avatar FROM users WHERE id = :id";
+    $stmt = $connection->prepare($query);
+    $stmt->execute(['id' => $id]);
+    $avatar = $stmt->fetch(PDO::FETCH_ASSOC);
 }
 ?>
 
@@ -22,8 +23,8 @@ if (isset($_SESSION['user-id'])){
     <meta name="author" content="Elias Cardon aka Jobba">
     <title>Le blog de Jobba</title>
     <!--C'est le CSS-->
-    <link rel="icon" type="image/png" href="<?= ROOT_URL?>frontend/assets/images/logo.png"/>
-    <link rel="stylesheet" href="<?= ROOT_URL?>frontend/assets/style.css">
+    <link rel="icon" type="image/png" href="<?= ROOT_URL ?>frontend/assets/images/logo.png"/>
+    <link rel="stylesheet" href="<?= ROOT_URL ?>frontend/assets/style.css">
     <!--Iconscout CDN-->
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
     <!--Google Fonts-->
@@ -34,24 +35,24 @@ if (isset($_SESSION['user-id'])){
 <!--==============================NAVBAR=========================================-->
 <nav>
     <div class="container nav__container">
-        <a href="<?= ROOT_URL?>" class="nav__logo">Le blog de Jobba</a>
+        <a href="<?= ROOT_URL ?>" class="nav__logo">Le blog de Jobba</a>
         <ul class="nav__items">
-            <li><a href="<?= ROOT_URL?>blog.php">Blog</a></li>
-            <li><a href="<?= ROOT_URL?>about.php">A propos</a></li>
-            <li><a href="<?= ROOT_URL?>services.php">Services</a></li>
-            <li><a href="<?= ROOT_URL?>contact.php">Contact</a></li>
+            <li><a href="<?= ROOT_URL ?>blog.php">Blog</a></li>
+            <li><a href="<?= ROOT_URL ?>about.php">A propos</a></li>
+            <li><a href="<?= ROOT_URL ?>services.php">Services</a></li>
+            <li><a href="<?= ROOT_URL ?>contact.php">Contact</a></li>
             <?php if (isset($_SESSION['user-id'])) : ?>
                 <li class="nav__profile">
                     <div class="avatar">
                         <img src="<?= ROOT_URL . 'frontend/assets/images/' . $avatar['avatar'] ?>" alt="Un avatar">
                     </div>
                     <ul>
-                        <li><a href="<?= ROOT_URL?>backend/admin/index.php">Dashboard</a></li>
-                        <li><a href="<?= ROOT_URL?>logout.php">Déconnexion</a></li>
+                        <li><a href="<?= ROOT_URL ?>backend/admin/index.php">Dashboard</a></li>
+                        <li><a href="<?= ROOT_URL ?>logout.php">Déconnexion</a></li>
                     </ul>
                 </li>
             <?php else : ?>
-                <li><a href="<?= ROOT_URL?>signin.php">Se connecter</a></li>
+                <li><a href="<?= ROOT_URL ?>signin.php">Se connecter</a></li>
             <?php endif ?>
         </ul>
 

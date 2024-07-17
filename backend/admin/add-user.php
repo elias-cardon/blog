@@ -1,13 +1,13 @@
 <?php
 require './partials/header.php';
 
-//get back form data if  there was an error
-$firstname = $_SESSION['add-user-data']['firstname'] ?? null;
-$lastname = $_SESSION['add-user-data']['lastname'] ?? null;
-$username = $_SESSION['add-user-data']['username'] ?? null;
-$email = $_SESSION['add-user-data']['email'] ?? null;
-$createpassword = $_SESSION['add-user-data']['createpassword'] ?? null;
-$confirm_password = $_SESSION['add-user-data']['confirmpassword'] ?? null;
+//get back form data if there was an error
+$firstname = $_SESSION['add-user-data']['firstname'] ?? '';
+$lastname = $_SESSION['add-user-data']['lastname'] ?? '';
+$username = $_SESSION['add-user-data']['username'] ?? '';
+$email = $_SESSION['add-user-data']['email'] ?? '';
+$createpassword = $_SESSION['add-user-data']['createpassword'] ?? '';
+$confirm_password = $_SESSION['add-user-data']['confirmpassword'] ?? '';
 
 //delete session data
 unset($_SESSION['add-user-data']);
@@ -16,9 +16,7 @@ unset($_SESSION['add-user-data']);
 <section class="form__section">
     <div class="container form__section-container">
         <h2>Ajout d'utilisateur</h2>
-        <?php
-        if (isset($_SESSION['add-user'])) :
-        ?>
+        <?php if (isset($_SESSION['add-user'])) : ?>
             <div class="alert__message error">
                 <p>
                     <?= $_SESSION['add-user'];
@@ -26,14 +24,14 @@ unset($_SESSION['add-user-data']);
                     ?>
                 </p>
             </div>
-        <?php endif?>
+        <?php endif; ?>
         <form action="<?= ROOT_URL ?>backend/admin/add-user-logic.php" method="POST" enctype="multipart/form-data">
-            <input type="text" name="firstname" value="<?= $firstname ?>" placeholder="Prénom">
-            <input type="text" name="lastname" value="<?= $lastname ?>" placeholder="Nom de famille">
-            <input type="text" name="username" value="<?= $username ?>" placeholder="Pseudonyme">
-            <input type="email" name="email" value="<?= $email ?>" placeholder="Adresse email">
-            <input type="password" name="createpassword" value="<?= $createpassword ?>" placeholder="Mot de passe">
-            <input type="password" name="confirmpassword" value="<?= $confirm_password ?>" placeholder="Confirmation du mot de passe">
+            <input type="text" name="firstname" value="<?= htmlspecialchars($firstname) ?>" placeholder="Prénom">
+            <input type="text" name="lastname" value="<?= htmlspecialchars($lastname) ?>" placeholder="Nom de famille">
+            <input type="text" name="username" value="<?= htmlspecialchars($username) ?>" placeholder="Pseudonyme">
+            <input type="email" name="email" value="<?= htmlspecialchars($email) ?>" placeholder="Adresse email">
+            <input type="password" name="createpassword" value="<?= htmlspecialchars($createpassword) ?>" placeholder="Mot de passe">
+            <input type="password" name="confirmpassword" value="<?= htmlspecialchars($confirm_password) ?>" placeholder="Confirmation du mot de passe">
             <select name="userrole">
                 <option value="0">Auteur</option>
                 <option value="1">Admin</option>

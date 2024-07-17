@@ -1,16 +1,16 @@
 <?php
-require 'config/database.php';
+require '../config/database.php';
 
 if (isset($_POST['submit'])) {
     $author_id = $_SESSION['user-id'];
-    $title = filter_var($_POST['title'], FILTER_SANITIZE_SPECIAL_CHARS);
-    $body = filter_var($_POST['body'], FILTER_SANITIZE_SPECIAL_CHARS);
+    $title = filter_var($_POST['title'], FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+    $body = filter_var($_POST['body'], FILTER_SANITIZE_FULL_SPECIAL_CHARS);
     $category_id = filter_var($_POST['category'], FILTER_SANITIZE_NUMBER_INT);
     $is_featured = filter_var($_POST['is_featured'], FILTER_SANITIZE_NUMBER_INT);
     $thumbnail = $_FILES['thumbnail'];
 
     //set is_featured to 0 if unchecked
-    $is_featured = $is_featured == 1 ?: 0;
+    $is_featured = $is_featured == 1 ? 1 : 0;
 
     //validate form data
     if (!$title) {
@@ -31,8 +31,7 @@ if (isset($_POST['submit'])) {
 
         //make sure file is an image
         $allowed_files = ['jpg', 'jpeg', 'png'];
-        $extension = explode('.', $thumbnail_name);
-        $extension = end($extension);
+        $extension = pathinfo($thumbnail_name, PATHINFO_EXTENSION);
         if (in_array($extension, $allowed_files)) {
             //make sure image is not too large (2MO+)
             if ($thumbnail['size'] < 2000000) {
@@ -46,28 +45,38 @@ if (isset($_POST['submit'])) {
     }
 
     //redirect back (with form data) to add post page if there is a problem
-    if (isset($_SESSION['add-post'])){
+    if (isset($_SESSION['add-post'])) {
         $_SESSION['add-post-data'] = $_POST;
-        header('location: ' . ROOT_URL . 'backend/admin/add-post.php');
+        header('Location: ' . ROOT_URL . 'backend/admin/add-post.php');
         die();
     } else {
-        // set is_featured of all post to 0 if is_featured for this post is 1
-        if ($is_featured == 1){
+        // set is_featured of all posts to 0 if is_featured for this post is 1
+        if ($is_featured == 1) {
             $zero_all_is_featured_query = "UPDATE posts SET is_featured=0";
-            $zero_all_is_featured_result = mysqli_query($connection, $zero_all_is_featured_query);
+            $stmt = $connection->prepare($zero_all_is_featured_query);
+            $stmt->execute();
         }
 
         //insert post into database
         $query = "INSERT INTO posts (title, body, thumbnail, category_id, author_id, is_featured)
-                    VALUES ('$title', '$body', '$thumbnail_name', $category_id, $author_id, $is_featured)";
-        $result = mysqli_query($connection, $query);
+                  VALUES (:title, :body, :thumbnail, :category_id, :author_id, :is_featured)";
+        $stmt = $connection->prepare($query);
+        $stmt->execute([
+            'title' => $title,
+            'body' => $body,
+            'thumbnail' => $thumbnail_name,
+            'category_id' => $category_id,
+            'author_id' => $author_id,
+            'is_featured' => $is_featured
+        ]);
 
-        if (!mysqli_errno($connection)){
+        if ($stmt->rowCount() > 0) {
             $_SESSION['add-post-success'] = "Nouvel article ajouté avec succès.";
-            header('location: ' . ROOT_URL . 'backend/admin/');
+            header('Location: ' . ROOT_URL . 'backend/admin/');
             die();
         }
     }
 }
-header('location: ' . ROOT_URL . 'backend/admin/add-post.php');
+header('Location: ' . ROOT_URL . 'backend/admin/add-post.php');
 die();
+?>

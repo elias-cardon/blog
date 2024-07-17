@@ -3,11 +3,18 @@ require './partials/header.php';
 
 if (isset($_GET['id'])) {
     $id = filter_var($_GET['id'], FILTER_SANITIZE_NUMBER_INT);
-    $query = "SELECT * FROM users WHERE id = $id";
-    $result = mysqli_query($connection, $query);
-    $user = mysqli_fetch_assoc($result);
-} else{
-    header('Location:' . ROOT_URL . 'backend/admin/manage-user.php');
+    $query = "SELECT * FROM users WHERE id = :id";
+    $stmt = $connection->prepare($query);
+    $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+    $stmt->execute();
+    $user = $stmt->fetch(PDO::FETCH_ASSOC);
+
+    if (!$user) {
+        header('Location: ' . ROOT_URL . 'backend/admin/manage-user.php');
+        die();
+    }
+} else {
+    header('Location: ' . ROOT_URL . 'backend/admin/manage-user.php');
     die();
 }
 ?>
@@ -16,12 +23,12 @@ if (isset($_GET['id'])) {
     <div class="container form__section-container">
         <h2>Modifier l'utilisateur</h2>
         <form action="<?= ROOT_URL ?>/backend/admin/edit-user-logic.php" method="POST">
-            <input type="hidden" value="<?= $user['id'] ?>" name="id">
-            <input type="text" value="<?= $user['firstname'] ?>" name="firstname" placeholder="Prénom">
-            <input type="text" value="<?= $user['lastname'] ?>" name="lastname" placeholder="Nom de famille">
+            <input type="hidden" value="<?= htmlspecialchars($user['id']) ?>" name="id">
+            <input type="text" value="<?= htmlspecialchars($user['firstname']) ?>" name="firstname" placeholder="Prénom">
+            <input type="text" value="<?= htmlspecialchars($user['lastname']) ?>" name="lastname" placeholder="Nom de famille">
             <select name="userrole">
-                <option value="0">Auteur</option>
-                <option value="1">Admin</option>
+                <option value="0" <?= $user['is_admin'] == 0 ? 'selected' : '' ?>>Auteur</option>
+                <option value="1" <?= $user['is_admin'] == 1 ? 'selected' : '' ?>>Admin</option>
             </select>
             <button type="submit" name="submit" class="btn">Modifier l'utilisateur</button>
         </form>

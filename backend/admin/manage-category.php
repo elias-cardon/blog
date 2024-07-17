@@ -1,12 +1,13 @@
 <?php
 require './partials/header.php';
 
-//fetch categories from database
+// Fetch categories from database
 $query = "SELECT * FROM categories ORDER BY title";
-$categories = mysqli_query($connection, $query);
+$stmt = $connection->query($query);
+$categories = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
 <section class="dashboard">
-    <?php if (isset($_SESSION['add-category-success'])) : //Shows if add category is successful ?>
+    <?php if (isset($_SESSION['add-category-success'])) : // Shows if add category is successful ?>
         <div class="alert__message success container">
             <p>
                 <?= $_SESSION['add-category-success'];
@@ -14,7 +15,7 @@ $categories = mysqli_query($connection, $query);
                 ?>
             </p>
         </div>
-    <?php elseif (isset($_SESSION['add-category'])) : //Shows if add category is not successful ?>
+    <?php elseif (isset($_SESSION['add-category'])) : // Shows if add category is not successful ?>
         <div class="alert__message error container">
             <p>
                 <?= $_SESSION['add-category'];
@@ -22,7 +23,7 @@ $categories = mysqli_query($connection, $query);
                 ?>
             </p>
         </div>
-    <?php elseif (isset($_SESSION['edit-category'])) : //Shows if edit category is not successful ?>
+    <?php elseif (isset($_SESSION['edit-category'])) : // Shows if edit category is not successful ?>
         <div class="alert__message error container">
             <p>
                 <?= $_SESSION['edit-category'];
@@ -30,7 +31,7 @@ $categories = mysqli_query($connection, $query);
                 ?>
             </p>
         </div>
-    <?php elseif (isset($_SESSION['edit-category-success'])) : //Shows if edit category is successful ?>
+    <?php elseif (isset($_SESSION['edit-category-success'])) : // Shows if edit category is successful ?>
         <div class="alert__message success container">
             <p>
                 <?= $_SESSION['edit-category-success'];
@@ -38,7 +39,7 @@ $categories = mysqli_query($connection, $query);
                 ?>
             </p>
         </div>
-    <?php elseif (isset($_SESSION['delete-category-success'])) : //Shows if delete category is successful ?>
+    <?php elseif (isset($_SESSION['delete-category-success'])) : // Shows if delete category is successful ?>
         <div class="alert__message success container">
             <p>
                 <?= $_SESSION['delete-category-success'];
@@ -94,7 +95,7 @@ $categories = mysqli_query($connection, $query);
         </aside>
         <main>
             <h2>Liste des catégories</h2>
-            <?php if (mysqli_num_rows($categories) > 0) : ?>
+            <?php if (count($categories) > 0) : ?>
                 <table>
                     <thead>
                     <tr>
@@ -104,15 +105,15 @@ $categories = mysqli_query($connection, $query);
                     </tr>
                     </thead>
                     <tbody>
-                    <?php while ($category = mysqli_fetch_assoc($categories)) : ?>
+                    <?php foreach ($categories as $category) : ?>
                         <tr>
-                            <td><?= $category['title'] ?></td>
+                            <td><?= htmlspecialchars($category['title']) ?></td>
                             <td><a href="<?= ROOT_URL ?>backend/admin/edit-category.php?id=<?= $category['id'] ?>"
                                    class="btn sm">Modifier</a></td>
                             <td><a href="<?= ROOT_URL ?>backend/admin/delete-category.php?id=<?= $category['id'] ?>"
                                    class="btn sm danger">Supprimer</a></td>
                         </tr>
-                    <?php endwhile; ?>
+                    <?php endforeach; ?>
                     </tbody>
                 </table>
             <?php else : ?>

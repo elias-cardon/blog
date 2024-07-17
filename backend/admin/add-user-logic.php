@@ -1,5 +1,5 @@
 <?php
-require 'config/database.php';
+require '../config/database.php';
 
 //get form data if submit button clicked
 if (isset($_POST['submit'])) {
@@ -26,17 +26,19 @@ if (isset($_POST['submit'])) {
     } elseif (!$avatar['name']) {
         $_SESSION['add-user'] = "Veuillez ajouter un avatar.";
     } else {
-        //Check if password don't match
+        //Check if passwords don't match
         if ($createpassword !== $confirmpassword) {
             $_SESSION['add-user'] = "Les mots de passe ne correspondent pas.";
         } else {
             //hash password
             $hashed_password = password_hash($createpassword, PASSWORD_DEFAULT);
 
-            //check if username or email already exit in database
-            $user_check_query = "SELECT * FROM users WHERE username='$username' OR email='$email'";
-            $user_check_result = mysqli_query($connection, $user_check_query);
-            if (mysqli_num_rows($user_check_result) > 0) {
+            //check if username or email already exists in database
+            $user_check_query = "SELECT * FROM users WHERE username = :username OR email = :email";
+            $stmt = $connection->prepare($user_check_query);
+            $stmt->execute(['username' => $username, 'email' => $email]);
+
+            if ($stmt->rowCount() > 0) {
                 $_SESSION['add-user'] = "Pseudonyme ou adresse email déjà existant";
             } else {
                 //Work on avatar
@@ -48,9 +50,8 @@ if (isset($_POST['submit'])) {
 
                 //make sure file is an image
                 $allowed_files = ['png', 'jpg', 'jpeg'];
-                $extention = explode('.', $avatar_name);
-                $extention = end($extention);
-                if (in_array($extention, $allowed_files)) {
+                $extension = pathinfo($avatar_name, PATHINFO_EXTENSION);
+                if (in_array($extension, $allowed_files)) {
                     //Make sure the file is not too large (1Mo)
                     if ($avatar['size'] < 1000000) {
                         //Upload avatar
@@ -64,28 +65,38 @@ if (isset($_POST['submit'])) {
             }
         }
     }
+
     //redirect back to signup if any problem
     if (isset($_SESSION['add-user'])) {
         //pass the form data back to signup page
         $_SESSION['add-user-data'] = $_POST;
-        header('location:' . ROOT_URL . 'backend/admin/add-user.php');
+        header('Location: ' . ROOT_URL . 'backend/admin/add-user.php');
         die();
     } else {
         //insert new user into users table
-        $insert_user_query = "INSERT INTO users SET firstname='$firstname',
-              lastname='$lastname', username='$username', email='$email', password='$hashed_password',
-              avatar='$avatar_name', is_admin='$is_admin'";
+        $insert_user_query = "INSERT INTO users (firstname, lastname, username, email, password, avatar, is_admin) 
+                              VALUES (:firstname, :lastname, :username, :email, :password, :avatar, :is_admin)";
+        $stmt = $connection->prepare($insert_user_query);
+        $stmt->execute([
+            'firstname' => $firstname,
+            'lastname' => $lastname,
+            'username' => $username,
+            'email' => $email,
+            'password' => $hashed_password,
+            'avatar' => $avatar_name,
+            'is_admin' => $is_admin
+        ]);
 
-        $insert_user_result = mysqli_query($connection, $insert_user_query);
-
-        if (!mysqli_errno($connection)) {
-            //Redirect to signup pag with success message
+        if ($stmt->rowCount() > 0) {
+            //Redirect to signup page with success message
             $_SESSION['add-user-success'] = "$firstname $lastname a bien été ajouté.";
-            header('location:' . ROOT_URL . 'backend/admin/manage-user.php');
+            header('Location: ' . ROOT_URL . 'backend/admin/manage-user.php');
+            die();
         }
     }
 } else {
     //if button not clicked, return to signup page
-    header('location:' . ROOT_URL . 'backend/admin/add-user.php');
+    header('Location: ' . ROOT_URL . 'backend/admin/add-user.php');
     die();
 }
+?>
