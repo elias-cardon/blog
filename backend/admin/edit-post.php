@@ -37,7 +37,7 @@ if (isset($_GET['id'])) {
                     <option value="<?= $category['id'] ?>" <?= $category['id'] == $post['category_id'] ? 'selected' : '' ?>><?= htmlspecialchars($category['title']) ?></option>
                 <?php endforeach; ?>
             </select>
-            <textarea rows="10" name="body" placeholder="Texte de l'article"><?= htmlspecialchars($post['body']) ?></textarea>
+            <textarea id="editor" rows="10" name="body" placeholder="Texte de l'article"><?= htmlspecialchars($post['body']) ?></textarea>
             <div class="form__control inline">
                 <input type="checkbox" name="is_featured" id="is_featured" value="1" <?= $post['is_featured'] ? 'checked' : '' ?>>
                 <label for="is_featured">A la Une</label>
@@ -50,6 +50,12 @@ if (isset($_GET['id'])) {
         </form>
     </div>
 </section>
+<script src="https://cdn.tiny.cloud/1/14atl2lzsnthvqxbgqk17092nkns5qm2g6sqtwx54mr39r8w/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+<script>
+    tinymce.init({
+        selector: '#editor'
+    });
+</script>
 <?php
 require '../partials/footer.php';
 ?>

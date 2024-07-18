@@ -17,7 +17,7 @@ if (isset($_GET['id'])) {
 <!--==============================POST=========================================-->
 <section class="singlepost">
     <div class="container singlepost__container">
-        <h2><?= $post['title'] ?></h2>
+        <h2><?= htmlspecialchars($post['title']) ?></h2>
         <div class="post__author">
             <?php
             //fetch author from users table using author_id
@@ -28,20 +28,20 @@ if (isset($_GET['id'])) {
             $author = $author_stmt->fetch(PDO::FETCH_ASSOC);
             ?>
             <div class="post__author-avatar">
-                <img src="frontend/assets/images/<?= $author['avatar'] ?>"
+                <img src="frontend/assets/images/<?= htmlspecialchars($author['avatar']) ?>"
                      alt="Avatar de l'auteur de l'article">
             </div>
             <div class="post__author-info">
-                <h5>Par : <?= "{$author['username']}" ?></h5>
+                <h5>Par : <?= htmlspecialchars($author['username']) ?></h5>
                 <small><?= date("d M Y - H:i", strtotime($post['date_time'])) ?></small>
             </div>
         </div>
         <div class="singlepost__thumbnail">
-            <img src="frontend/assets/images/<?= $post['thumbnail'] ?>" alt="Image du post">
+            <img src="frontend/assets/images/<?= htmlspecialchars($post['thumbnail']) ?>" alt="Image du post">
         </div>
-        <p>
-            <?= $post['body'] ?>
-        </p>
+        <div class="singlepost__content">
+            <?= htmlspecialchars_decode($post['body']) ?>
+        </div>
     </div>
 </section>
 <!--==============================END POST=========================================-->

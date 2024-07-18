@@ -32,7 +32,7 @@ unset($_SESSION['add-post-data']);
                     <option value="<?= $category['id'] ?>"><?= $category['title'] ?></option>
                 <?php endforeach; ?>
             </select>
-            <textarea rows="10" name="body" placeholder="Texte de l'article"><?= htmlspecialchars($body) ?></textarea>
+            <textarea id="editor" rows="10" name="body" placeholder="Texte de l'article"><?= htmlspecialchars($body) ?></textarea>
             <?php if (isset($_SESSION['user_is_admin'])) : ?>
                 <div class="form__control inline">
                     <input type="checkbox" name="is_featured" value="1" id="is_featured" checked>
@@ -47,6 +47,12 @@ unset($_SESSION['add-post-data']);
         </form>
     </div>
 </section>
+<script src="https://cdn.tiny.cloud/1/14atl2lzsnthvqxbgqk17092nkns5qm2g6sqtwx54mr39r8w/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+<script>
+    tinymce.init({
+        selector: '#editor'
+    });
+</script>
 <?php
 require '../partials/footer.php';
 ?>
