@@ -35,7 +35,7 @@ $posts = $posts_stmt->fetchAll(PDO::FETCH_ASSOC);
                             href="<?= ROOT_URL ?>post.php?id=<?= $featured['id'] ?>"><?= $featured['title'] ?></a>
                 </h2>
                 <p class="post__body">
-                    <?= substr($featured['body'], 0, 300) ?>...
+                    <?= htmlspecialchars_decode(substr($featured['body'], 0, 300)) ?>...
                 </p>
                 <div class="post__author">
                     <?php
@@ -88,7 +88,7 @@ $posts = $posts_stmt->fetchAll(PDO::FETCH_ASSOC);
                         </a>
                     </h3>
                     <p class="post__body">
-                        <?= substr($post['body'], 0, 150) ?>...
+                        <?= htmlspecialchars_decode(substr($post['body'], 0, 150)) ?>...
                     </p>
                     <div class="post__author">
                         <?php
