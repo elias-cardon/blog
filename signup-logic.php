@@ -1,8 +1,10 @@
 <?php
+// Inclure le fichier de configuration de la base de données
 require './backend/config/database.php';
 
 // Récupérer les données d'inscription si le bouton d'inscription est cliqué
 if (isset($_POST['submit'])) {
+    // Filtrer et sécuriser les données du formulaire
     $firstname = filter_var($_POST['firstname'], FILTER_SANITIZE_FULL_SPECIAL_CHARS);
     $lastname = filter_var($_POST['lastname'], FILTER_SANITIZE_FULL_SPECIAL_CHARS);
     $username = filter_var($_POST['username'], FILTER_SANITIZE_FULL_SPECIAL_CHARS);
@@ -34,8 +36,8 @@ if (isset($_POST['submit'])) {
 
             // Vérifier si le pseudonyme ou l'email existe déjà dans la base de données
             $user_check_query = "SELECT * FROM users WHERE username = :username OR email = :email";
-            $stmt = $connection->prepare($user_check_query);
-            $stmt->execute(['username' => $username, 'email' => $email]);
+            $stmt = $connection->prepare($user_check_query); // Préparer la requête
+            $stmt->execute(['username' => $username, 'email' => $email]); // Exécuter la requête avec les paramètres
 
             if ($stmt->rowCount() > 0) {
                 $_SESSION['signup'] = "Pseudonyme ou adresse email déjà existant";
@@ -70,11 +72,11 @@ if (isset($_POST['submit'])) {
         // Passer les données du formulaire à la page d'inscription
         $_SESSION['signup-data'] = $_POST;
         header('Location: ' . ROOT_URL . 'signup.php');
-        die();
+        die(); // Arrêter l'exécution du script
     } else {
         // Insérer le nouvel utilisateur dans la table users
         $insert_user_query = "INSERT INTO users (firstname, lastname, username, email, password, avatar, is_admin) VALUES (:firstname, :lastname, :username, :email, :password, :avatar, 0)";
-        $stmt = $connection->prepare($insert_user_query);
+        $stmt = $connection->prepare($insert_user_query); // Préparer la requête
         $stmt->execute([
             'firstname' => $firstname,
             'lastname' => $lastname,
@@ -82,18 +84,18 @@ if (isset($_POST['submit'])) {
             'email' => $email,
             'password' => $hashed_password,
             'avatar' => $avatar_name
-        ]);
+        ]); // Exécuter la requête avec les paramètres
 
         if ($stmt->rowCount() > 0) {
             // Rediriger vers la page de connexion avec un message de succès
             $_SESSION['signup-success'] = "Inscription réussie. Vous pouvez vous connecter.";
             header('Location: ' . ROOT_URL . 'signin.php');
-            die();
+            die(); // Arrêter l'exécution du script
         }
     }
 } else {
     // Si le bouton n'est pas cliqué, retourner à la page d'inscription
     header('Location: ' . ROOT_URL . 'signup.php');
-    die();
+    die(); // Arrêter l'exécution du script
 }
 ?>

@@ -1,8 +1,10 @@
 <?php
+// Inclure le fichier de configuration de la base de données
 require 'config/database.php';
 
+// Vérifier si le formulaire a été soumis
 if (isset($_POST['submit'])) {
-    // Récupère les données mises à jour du formulaire
+    // Récupérer et assainir les données mises à jour du formulaire
     $id = filter_var($_POST['id'], FILTER_VALIDATE_INT);
     $firstname = filter_var($_POST['firstname'], FILTER_SANITIZE_SPECIAL_CHARS);
     $lastname = filter_var($_POST['lastname'], FILTER_SANITIZE_SPECIAL_CHARS);
@@ -10,38 +12,42 @@ if (isset($_POST['submit'])) {
     $password = filter_var($_POST['password'], FILTER_SANITIZE_SPECIAL_CHARS);
     $avatar = $_FILES['avatar'];
 
-    // Vérifie la validité des entrées
+    // Vérifier la validité des entrées
     if (!$firstname || !$lastname || !$username) {
+        // Enregistrer un message d'erreur dans la session si les champs sont invalides
         $_SESSION['edit-profile'] = "Entrée de formulaire invalide sur la page d'édition";
     } else {
         try {
-            // Met à jour l'utilisateur
+            // Préparer la requête de mise à jour de l'utilisateur
             $query = "UPDATE users SET firstname = :firstname, lastname = :lastname, username = :username";
 
-            // Ajoute le mot de passe à la requête si fourni
+            // Ajouter le mot de passe à la requête si fourni
             if ($password) {
                 $hashed_password = password_hash($password, PASSWORD_DEFAULT);
                 $query .= ", password = :password";
             }
 
-            // Ajoute l'avatar à la requête si fourni
+            // Ajouter l'avatar à la requête si fourni
             if ($avatar['name']) {
                 $avatar_name = time() . $avatar['name'];
                 $avatar_tmp_name = $avatar['tmp_name'];
                 $avatar_destination_path = '../../frontend/assets/images/' . $avatar_name;
 
-                // S'assure que le fichier est une image
+                // S'assurer que le fichier est une image
                 $allowed_files = ['jpg', 'jpeg', 'png'];
                 $extension = pathinfo($avatar_name, PATHINFO_EXTENSION);
                 if (in_array($extension, $allowed_files)) {
-                    // S'assure que l'image n'est pas trop volumineuse (moins de 2MB)
+                    // S'assurer que l'image n'est pas trop volumineuse (moins de 2MB)
                     if ($avatar['size'] < 2000000) {
+                        // Déplacer l'image vers le chemin de destination
                         move_uploaded_file($avatar_tmp_name, $avatar_destination_path);
                         $query .= ", avatar = :avatar";
                     } else {
+                        // Enregistrer un message d'erreur dans la session si l'image est trop volumineuse
                         $_SESSION['edit-profile'] = "L'image est trop volumineuse. Elle doit faire moins de 2MB.";
                     }
                 } else {
+                    // Enregistrer un message d'erreur dans la session si le fichier n'est pas une image valide
                     $_SESSION['edit-profile'] = "Le fichier doit être un jpg, jpeg ou png.";
                 }
             }
@@ -63,16 +69,15 @@ if (isset($_POST['submit'])) {
 
             $stmt->execute();
 
-            // Message de succès
+            // Enregistrer un message de succès dans la session
             $_SESSION['edit-profile-success'] = "Modification du profil réussie";
         } catch (PDOException $e) {
-            // Message d'erreur en cas d'échec de la mise à jour
+            // Enregistrer un message d'erreur dans la session en cas d'échec de la mise à jour
             $_SESSION['edit-profile'] = "Modification du profil non reconnue : " . $e->getMessage();
         }
     }
 }
 
-// Redirige vers la page d'administration
+// Rediriger vers la page d'administration
 header('Location: ' . ROOT_URL . 'backend/admin/');
 die();
-?>

@@ -1,13 +1,17 @@
 <?php
+// Inclure le fichier de configuration de la base de données
 require __DIR__ . '/../config/database.php';
 
 // Récupérer l'utilisateur actuel de la base de données
 if (isset($_SESSION['user-id'])) {
+    // Filtrer et sécuriser l'ID de l'utilisateur
     $id = filter_var($_SESSION['user-id'], FILTER_SANITIZE_NUMBER_INT);
+
+    // Préparer la requête pour récupérer l'avatar et le statut admin de l'utilisateur
     $query = "SELECT avatar, is_admin FROM users WHERE id = :id";
-    $stmt = $connection->prepare($query);
-    $stmt->execute(['id' => $id]);
-    $user = $stmt->fetch(PDO::FETCH_ASSOC);
+    $stmt = $connection->prepare($query); // Préparer la requête
+    $stmt->execute(['id' => $id]); // Exécuter la requête avec le paramètre
+    $user = $stmt->fetch(PDO::FETCH_ASSOC); // Récupérer le résultat
 }
 ?>
 
@@ -35,32 +39,32 @@ if (isset($_SESSION['user-id'])) {
 <!--==============================NAVBAR=========================================-->
 <nav>
     <div class="container nav__container">
-        <a href="<?= ROOT_URL ?>" class="nav__logo">Le blog de Jobba</a>
+        <a href="<?= ROOT_URL ?>" class="nav__logo">Le blog de Jobba</a> <!-- Lien vers la page d'accueil -->
         <ul class="nav__items">
-            <li><a href="<?= ROOT_URL ?>blog.php">Blog</a></li>
-            <li><a href="<?= ROOT_URL ?>about.php">A propos</a></li>
-            <li><a href="<?= ROOT_URL ?>services.php">Services</a></li>
-            <li><a href="<?= ROOT_URL ?>contact.php">Contact</a></li>
-            <?php if (isset($_SESSION['user-id'])) : ?>
+            <li><a href="<?= ROOT_URL ?>blog.php">Blog</a></li> <!-- Lien vers la page du blog -->
+            <li><a href="<?= ROOT_URL ?>about.php">A propos</a></li> <!-- Lien vers la page à propos -->
+            <li><a href="<?= ROOT_URL ?>services.php">Services</a></li> <!-- Lien vers la page des services -->
+            <li><a href="<?= ROOT_URL ?>contact.php">Contact</a></li> <!-- Lien vers la page de contact -->
+            <?php if (isset($_SESSION['user-id'])) : ?> <!-- Vérifier si l'utilisateur est connecté -->
                 <li class="nav__profile">
                     <div class="avatar">
-                        <img src="<?= ROOT_URL . 'frontend/assets/images/' . $user['avatar'] ?>" alt="Un avatar">
+                        <img src="<?= ROOT_URL . 'frontend/assets/images/' . $user['avatar'] ?>" alt="Un avatar"> <!-- Afficher l'avatar de l'utilisateur -->
                     </div>
                     <ul>
-                        <li><a href="<?= ROOT_URL ?>backend/admin/index.php">Dashboard</a></li>
-                        <?php if ($user['is_admin']) : ?>
-                            <li><a href="<?= ROOT_URL ?>backend/admin/edit-profile.php">Modif. profil</a></li>
+                        <li><a href="<?= ROOT_URL ?>backend/admin/index.php">Dashboard</a></li> <!-- Lien vers le tableau de bord -->
+                        <?php if ($user['is_admin']) : ?> <!-- Vérifier si l'utilisateur est administrateur -->
+                            <li><a href="<?= ROOT_URL ?>backend/admin/edit-profile.php">Modif. profil</a></li> <!-- Lien vers la modification du profil -->
                         <?php endif; ?>
-                        <li><a href="<?= ROOT_URL ?>logout.php">Déconnexion</a></li>
+                        <li><a href="<?= ROOT_URL ?>logout.php">Déconnexion</a></li> <!-- Lien pour se déconnecter -->
                     </ul>
                 </li>
-            <?php else : ?>
-                <li><a href="<?= ROOT_URL ?>signin.php">Se connecter</a></li>
+            <?php else : ?> <!-- Si l'utilisateur n'est pas connecté -->
+                <li><a href="<?= ROOT_URL ?>signin.php">Se connecter</a></li> <!-- Lien vers la page de connexion -->
             <?php endif ?>
         </ul>
 
-        <button id="open__nav-btn"><i class="uil uil-bars"></i></button>
-        <button id="close__nav-btn"><i class="uil uil-multiply"></i></button>
+        <button id="open__nav-btn"><i class="uil uil-bars"></i></button> <!-- Bouton pour ouvrir la navigation -->
+        <button id="close__nav-btn"><i class="uil uil-multiply"></i></button> <!-- Bouton pour fermer la navigation -->
     </div>
 </nav>
 <!--==============================FIN DE LA NAVBAR=========================================-->

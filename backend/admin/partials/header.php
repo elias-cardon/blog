@@ -1,10 +1,10 @@
 <?php
-require __DIR__ . '/../../partials/header.php';
+require __DIR__ . '/../../partials/header.php'; // Inclure l'en-tête
 
 // Vérifier le statut de connexion
 if (!isset($_SESSION['user-id'])) {
-    // Rediriger vers la page de connexion si l'utilisateur n'est pas connecté
+    // Rediriger vers la page de connexion si non connecté
     header('location: ' . ROOT_URL . 'signin.php');
-    die();
+    die(); // Arrêter le script
 }
 ?>

@@ -1,8 +1,10 @@
 <?php
+// Inclure le fichier de configuration de la base de données
 require '../config/database.php';
 
 // Récupérer les données du formulaire si le bouton de soumission est cliqué
 if (isset($_POST['submit'])) {
+    // Récupérer et assainir les données du formulaire pour éviter les injections de code
     $firstname = filter_var($_POST['firstname'], FILTER_SANITIZE_FULL_SPECIAL_CHARS);
     $lastname = filter_var($_POST['lastname'], FILTER_SANITIZE_FULL_SPECIAL_CHARS);
     $username = filter_var($_POST['username'], FILTER_SANITIZE_FULL_SPECIAL_CHARS);
@@ -14,20 +16,27 @@ if (isset($_POST['submit'])) {
 
     // Valider les valeurs d'entrée
     if (!$firstname) {
+        // Si le prénom est vide, enregistrer un message d'erreur dans la session
         $_SESSION['add-user'] = "Veuillez renseigner le prénom.";
     } elseif (!$lastname) {
+        // Si le nom de famille est vide, enregistrer un message d'erreur dans la session
         $_SESSION['add-user'] = "Veuillez renseigner le nom.";
     } elseif (!$username) {
+        // Si le pseudonyme est vide, enregistrer un message d'erreur dans la session
         $_SESSION['add-user'] = "Veuillez renseigner le pseudonyme.";
     } elseif (!$email) {
+        // Si l'email est invalide, enregistrer un message d'erreur dans la session
         $_SESSION['add-user'] = "Veuillez renseigner une adresse email valide.";
     } elseif (strlen($createpassword) < 8 || strlen($confirmpassword) < 8) {
+        // Si le mot de passe est trop court, enregistrer un message d'erreur dans la session
         $_SESSION['add-user'] = "Le mot de passe doit contenir plus de 8 caractères.";
     } elseif (!$avatar['name']) {
+        // Si l'avatar est vide, enregistrer un message d'erreur dans la session
         $_SESSION['add-user'] = "Veuillez ajouter un avatar.";
     } else {
         // Vérifier si les mots de passe ne correspondent pas
         if ($createpassword !== $confirmpassword) {
+            // Si les mots de passe ne correspondent pas, enregistrer un message d'erreur dans la session
             $_SESSION['add-user'] = "Les mots de passe ne correspondent pas.";
         } else {
             // Hacher le mot de passe
@@ -39,11 +48,12 @@ if (isset($_POST['submit'])) {
             $stmt->execute(['username' => $username, 'email' => $email]);
 
             if ($stmt->rowCount() > 0) {
+                // Si le pseudonyme ou l'email existe déjà, enregistrer un message d'erreur dans la session
                 $_SESSION['add-user'] = "Pseudonyme ou adresse email déjà existant";
             } else {
                 // Travailler sur l'avatar
-                // Renommer l'avatar
-                $time = time(); // rendre chaque image unique en utilisant le timestamp actuel
+                // Renommer l'avatar pour rendre chaque image unique en utilisant le timestamp actuel
+                $time = time();
                 $avatar_name = $time . $avatar['name'];
                 $avatar_tmp_name = $avatar['tmp_name'];
                 $avatar_destination_path = '../../frontend/assets/images/' . $avatar_name;
@@ -57,9 +67,11 @@ if (isset($_POST['submit'])) {
                         // Télécharger l'avatar
                         move_uploaded_file($avatar_tmp_name, $avatar_destination_path);
                     } else {
+                        // Si l'image est trop volumineuse, enregistrer un message d'erreur dans la session
                         $_SESSION['add-user'] = 'Votre avatar est trop volumineux. Il doit faire moins de 1Mo.';
                     }
                 } else {
+                    // Si le fichier n'est pas une image valide, enregistrer un message d'erreur dans la session
                     $_SESSION['add-user'] = "Votre avatar doit être un JPG, un JPEG ou un PNG.";
                 }
             }
@@ -87,9 +99,11 @@ if (isset($_POST['submit'])) {
             'is_admin' => $is_admin
         ]);
 
+        // Vérifier si l'insertion a réussi
         if ($stmt->rowCount() > 0) {
-            // Rediriger vers la page de gestion des utilisateurs avec un message de succès
+            // Si l'insertion a réussi, enregistrer un message de succès dans la session
             $_SESSION['add-user-success'] = "$firstname $lastname a bien été ajouté.";
+            // Rediriger vers la page de gestion des utilisateurs
             header('Location: ' . ROOT_URL . 'backend/admin/manage-user.php');
             die();
         }

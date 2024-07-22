@@ -1,7 +1,8 @@
 <?php
+// Inclure le fichier de l'en-tête
 require './partials/header.php';
 
-// Récupère les articles de l'utilisateur actuel depuis la base de données
+// Récupérer les articles de l'utilisateur actuel depuis la base de données
 $current_user_id = $_SESSION['user-id'];
 $query = "SELECT id, title, category_id, is_featured FROM posts WHERE author_id = :current_user_id ORDER BY id DESC";
 $stmt = $connection->prepare($query);
@@ -9,7 +10,7 @@ $stmt->execute(['current_user_id' => $current_user_id]);
 $posts = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
 <section class="dashboard">
-    <?php if (isset($_SESSION['add-post-success'])) : // Affiche un message si l'ajout d'un article est réussi ?>
+    <?php if (isset($_SESSION['add-post-success'])) : // Afficher un message si l'ajout d'un article est réussi ?>
         <div class="alert__message success container">
             <p>
                 <?= $_SESSION['add-post-success'];
@@ -17,7 +18,7 @@ $posts = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 ?>
             </p>
         </div>
-    <?php elseif (isset($_SESSION['edit-post-success'])) : // Affiche un message si la modification d'un article est réussie ?>
+    <?php elseif (isset($_SESSION['edit-post-success'])) : // Afficher un message si la modification d'un article est réussie ?>
         <div class="alert__message success container">
             <p>
                 <?= $_SESSION['edit-post-success'];
@@ -25,7 +26,7 @@ $posts = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 ?>
             </p>
         </div>
-    <?php elseif (isset($_SESSION['edit-post'])) : // Affiche un message si la modification d'un article échoue ?>
+    <?php elseif (isset($_SESSION['edit-post'])) : // Afficher un message si la modification d'un article échoue ?>
         <div class="alert__message error container">
             <p>
                 <?= $_SESSION['edit-post'];
@@ -33,7 +34,7 @@ $posts = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 ?>
             </p>
         </div>
-    <?php elseif (isset($_SESSION['delete-post-success'])) : // Affiche un message si la suppression d'un article est réussie ?>
+    <?php elseif (isset($_SESSION['delete-post-success'])) : // Afficher un message si la suppression d'un article est réussie ?>
         <div class="alert__message success container">
             <p>
                 <?= $_SESSION['delete-post-success'];
@@ -102,7 +103,7 @@ $posts = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     </thead>
                     <tbody>
                     <?php foreach ($posts as $post) : ?>
-                        <!-- Récupère le titre de la catégorie de chaque article depuis la table des catégories -->
+                        <!-- Récupérer le titre de la catégorie de chaque article depuis la table des catégories -->
                         <?php
                         $category_id = $post['category_id'];
                         $category_query = "SELECT title FROM categories WHERE id = :category_id";
@@ -127,6 +128,7 @@ $posts = $stmt->fetchAll(PDO::FETCH_ASSOC);
     </div>
 </section>
 <?php
+// Inclure le fichier du pied de page
 require '../partials/footer.php';
 ?>
 <script src="../../frontend/assets/main.js"></script>

@@ -1,13 +1,15 @@
 <?php
+// Inclure le fichier de l'en-tête
 require './partials/header.php';
 
-// Récupère les catégories de la base de données
+// Récupérer les catégories de la base de données
 $query = "SELECT * FROM categories ORDER BY title";
 $stmt = $connection->query($query);
+// Récupérer toutes les catégories sous forme de tableau associatif
 $categories = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
 <section class="dashboard">
-    <?php if (isset($_SESSION['add-category-success'])) : // Affiche un message si l'ajout d'une catégorie est réussi ?>
+    <?php if (isset($_SESSION['add-category-success'])) : // Afficher un message si l'ajout d'une catégorie est réussi ?>
         <div class="alert__message success container">
             <p>
                 <?= $_SESSION['add-category-success'];
@@ -15,7 +17,7 @@ $categories = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 ?>
             </p>
         </div>
-    <?php elseif (isset($_SESSION['add-category'])) : // Affiche un message si l'ajout d'une catégorie échoue ?>
+    <?php elseif (isset($_SESSION['add-category'])) : // Afficher un message si l'ajout d'une catégorie échoue ?>
         <div class="alert__message error container">
             <p>
                 <?= $_SESSION['add-category'];
@@ -23,7 +25,7 @@ $categories = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 ?>
             </p>
         </div>
-    <?php elseif (isset($_SESSION['edit-category'])) : // Affiche un message si la modification d'une catégorie échoue ?>
+    <?php elseif (isset($_SESSION['edit-category'])) : // Afficher un message si la modification d'une catégorie échoue ?>
         <div class="alert__message error container">
             <p>
                 <?= $_SESSION['edit-category'];
@@ -31,7 +33,7 @@ $categories = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 ?>
             </p>
         </div>
-    <?php elseif (isset($_SESSION['edit-category-success'])) : // Affiche un message si la modification d'une catégorie est réussie ?>
+    <?php elseif (isset($_SESSION['edit-category-success'])) : // Afficher un message si la modification d'une catégorie est réussie ?>
         <div class="alert__message success container">
             <p>
                 <?= $_SESSION['edit-category-success'];
@@ -39,7 +41,7 @@ $categories = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 ?>
             </p>
         </div>
-    <?php elseif (isset($_SESSION['delete-category-success'])) : // Affiche un message si la suppression d'une catégorie est réussie ?>
+    <?php elseif (isset($_SESSION['delete-category-success'])) : // Afficher un message si la suppression d'une catégorie est réussie ?>
         <div class="alert__message success container">
             <p>
                 <?= $_SESSION['delete-category-success'];
@@ -123,6 +125,7 @@ $categories = $stmt->fetchAll(PDO::FETCH_ASSOC);
     </div>
 </section>
 <?php
+// Inclure le fichier du pied de page
 require '../partials/footer.php';
 ?>
 <script src="../../frontend/assets/main.js"></script>

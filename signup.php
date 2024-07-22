@@ -1,13 +1,14 @@
 <?php
+// Inclure le fichier de configuration
 require './backend/config/constants.php';
 
 // Récupérer les données de session si elles existent
-$firstname = $_SESSION['signup-data']['firstname'] ?? '';
-$lastname = $_SESSION['signup-data']['lastname'] ?? '';
-$email = $_SESSION['signup-data']['email'] ?? '';
-$username = $_SESSION['signup-data']['username'] ?? '';
-$createpassword = $_SESSION['signup-data']['createpassword'] ?? '';
-$confirmpassword = $_SESSION['signup-data']['confirmpassword'] ?? '';
+$firstname = $_SESSION['signup-data']['firstname'] ?? ''; // Récupérer le prénom de la session
+$lastname = $_SESSION['signup-data']['lastname'] ?? ''; // Récupérer le nom de famille de la session
+$email = $_SESSION['signup-data']['email'] ?? ''; // Récupérer l'email de la session
+$username = $_SESSION['signup-data']['username'] ?? ''; // Récupérer le pseudonyme de la session
+$createpassword = $_SESSION['signup-data']['createpassword'] ?? ''; // Récupérer le mot de passe de la session
+$confirmpassword = $_SESSION['signup-data']['confirmpassword'] ?? ''; // Récupérer la confirmation du mot de passe de la session
 
 // Supprimer les données de session après les avoir récupérées
 unset($_SESSION['signup-data']);
@@ -37,28 +38,28 @@ unset($_SESSION['signup-data']);
 <section class="form__section">
     <div class="container form__section-container">
         <h2>Inscription</h2>
-        <?php if (isset($_SESSION['signup'])) : ?>
+        <?php if (isset($_SESSION['signup'])) : ?> <!-- Vérifier s'il y a un message d'erreur d'inscription -->
             <div class="alert__message error">
                 <p>
-                    <?= $_SESSION['signup'];
-                    unset($_SESSION['signup']);
+                    <?= $_SESSION['signup']; // Afficher le message d'erreur
+                    unset($_SESSION['signup']); // Supprimer le message de la session
                     ?>
                 </p>
             </div>
         <?php endif; ?>
         <form action="<?= ROOT_URL ?>signup-logic.php" enctype="multipart/form-data" method="POST">
-            <input type="text" name="firstname" value="<?= htmlspecialchars($firstname) ?>" placeholder="Prénom">
-            <input type="text" name="lastname" value="<?= htmlspecialchars($lastname) ?>" placeholder="Nom de famille">
-            <input type="text" name="username" value="<?= htmlspecialchars($username) ?>" placeholder="Pseudonyme">
-            <input type="email" name="email" value="<?= htmlspecialchars($email) ?>" placeholder="Adresse email">
-            <input type="password" name="createpassword" value="<?= htmlspecialchars($createpassword) ?>" placeholder="Mot de passe">
-            <input type="password" name="confirmpassword" value="<?= htmlspecialchars($confirmpassword) ?>" placeholder="Confirmation du mot de passe">
+            <input type="text" name="firstname" value="<?= htmlspecialchars($firstname) ?>" placeholder="Prénom"> <!-- Champ pour le prénom -->
+            <input type="text" name="lastname" value="<?= htmlspecialchars($lastname) ?>" placeholder="Nom de famille"> <!-- Champ pour le nom de famille -->
+            <input type="text" name="username" value="<?= htmlspecialchars($username) ?>" placeholder="Pseudonyme"> <!-- Champ pour le pseudonyme -->
+            <input type="email" name="email" value="<?= htmlspecialchars($email) ?>" placeholder="Adresse email"> <!-- Champ pour l'email -->
+            <input type="password" name="createpassword" value="<?= htmlspecialchars($createpassword) ?>" placeholder="Mot de passe"> <!-- Champ pour le mot de passe -->
+            <input type="password" name="confirmpassword" value="<?= htmlspecialchars($confirmpassword) ?>" placeholder="Confirmation du mot de passe"> <!-- Champ pour la confirmation du mot de passe -->
             <div class="form__control">
                 <label for="avatar">Avatar</label>
-                <input type="file" name="avatar" id="avatar">
+                <input type="file" name="avatar" id="avatar"> <!-- Champ pour l'avatar -->
             </div>
-            <button type="submit" name="submit" class="btn">S'inscrire</button>
-            <small>Déjà inscrit ? <a href="signin.php">Connectez-vous</a>.</small>
+            <button type="submit" name="submit" class="btn">S'inscrire</button> <!-- Bouton de soumission -->
+            <small>Déjà inscrit ? <a href="signin.php">Connectez-vous</a>.</small> <!-- Lien vers la page de connexion -->
         </form>
     </div>
 </section>

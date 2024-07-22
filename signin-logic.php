@@ -1,20 +1,21 @@
 <?php
+// Inclure le fichier de configuration de la base de données
 require './backend/config/database.php';
 
 if (isset($_POST['submit'])) {
     // Récupérer les données du formulaire
-    $username_email = filter_var($_POST['username_email'], FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-    $password = filter_var($_POST['password'], FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+    $username_email = filter_var($_POST['username_email'], FILTER_SANITIZE_FULL_SPECIAL_CHARS); // Filtrer et sécuriser l'email ou le pseudonyme
+    $password = filter_var($_POST['password'], FILTER_SANITIZE_FULL_SPECIAL_CHARS); // Filtrer et sécuriser le mot de passe
 
     if (!$username_email) {
-        $_SESSION['signin'] = "Veuillez entrer votre pseudo ou votre email.";
+        $_SESSION['signin'] = "Veuillez entrer votre pseudo ou votre email."; // Message d'erreur si le champ est vide
     } elseif (!$password) {
-        $_SESSION['signin'] = "Veuillez entrer votre mot de passe.";
+        $_SESSION['signin'] = "Veuillez entrer votre mot de passe."; // Message d'erreur si le champ est vide
     } else {
-        // Récupérer l'utilisateur de la base de données
+        // Requête pour récupérer l'utilisateur de la base de données
         $fetch_user_query = "SELECT * FROM users WHERE username = :username_email OR email = :username_email";
-        $stmt = $connection->prepare($fetch_user_query);
-        $stmt->execute(['username_email' => $username_email]);
+        $stmt = $connection->prepare($fetch_user_query); // Préparer la requête
+        $stmt->execute(['username_email' => $username_email]); // Exécuter la requête avec le paramètre
 
         if ($stmt->rowCount() == 1) {
             // Convertir l'enregistrement en tableau associatif
@@ -31,23 +32,23 @@ if (isset($_POST['submit'])) {
 
                 // Connecter l'utilisateur
                 header("Location: " . ROOT_URL . "backend/admin/");
-                die();
+                die(); // Arrêter l'exécution du script
             } else {
-                $_SESSION['signin'] = "Mot de passe erroné.";
+                $_SESSION['signin'] = "Mot de passe erroné."; // Message d'erreur si le mot de passe est incorrect
             }
         } else {
-            $_SESSION['signin'] = "Utilisateur inexistant.";
+            $_SESSION['signin'] = "Utilisateur inexistant."; // Message d'erreur si l'utilisateur n'existe pas
         }
     }
 
     // En cas de problème, rediriger vers la page de connexion avec les données de connexion
     if (isset($_SESSION['signin'])) {
-        $_SESSION['signin-data'] = $_POST;
+        $_SESSION['signin-data'] = $_POST; // Sauvegarder les données de connexion dans la session
         header("Location: " . ROOT_URL . "signin.php");
-        die();
+        die(); // Arrêter l'exécution du script
     }
 } else {
-    header('Location: ' . ROOT_URL . 'signin.php');
-    die();
+    header('Location: ' . ROOT_URL . 'signin.php'); // Rediriger vers la page de connexion si le formulaire n'est pas soumis
+    die(); // Arrêter l'exécution du script
 }
 ?>

@@ -1,4 +1,5 @@
 <?php
+// Inclure le fichier de constantes
 require __DIR__ . '/constants.php';
 
 try {
@@ -10,4 +11,3 @@ try {
     // En cas d'échec de la connexion, afficher un message d'erreur
     die("Connection failed: " . $e->getMessage());
 }
-?>
