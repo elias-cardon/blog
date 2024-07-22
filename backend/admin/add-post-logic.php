@@ -9,10 +9,10 @@ if (isset($_POST['submit'])) {
     $is_featured = filter_var($_POST['is_featured'], FILTER_SANITIZE_NUMBER_INT);
     $thumbnail = $_FILES['thumbnail'];
 
-    //set is_featured to 0 if unchecked
+    // Définir is_featured à 0 si non coché
     $is_featured = $is_featured == 1 ? 1 : 0;
 
-    //validate form data
+    // Valider les données du formulaire
     if (!$title) {
         $_SESSION['add-post'] = "Renseignez le titre.";
     } elseif (!$category_id) {
@@ -22,18 +22,18 @@ if (isset($_POST['submit'])) {
     } elseif (!$thumbnail['name']) {
         $_SESSION['add-post'] = "Renseignez une image.";
     } else {
-        //WORK ON THUMBNAIL
-        //Rename the image
-        $time = time(); //make each image name unique
+        // TRAITEMENT DE LA MINIATURE
+        // Renommer l'image
+        $time = time(); // rendre chaque nom d'image unique
         $thumbnail_name = $time . $thumbnail['name'];
         $thumbnail_tmp_name = $thumbnail['tmp_name'];
         $thumbnail_destination_path = '../../frontend/assets/images/' . $thumbnail_name;
 
-        //make sure file is an image
+        // S'assurer que le fichier est une image
         $allowed_files = ['jpg', 'jpeg', 'png'];
         $extension = pathinfo($thumbnail_name, PATHINFO_EXTENSION);
         if (in_array($extension, $allowed_files)) {
-            //make sure image is not too large (2MO+)
+            // S'assurer que l'image n'est pas trop volumineuse (moins de 2MO)
             if ($thumbnail['size'] < 2000000) {
                 move_uploaded_file($thumbnail_tmp_name, $thumbnail_destination_path);
             } else {
@@ -44,20 +44,20 @@ if (isset($_POST['submit'])) {
         }
     }
 
-    //redirect back (with form data) to add post page if there is a problem
+    // Rediriger vers la page d'ajout d'article (avec les données du formulaire) en cas de problème
     if (isset($_SESSION['add-post'])) {
         $_SESSION['add-post-data'] = $_POST;
         header('Location: ' . ROOT_URL . 'backend/admin/add-post.php');
         die();
     } else {
-        // set is_featured of all posts to 0 if is_featured for this post is 1
+        // Définir is_featured de tous les articles à 0 si is_featured pour cet article est 1
         if ($is_featured == 1) {
             $zero_all_is_featured_query = "UPDATE posts SET is_featured=0";
             $stmt = $connection->prepare($zero_all_is_featured_query);
             $stmt->execute();
         }
 
-        //insert post into database
+        // Insérer l'article dans la base de données
         $query = "INSERT INTO posts (title, body, thumbnail, category_id, author_id, is_featured)
                   VALUES (:title, :body, :thumbnail, :category_id, :author_id, :is_featured)";
         $stmt = $connection->prepare($query);

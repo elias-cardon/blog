@@ -1,10 +1,11 @@
 <?php
 require 'partials/header.php';
 
-//get back form data if invalid
+// Récupérer les données du formulaire si elles sont invalides
 $title = $_SESSION['add-category-data']['title'] ?? '';
 $description = $_SESSION['add-category-data']['description'] ?? '';
 
+// Supprimer les données de session après les avoir récupérées
 unset($_SESSION['add-category-data']);
 ?>
 <body>

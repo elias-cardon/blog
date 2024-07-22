@@ -1,13 +1,13 @@
 <?php
 require './partials/header.php';
 
-// Fetch categories from database
+// Récupère les catégories de la base de données
 $query = "SELECT * FROM categories ORDER BY title";
 $stmt = $connection->query($query);
 $categories = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
 <section class="dashboard">
-    <?php if (isset($_SESSION['add-category-success'])) : // Shows if add category is successful ?>
+    <?php if (isset($_SESSION['add-category-success'])) : // Affiche un message si l'ajout d'une catégorie est réussi ?>
         <div class="alert__message success container">
             <p>
                 <?= $_SESSION['add-category-success'];
@@ -15,7 +15,7 @@ $categories = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 ?>
             </p>
         </div>
-    <?php elseif (isset($_SESSION['add-category'])) : // Shows if add category is not successful ?>
+    <?php elseif (isset($_SESSION['add-category'])) : // Affiche un message si l'ajout d'une catégorie échoue ?>
         <div class="alert__message error container">
             <p>
                 <?= $_SESSION['add-category'];
@@ -23,7 +23,7 @@ $categories = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 ?>
             </p>
         </div>
-    <?php elseif (isset($_SESSION['edit-category'])) : // Shows if edit category is not successful ?>
+    <?php elseif (isset($_SESSION['edit-category'])) : // Affiche un message si la modification d'une catégorie échoue ?>
         <div class="alert__message error container">
             <p>
                 <?= $_SESSION['edit-category'];
@@ -31,7 +31,7 @@ $categories = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 ?>
             </p>
         </div>
-    <?php elseif (isset($_SESSION['edit-category-success'])) : // Shows if edit category is successful ?>
+    <?php elseif (isset($_SESSION['edit-category-success'])) : // Affiche un message si la modification d'une catégorie est réussie ?>
         <div class="alert__message success container">
             <p>
                 <?= $_SESSION['edit-category-success'];
@@ -39,7 +39,7 @@ $categories = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 ?>
             </p>
         </div>
-    <?php elseif (isset($_SESSION['delete-category-success'])) : // Shows if delete category is successful ?>
+    <?php elseif (isset($_SESSION['delete-category-success'])) : // Affiche un message si la suppression d'une catégorie est réussie ?>
         <div class="alert__message success container">
             <p>
                 <?= $_SESSION['delete-category-success'];

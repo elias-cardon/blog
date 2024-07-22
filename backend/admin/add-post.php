@@ -1,16 +1,16 @@
 <?php
 require 'partials/header.php';
 
-// Fetch categories from database
+// Récupérer les catégories de la base de données
 $query = "SELECT * FROM categories";
 $stmt = $connection->query($query);
 $categories = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-// Get back form data if form was invalid
+// Récupérer les données du formulaire si elles sont invalides
 $title = $_SESSION['add-post-data']['title'] ?? '';
 $body = $_SESSION['add-post-data']['body'] ?? '';
 
-// Delete form data session
+// Supprimer les données de session après les avoir récupérées
 unset($_SESSION['add-post-data']);
 ?>
 <body>

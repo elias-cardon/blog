@@ -2,7 +2,7 @@
 <?php
 include 'backend/partials/header.php';
 
-//fetch post if id is set
+// Récupérer les articles si l'id est défini
 if (isset($_GET['id'])) {
     $id = filter_var($_GET['id'], FILTER_SANITIZE_NUMBER_INT);
     $query = "SELECT * FROM posts WHERE category_id = :id ORDER BY date_time DESC";
@@ -10,6 +10,7 @@ if (isset($_GET['id'])) {
     $posts_stmt->execute(['id' => $id]);
     $posts = $posts_stmt->fetchAll(PDO::FETCH_ASSOC);
 } else {
+    // Rediriger vers la page blog si aucun id n'est défini
     header('Location: ' . ROOT_URL . 'blog.php');
     die();
 }
@@ -18,7 +19,7 @@ if (isset($_GET['id'])) {
 <header class="category__title">
     <h2>
         <?php
-        //fetch category from categories table using category_id of post
+        // Récupérer la catégorie à partir de la table categories en utilisant category_id
         $category_query = "SELECT * FROM categories WHERE id = :id";
         $category_stmt = $connection->prepare($category_query);
         $category_stmt->execute(['id' => $id]);
@@ -27,7 +28,7 @@ if (isset($_GET['id'])) {
         ?>
     </h2>
 </header>
-<!--===============================POST=========================================-->
+<!--===============================ARTICLES=========================================-->
 <?php if (count($posts) > 0) : ?>
     <section class="posts">
         <div class="container posts__container">
@@ -48,7 +49,7 @@ if (isset($_GET['id'])) {
                         </p>
                         <div class="post__author">
                             <?php
-                            //fetch author from users table using author_id
+                            // Récupérer l'auteur de l'article en utilisant author_id
                             $author_id = $post['author_id'];
                             $author_query = "SELECT * FROM users WHERE id = :author_id";
                             $author_stmt = $connection->prepare($author_query);
@@ -74,11 +75,12 @@ if (isset($_GET['id'])) {
         <p>Aucun article disponible dans cette catégorie.</p>
     </div>
 <?php endif; ?>
-<!--==============================END POST=========================================-->
-<!--==============================LIST CATEGORIES=========================================-->
+<!--==============================FIN DES ARTICLES=========================================-->
+<!--==============================LISTE DES CATÉGORIES=========================================-->
 <section class="category__buttons">
     <div class="container category__buttons-container">
         <?php
+        // Récupérer toutes les catégories de la table categories
         $all_categories_query = "SELECT * FROM categories";
         $all_categories_stmt = $connection->query($all_categories_query);
         $all_categories = $all_categories_stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -89,7 +91,7 @@ if (isset($_GET['id'])) {
         <?php endforeach; ?>
     </div>
 </section>
-<!--==============================END LIST CATEGORIES=========================================-->
+<!--==============================FIN DE LA LISTE DES CATÉGORIES=========================================-->
 <?php
 include 'backend/partials/footer.php';
 ?>

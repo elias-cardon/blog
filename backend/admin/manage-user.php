@@ -1,7 +1,7 @@
 <?php
 require './partials/header.php';
 
-// Fetch users from database but not current user
+// Récupère les utilisateurs de la base de données sauf l'utilisateur actuel
 $current_admin_id = $_SESSION['user-id'];
 
 $query = "SELECT * FROM users WHERE id != :current_admin_id";
@@ -11,7 +11,7 @@ $stmt->execute();
 $users = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
 <section class="dashboard">
-    <?php if (isset($_SESSION['add-user-success'])) : // Shows if add user is successful ?>
+    <?php if (isset($_SESSION['add-user-success'])) : // Affiche un message si l'ajout d'un utilisateur est réussi ?>
         <div class="alert__message success container">
             <p>
                 <?= $_SESSION['add-user-success'];
@@ -19,7 +19,7 @@ $users = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 ?>
             </p>
         </div>
-    <?php elseif (isset($_SESSION['edit-user-success'])) : // Shows if edit user is successful ?>
+    <?php elseif (isset($_SESSION['edit-user-success'])) : // Affiche un message si la modification d'un utilisateur est réussie ?>
         <div class="alert__message success container">
             <p>
                 <?= $_SESSION['edit-user-success'];
@@ -27,7 +27,7 @@ $users = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 ?>
             </p>
         </div>
-    <?php elseif (isset($_SESSION['edit-user'])) : // Shows if edit user is not successful ?>
+    <?php elseif (isset($_SESSION['edit-user'])) : // Affiche un message si la modification d'un utilisateur échoue ?>
         <div class="alert__message error container">
             <p>
                 <?= $_SESSION['edit-user'];
@@ -35,7 +35,7 @@ $users = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 ?>
             </p>
         </div>
-    <?php elseif (isset($_SESSION['delete-user'])) : // Shows if delete user is not successful ?>
+    <?php elseif (isset($_SESSION['delete-user'])) : // Affiche un message si la suppression d'un utilisateur échoue ?>
         <div class="alert__message error container">
             <p>
                 <?= $_SESSION['delete-user'];
@@ -43,7 +43,7 @@ $users = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 ?>
             </p>
         </div>
-    <?php elseif (isset($_SESSION['delete-user-success'])) : // Shows if delete user is successful ?>
+    <?php elseif (isset($_SESSION['delete-user-success'])) : // Affiche un message si la suppression d'un utilisateur est réussie ?>
         <div class="alert__message success container">
             <p>
                 <?= $_SESSION['delete-user-success'];

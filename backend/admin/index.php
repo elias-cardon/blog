@@ -1,7 +1,7 @@
 <?php
 require './partials/header.php';
 
-// Fetch current user's posts from database
+// Récupère les articles de l'utilisateur actuel depuis la base de données
 $current_user_id = $_SESSION['user-id'];
 $query = "SELECT id, title, category_id, is_featured FROM posts WHERE author_id = :current_user_id ORDER BY id DESC";
 $stmt = $connection->prepare($query);
@@ -9,7 +9,7 @@ $stmt->execute(['current_user_id' => $current_user_id]);
 $posts = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
 <section class="dashboard">
-    <?php if (isset($_SESSION['add-post-success'])) : // Shows if add post is successful ?>
+    <?php if (isset($_SESSION['add-post-success'])) : // Affiche un message si l'ajout d'un article est réussi ?>
         <div class="alert__message success container">
             <p>
                 <?= $_SESSION['add-post-success'];
@@ -17,7 +17,7 @@ $posts = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 ?>
             </p>
         </div>
-    <?php elseif (isset($_SESSION['edit-post-success'])) : // Shows if edit post is successful ?>
+    <?php elseif (isset($_SESSION['edit-post-success'])) : // Affiche un message si la modification d'un article est réussie ?>
         <div class="alert__message success container">
             <p>
                 <?= $_SESSION['edit-post-success'];
@@ -25,7 +25,7 @@ $posts = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 ?>
             </p>
         </div>
-    <?php elseif (isset($_SESSION['edit-post'])) : // Shows if edit post is not successful ?>
+    <?php elseif (isset($_SESSION['edit-post'])) : // Affiche un message si la modification d'un article échoue ?>
         <div class="alert__message error container">
             <p>
                 <?= $_SESSION['edit-post'];
@@ -33,7 +33,7 @@ $posts = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 ?>
             </p>
         </div>
-    <?php elseif (isset($_SESSION['delete-post-success'])) : // Shows if delete post is successful ?>
+    <?php elseif (isset($_SESSION['delete-post-success'])) : // Affiche un message si la suppression d'un article est réussie ?>
         <div class="alert__message success container">
             <p>
                 <?= $_SESSION['delete-post-success'];
@@ -102,7 +102,7 @@ $posts = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     </thead>
                     <tbody>
                     <?php foreach ($posts as $post) : ?>
-                        <!-- Get category title of each post from categories table -->
+                        <!-- Récupère le titre de la catégorie de chaque article depuis la table des catégories -->
                         <?php
                         $category_id = $post['category_id'];
                         $category_query = "SELECT title FROM categories WHERE id = :category_id";

@@ -1,7 +1,7 @@
 <?php
 include 'backend/partials/header.php';
 
-//fetch post from database if id is set
+// Récupérer l'article de la base de données si l'id est défini
 if (isset($_GET['id'])) {
     $id = filter_var($_GET['id'], FILTER_SANITIZE_NUMBER_INT);
     $query = "SELECT * FROM posts WHERE id = :id";
@@ -9,18 +9,19 @@ if (isset($_GET['id'])) {
     $stmt->execute(['id' => $id]);
     $post = $stmt->fetch(PDO::FETCH_ASSOC);
 } else {
+    // Rediriger vers la page blog si aucun id n'est défini
     header('Location: ' . ROOT_URL . 'blog.php');
     die();
 }
 ?>
 
-<!--==============================POST=========================================-->
+<!--==============================ARTICLE=========================================-->
 <section class="singlepost">
     <div class="container singlepost__container">
         <h2><?= htmlspecialchars($post['title']) ?></h2>
         <div class="post__author">
             <?php
-            //fetch author from users table using author_id
+            // Récupérer l'auteur de l'article en utilisant author_id
             $author_id = $post['author_id'];
             $author_query = "SELECT * FROM users WHERE id = :author_id";
             $author_stmt = $connection->prepare($author_query);
@@ -44,7 +45,7 @@ if (isset($_GET['id'])) {
         </div>
     </div>
 </section>
-<!--==============================END POST=========================================-->
+<!--==============================FIN DE L'ARTICLE=========================================-->
 
 <?php
 include 'backend/partials/footer.php';

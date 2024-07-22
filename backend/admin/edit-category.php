@@ -4,7 +4,7 @@ require './partials/header.php';
 if (isset($_GET['id'])) {
     $id = filter_var($_GET['id'], FILTER_SANITIZE_NUMBER_INT);
 
-    //fetch category from database
+    // Récupère la catégorie de la base de données
     $query = "SELECT * FROM categories WHERE id = :id";
     $stmt = $connection->prepare($query);
     $stmt->execute(['id' => $id]);
@@ -12,6 +12,7 @@ if (isset($_GET['id'])) {
         $category = $stmt->fetch(PDO::FETCH_ASSOC);
     }
 } else {
+    // Redirige si l'ID de la catégorie n'est pas fourni
     header('Location: ' . ROOT_URL . 'backend/admin/manage-category.php');
     die();
 }

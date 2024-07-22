@@ -3,17 +3,20 @@ require './partials/header.php';
 
 if (isset($_GET['id'])) {
     $id = filter_var($_GET['id'], FILTER_SANITIZE_NUMBER_INT);
+    // Récupère l'utilisateur de la base de données
     $query = "SELECT * FROM users WHERE id = :id";
     $stmt = $connection->prepare($query);
     $stmt->bindParam(':id', $id, PDO::PARAM_INT);
     $stmt->execute();
     $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
+    // Redirige si l'utilisateur n'existe pas
     if (!$user) {
         header('Location: ' . ROOT_URL . 'backend/admin/manage-user.php');
         die();
     }
 } else {
+    // Redirige si l'ID de l'utilisateur n'est pas fourni
     header('Location: ' . ROOT_URL . 'backend/admin/manage-user.php');
     die();
 }

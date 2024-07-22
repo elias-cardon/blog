@@ -1,7 +1,7 @@
 <?php
 require './backend/config/database.php';
 
-//get signup data if signup button clicked
+// Récupérer les données d'inscription si le bouton d'inscription est cliqué
 if (isset($_POST['submit'])) {
     $firstname = filter_var($_POST['firstname'], FILTER_SANITIZE_FULL_SPECIAL_CHARS);
     $lastname = filter_var($_POST['lastname'], FILTER_SANITIZE_FULL_SPECIAL_CHARS);
@@ -11,7 +11,7 @@ if (isset($_POST['submit'])) {
     $confirmpassword = filter_var($_POST['confirmpassword'], FILTER_SANITIZE_FULL_SPECIAL_CHARS);
     $avatar = $_FILES['avatar'];
 
-    //validate input values
+    // Valider les valeurs d'entrée
     if (!$firstname) {
         $_SESSION['signup'] = "Veuillez renseigner votre prénom.";
     } elseif (!$lastname) {
@@ -25,14 +25,14 @@ if (isset($_POST['submit'])) {
     } elseif (!$avatar['name']) {
         $_SESSION['signup'] = "Veuillez ajouter un avatar.";
     } else {
-        //Check if passwords don't match
+        // Vérifier si les mots de passe ne correspondent pas
         if ($createpassword !== $confirmpassword) {
             $_SESSION['signup'] = "Les mots de passe ne correspondent pas.";
         } else {
-            //hash password
+            // Hacher le mot de passe
             $hashed_password = password_hash($createpassword, PASSWORD_DEFAULT);
 
-            //check if username or email already exists in database
+            // Vérifier si le pseudonyme ou l'email existe déjà dans la base de données
             $user_check_query = "SELECT * FROM users WHERE username = :username OR email = :email";
             $stmt = $connection->prepare($user_check_query);
             $stmt->execute(['username' => $username, 'email' => $email]);
@@ -40,20 +40,20 @@ if (isset($_POST['submit'])) {
             if ($stmt->rowCount() > 0) {
                 $_SESSION['signup'] = "Pseudonyme ou adresse email déjà existant";
             } else {
-                //Work on avatar
-                //rename avatar
-                $time = time(); //make each image unique using current timestamp
+                // Travailler sur l'avatar
+                // Renommer l'avatar
+                $time = time(); // rendre chaque image unique en utilisant le timestamp actuel
                 $avatar_name = $time . $avatar['name'];
                 $avatar_tmp_name = $avatar['tmp_name'];
                 $avatar_destination_path = 'frontend/assets/images/' . $avatar_name;
 
-                //make sure file is an image
+                // S'assurer que le fichier est une image
                 $allowed_files = ['png', 'jpg', 'jpeg'];
                 $extension = pathinfo($avatar_name, PATHINFO_EXTENSION);
                 if (in_array($extension, $allowed_files)) {
-                    //Make sure the file is not too large (1Mo)
+                    // S'assurer que le fichier n'est pas trop volumineux (1Mo)
                     if ($avatar['size'] < 1000000) {
-                        //Upload avatar
+                        // Télécharger l'avatar
                         move_uploaded_file($avatar_tmp_name, $avatar_destination_path);
                     } else {
                         $_SESSION['signup'] = 'Ce fichier est trop volumineux. Il doit faire moins de 1Mo.';
@@ -65,14 +65,14 @@ if (isset($_POST['submit'])) {
         }
     }
 
-    //redirect back to signup if any problem
+    // Rediriger vers la page d'inscription en cas de problème
     if (isset($_SESSION['signup'])) {
-        //pass the form data back to signup page
+        // Passer les données du formulaire à la page d'inscription
         $_SESSION['signup-data'] = $_POST;
         header('Location: ' . ROOT_URL . 'signup.php');
         die();
     } else {
-        //insert new user into users table
+        // Insérer le nouvel utilisateur dans la table users
         $insert_user_query = "INSERT INTO users (firstname, lastname, username, email, password, avatar, is_admin) VALUES (:firstname, :lastname, :username, :email, :password, :avatar, 0)";
         $stmt = $connection->prepare($insert_user_query);
         $stmt->execute([
@@ -85,14 +85,14 @@ if (isset($_POST['submit'])) {
         ]);
 
         if ($stmt->rowCount() > 0) {
-            //Redirect to signup page with success message
+            // Rediriger vers la page de connexion avec un message de succès
             $_SESSION['signup-success'] = "Inscription réussie. Vous pouvez vous connecter.";
             header('Location: ' . ROOT_URL . 'signin.php');
             die();
         }
     }
 } else {
-    //if button not clicked, return to signup page
+    // Si le bouton n'est pas cliqué, retourner à la page d'inscription
     header('Location: ' . ROOT_URL . 'signup.php');
     die();
 }

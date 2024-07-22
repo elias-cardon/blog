@@ -1,14 +1,19 @@
 <?php
 require './partials/header.php';
 
+// Récupère l'ID de l'utilisateur actuel depuis la session
 $current_user_id = $_SESSION['user-id'];
+
+// Récupère les informations de l'utilisateur depuis la base de données
 $query = "SELECT * FROM users WHERE id = :id";
 $stmt = $connection->prepare($query);
 $stmt->bindParam(':id', $current_user_id, PDO::PARAM_INT);
 $stmt->execute();
 $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
+// Vérifie si l'utilisateur existe et s'il est administrateur
 if (!$user || !$user['is_admin']) {
+    // Redirige vers la page d'administration si l'utilisateur n'est pas administrateur
     header('Location: ' . ROOT_URL . 'backend/admin/');
     die();
 }

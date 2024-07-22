@@ -1,7 +1,7 @@
 <?php
 require __DIR__ . '/../config/database.php';
 
-// Fetch current user from database
+// Récupérer l'utilisateur actuel de la base de données
 if (isset($_SESSION['user-id'])) {
     $id = filter_var($_SESSION['user-id'], FILTER_SANITIZE_NUMBER_INT);
     $query = "SELECT avatar, is_admin FROM users WHERE id = :id";
@@ -63,4 +63,4 @@ if (isset($_SESSION['user-id'])) {
         <button id="close__nav-btn"><i class="uil uil-multiply"></i></button>
     </div>
 </nav>
-<!--==============================END OF NAVBAR=========================================-->
+<!--==============================FIN DE LA NAVBAR=========================================-->

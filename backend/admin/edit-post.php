@@ -1,12 +1,12 @@
 <?php
 require './partials/header.php';
 
-// Fetch categories from database
+// Récupère les catégories de la base de données
 $category_query = "SELECT * FROM categories";
 $stmt = $connection->query($category_query);
 $categories = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-// Fetch post data from database if id is set
+// Récupère les données de l'article de la base de données si l'ID est défini
 if (isset($_GET['id'])) {
     $id = filter_var($_GET['id'], FILTER_SANITIZE_NUMBER_INT);
     $query = "SELECT * FROM posts WHERE id = :id";
@@ -15,11 +15,13 @@ if (isset($_GET['id'])) {
     $stmt->execute();
     $post = $stmt->fetch(PDO::FETCH_ASSOC);
 
+    // Redirige si l'article n'existe pas
     if (!$post) {
         header('Location: ' . ROOT_URL . 'backend/admin/');
         die();
     }
 } else {
+    // Redirige si l'ID de l'article n'est pas fourni
     header('Location: ' . ROOT_URL . 'backend/admin/');
     die();
 }
@@ -27,7 +29,7 @@ if (isset($_GET['id'])) {
 <body>
 <section class="form__section">
     <div class="container form__section-container">
-        <h2>Modifier d'article</h2>
+        <h2>Modifier l'article</h2>
         <form action="<?= ROOT_URL ?>backend/admin/edit-post-logic.php" method="POST" enctype="multipart/form-data">
             <input type="hidden" name="id" value="<?= $post['id'] ?>">
             <input type="hidden" name="previous_thumbnail_name" value="<?= $post['thumbnail'] ?>">

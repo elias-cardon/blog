@@ -1,12 +1,11 @@
 <?php
 require 'backend/config/constants.php';
 
-// Check if session is started and destroy all sessions
+// Vérifie si une session est démarrée et détruit toutes les sessions
 if (session_status() === PHP_SESSION_ACTIVE) {
     session_destroy();
 }
 
-// Redirect to home page
+// Redirige vers la page d'accueil
 header('Location: ' . ROOT_URL);
 die();
-?>

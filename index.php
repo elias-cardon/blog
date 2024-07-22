@@ -1,12 +1,12 @@
 <?php
 include 'backend/partials/header.php';
 
-// Fetch featured post from database
+// Récupérer l'article en vedette de la base de données
 $_featured_query = "SELECT * FROM posts WHERE is_featured = 1";
 $_featured_stmt = $connection->query($_featured_query);
 $featured = $_featured_stmt->fetch(PDO::FETCH_ASSOC);
 
-// Fetch 9 posts from posts table
+// Récupérer 9 articles de la table posts
 $query = "SELECT * FROM posts ORDER BY date_time DESC LIMIT 9";
 $posts_stmt = $connection->query($query);
 $posts = $posts_stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -14,7 +14,7 @@ $posts = $posts_stmt->fetchAll(PDO::FETCH_ASSOC);
 
 <!-- Montre l'article A la Une s'il y en a un -->
 <?php if ($featured) : ?>
-    <!--==============================FEATURED POST=========================================-->
+    <!--==============================ARTICLE EN VEDETTE=========================================-->
     <section class="featured">
         <div class="container featured__container">
             <div class="post__thumbnail">
@@ -22,7 +22,7 @@ $posts = $posts_stmt->fetchAll(PDO::FETCH_ASSOC);
             </div>
             <div class="post__info">
                 <?php
-                // Fetch category from categories table using category_id of post
+                // Récupérer la catégorie de l'article en utilisant category_id
                 $category_id = $featured['category_id'];
                 $category_query = "SELECT * FROM categories WHERE id = :category_id";
                 $category_stmt = $connection->prepare($category_query);
@@ -39,7 +39,7 @@ $posts = $posts_stmt->fetchAll(PDO::FETCH_ASSOC);
                 </p>
                 <div class="post__author">
                     <?php
-                    // Fetch author from users table using author_id
+                    // Récupérer l'auteur de l'article en utilisant author_id
                     $author_id = $featured['author_id'];
                     $author_query = "SELECT * FROM users WHERE id = :author_id";
                     $author_stmt = $connection->prepare($author_query);
@@ -61,8 +61,8 @@ $posts = $posts_stmt->fetchAll(PDO::FETCH_ASSOC);
         </div>
     </section>
 <?php endif; ?>
-<!--==============================END OF FEATURED POST=========================================-->
-<!--===============================NORMAL POST=========================================-->
+<!--==============================FIN DE L'ARTICLE EN VEDETTE=========================================-->
+<!--===============================ARTICLES NORMAUX=========================================-->
 <section class="posts <?= $featured ? '' : 'section__extra-margin' ?>">
     <div class="container posts__container">
         <?php foreach ($posts as $post) : ?>
@@ -73,7 +73,7 @@ $posts = $posts_stmt->fetchAll(PDO::FETCH_ASSOC);
                 </div>
                 <div class="post__info">
                     <?php
-                    // Fetch category from categories table using category_id of post
+                    // Récupérer la catégorie de l'article en utilisant category_id
                     $category_id = $post['category_id'];
                     $category_query = "SELECT * FROM categories WHERE id = :category_id";
                     $category_stmt = $connection->prepare($category_query);
@@ -92,7 +92,7 @@ $posts = $posts_stmt->fetchAll(PDO::FETCH_ASSOC);
                     </p>
                     <div class="post__author">
                         <?php
-                        // Fetch author from users table using author_id
+                        // Récupérer l'auteur de l'article en utilisant author_id
                         $author_id = $post['author_id'];
                         $author_query = "SELECT * FROM users WHERE id = :author_id";
                         $author_stmt = $connection->prepare($author_query);
@@ -113,11 +113,12 @@ $posts = $posts_stmt->fetchAll(PDO::FETCH_ASSOC);
         <?php endforeach; ?>
     </div>
 </section>
-<!--==============================END POST=========================================-->
-<!--==============================LIST CATEGORIES=========================================-->
+<!--==============================FIN DES ARTICLES=========================================-->
+<!--==============================LISTE DES CATÉGORIES=========================================-->
 <section class="category__buttons">
     <div class="container category__buttons-container">
         <?php
+        // Récupérer toutes les catégories de la table categories
         $all_categories_query = "SELECT * FROM categories";
         $all_categories_stmt = $connection->query($all_categories_query);
         $all_categories = $all_categories_stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -128,7 +129,7 @@ $posts = $posts_stmt->fetchAll(PDO::FETCH_ASSOC);
         <?php endforeach; ?>
     </div>
 </section>
-<!--==============================END LIST CATEGORIES=========================================-->
+<!--==============================FIN DE LA LISTE DES CATÉGORIES=========================================-->
 <?php
 include 'backend/partials/footer.php';
 ?>

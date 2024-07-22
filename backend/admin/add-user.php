@@ -1,7 +1,7 @@
 <?php
 require './partials/header.php';
 
-//get back form data if there was an error
+// Récupérer les données du formulaire si une erreur s'est produite
 $firstname = $_SESSION['add-user-data']['firstname'] ?? '';
 $lastname = $_SESSION['add-user-data']['lastname'] ?? '';
 $username = $_SESSION['add-user-data']['username'] ?? '';
@@ -9,7 +9,7 @@ $email = $_SESSION['add-user-data']['email'] ?? '';
 $createpassword = $_SESSION['add-user-data']['createpassword'] ?? '';
 $confirm_password = $_SESSION['add-user-data']['confirmpassword'] ?? '';
 
-//delete session data
+// Supprimer les données de session après les avoir récupérées
 unset($_SESSION['add-user-data']);
 ?>
 <body>
