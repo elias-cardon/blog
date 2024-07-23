@@ -1,43 +1,62 @@
 <?php
-// Inclure le fichier de l'en-tête
 require './partials/header.php';
 
-// Récupérer les articles de l'utilisateur actuel depuis la base de données
+// Fetch current user's posts from database
 $current_user_id = $_SESSION['user-id'];
-$query = "SELECT id, title, category_id, is_featured FROM posts WHERE author_id = :current_user_id ORDER BY id DESC";
-$stmt = $connection->prepare($query);
-$stmt->execute(['current_user_id' => $current_user_id]);
+$is_admin = $_SESSION['user_is_admin'] ?? false;
+
+if ($is_admin) {
+    $query = "SELECT posts.id, posts.title, posts.category_id, posts.is_featured, users.username AS author 
+              FROM posts 
+              JOIN users ON posts.author_id = users.id 
+              ORDER BY posts.id DESC";
+    $stmt = $connection->prepare($query);
+    $stmt->execute();
+} else {
+    $query = "SELECT id, title, category_id, is_featured FROM posts WHERE author_id = :current_user_id ORDER BY id DESC";
+    $stmt = $connection->prepare($query);
+    $stmt->execute(['current_user_id' => $current_user_id]);
+}
 $posts = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="path/to/your/css/styles.css">
+</head>
+<body>
 <section class="dashboard">
-    <?php if (isset($_SESSION['add-post-success'])) : // Afficher un message si l'ajout d'un article est réussi ?>
+    <?php if (isset($_SESSION['add-post-success'])) : // Shows if add post is successful ?>
         <div class="alert__message success container">
             <p>
-                <?= $_SESSION['add-post-success'];
+                <?= htmlspecialchars($_SESSION['add-post-success'], ENT_QUOTES, 'UTF-8');
                 unset($_SESSION['add-post-success']);
                 ?>
             </p>
         </div>
-    <?php elseif (isset($_SESSION['edit-post-success'])) : // Afficher un message si la modification d'un article est réussie ?>
+    <?php elseif (isset($_SESSION['edit-post-success'])) : // Shows if edit post is successful ?>
         <div class="alert__message success container">
             <p>
-                <?= $_SESSION['edit-post-success'];
+                <?= htmlspecialchars($_SESSION['edit-post-success'], ENT_QUOTES, 'UTF-8');
                 unset($_SESSION['edit-post-success']);
                 ?>
             </p>
         </div>
-    <?php elseif (isset($_SESSION['edit-post'])) : // Afficher un message si la modification d'un article échoue ?>
+    <?php elseif (isset($_SESSION['edit-post'])) : // Shows if edit post is not successful ?>
         <div class="alert__message error container">
             <p>
-                <?= $_SESSION['edit-post'];
+                <?= htmlspecialchars($_SESSION['edit-post'], ENT_QUOTES, 'UTF-8');
                 unset($_SESSION['edit-post']);
                 ?>
             </p>
         </div>
-    <?php elseif (isset($_SESSION['delete-post-success'])) : // Afficher un message si la suppression d'un article est réussie ?>
+    <?php elseif (isset($_SESSION['delete-post-success'])) : // Shows if delete post is successful ?>
         <div class="alert__message success container">
             <p>
-                <?= $_SESSION['delete-post-success'];
+                <?= htmlspecialchars($_SESSION['delete-post-success'], ENT_QUOTES, 'UTF-8');
                 unset($_SESSION['delete-post-success']);
                 ?>
             </p>
@@ -96,6 +115,7 @@ $posts = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     <tr>
                         <th>Titre</th>
                         <th>Catégorie</th>
+                        <th>Auteur</th>
                         <th>A la Une</th>
                         <th>Modifier</th>
                         <th>Supprimer</th>
@@ -103,7 +123,7 @@ $posts = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     </thead>
                     <tbody>
                     <?php foreach ($posts as $post) : ?>
-                        <!-- Récupérer le titre de la catégorie de chaque article depuis la table des catégories -->
+                        <!-- Get category title of each post from categories table -->
                         <?php
                         $category_id = $post['category_id'];
                         $category_query = "SELECT title FROM categories WHERE id = :category_id";
@@ -112,11 +132,12 @@ $posts = $stmt->fetchAll(PDO::FETCH_ASSOC);
                         $category = $category_stmt->fetch(PDO::FETCH_ASSOC);
                         ?>
                         <tr>
-                            <td><?= htmlspecialchars_decode($post['title']) ?></td>
-                            <td><?= htmlspecialchars_decode($category['title']) ?></td>
+                            <td><?= htmlspecialchars_decode(htmlspecialchars($post['title'], ENT_QUOTES, 'UTF-8')) ?></td>
+                            <td><?= htmlspecialchars_decode(htmlspecialchars($category['title'], ENT_QUOTES, 'UTF-8')) ?></td>
+                            <td><?= htmlspecialchars_decode(htmlspecialchars($post['author'], ENT_QUOTES, 'UTF-8')) ?></td>
                             <td><?= $post['is_featured'] ? 'Oui' : 'Non' ?></td>
-                            <td><a href="<?= ROOT_URL ?>backend/admin/edit-post.php?id=<?= $post['id'] ?>" class="btn sm">Modifier</a></td>
-                            <td><a href="<?= ROOT_URL ?>backend/admin/delete-post.php?id=<?= $post['id'] ?>" class="btn sm danger">Supprimer</a></td>
+                            <td><a href="<?= htmlspecialchars(ROOT_URL . 'backend/admin/edit-post.php?id=' . $post['id'], ENT_QUOTES, 'UTF-8') ?>" class="btn sm">Modifier</a></td>
+                            <td><a href="<?= htmlspecialchars(ROOT_URL . 'backend/admin/delete-post.php?id=' . $post['id'], ENT_QUOTES, 'UTF-8') ?>" class="btn sm danger">Supprimer</a></td>
                         </tr>
                     <?php endforeach; ?>
                     </tbody>
@@ -128,7 +149,6 @@ $posts = $stmt->fetchAll(PDO::FETCH_ASSOC);
     </div>
 </section>
 <?php
-// Inclure le fichier du pied de page
 require '../partials/footer.php';
 ?>
 <script src="../../frontend/assets/main.js"></script>
