@@ -12,6 +12,18 @@ $posts_stmt = $connection->query($query);
 $posts = $posts_stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
 
+<!--==============================BARRE DE RECHERCHE=========================================-->
+<section class="search__bar">
+    <form action="<?= ROOT_URL ?>search.php" class="container search__bar-container" method="GET">
+        <div>
+            <i class="uil uil-search"></i>
+            <input type="search" name="search" placeholder="Rechercher"> <!-- Champ de recherche -->
+        </div>
+        <button type="submit" name="submit" class="btn">Chercher</button> <!-- Bouton de soumission -->
+    </form>
+</section>
+<!--==============================FIN DE LA BARRE DE RECHERCHE=========================================-->
+
 <!-- Montre l'article A la Une s'il y en a un -->
 <?php if ($featured) : ?>
     <!--==============================FEATURED POST=========================================-->
