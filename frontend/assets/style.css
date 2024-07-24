@@ -343,7 +343,7 @@ SEARCHBAR
  ============================================================== */
 
 .search__bar {
-    margin-top: 7rem;
+    margin-top: 5rem;
     margin-bottom: 3rem;
 }
 
@@ -446,6 +446,12 @@ EMPTY PAGE
  ============================================================== */
 .empty__page {
     height: 70vh;
+    display: grid;
+    place-content: center;
+}
+
+.title_big {
+    margin-top: 20vh;
     display: grid;
     place-content: center;
 }

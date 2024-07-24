@@ -12,6 +12,10 @@ $posts_stmt = $connection->query($query);
 $posts = $posts_stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
 
+<section class="title_big">
+    <h1>Accueil</h1>
+</section>
+
 <!--==============================BARRE DE RECHERCHE=========================================-->
 <section class="search__bar">
     <form action="<?= ROOT_URL ?>search.php" class="container search__bar-container" method="GET">
