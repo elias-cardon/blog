@@ -22,7 +22,7 @@ $posts = $posts_stmt->fetchAll(PDO::FETCH_ASSOC); // Récupérer tous les résul
 
 <!--===============================ARTICLES=========================================-->
 <section class="posts">
-    <div class="container posts__container">
+    <div class="container normal_post posts__container">
         <?php foreach ($posts as $post) : ?> <!-- Boucle sur chaque article -->
             <article class="post">
                 <div class="post__thumbnail">

@@ -76,7 +76,7 @@ $posts = $posts_stmt->fetchAll(PDO::FETCH_ASSOC);
 <!--==============================END OF FEATURED POST=========================================-->
 <!--===============================NORMAL POST=========================================-->
 <section class="posts <?= $featured ? '' : 'section__extra-margin' ?>">
-    <div class="container posts__container">
+    <div class="container normal_post posts__container">
         <?php foreach ($posts as $post) : ?>
             <article class="post">
                 <div class="post__thumbnail">
